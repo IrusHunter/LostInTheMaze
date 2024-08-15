@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbiqnrh1bpd2m"]
+
+[ext_resource type="Script" path="res://Entety/Structure/Walls/StoneWall/stone_wall.gd" id="1_4232k"]
+[ext_resource type="Texture2D" uid="uid://pih4st82jjvv" path="res://Entety/Structure/Walls/StoneWall/StoneWall.png" id="2_6431f"]
+[ext_resource type="Texture2D" uid="uid://d20i3yptsoc3" path="res://Entety/Structure/Walls/StoneWall/StoneWall1.png" id="3_bv8lp"]
+[ext_resource type="Texture2D" uid="uid://biqs0m78qkge6" path="res://Entety/Structure/Walls/StoneWall/StoneWall2.png" id="4_v1sbg"]
+[ext_resource type="Texture2D" uid="uid://bgit1t6snyjam" path="res://Entety/Structure/Walls/StoneWall/StoneWall3.png" id="5_5rgw0"]
+[ext_resource type="Script" path="res://Entety/Structure/Walls/StoneWall/stone_wall_anim.gd" id="6_obwr8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jrfm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6431f")
+}],
+"loop": true,
+"name": &"calm0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bv8lp")
+}],
+"loop": true,
+"name": &"calm1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v1sbg")
+}],
+"loop": true,
+"name": &"calm2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5rgw0")
+}],
+"loop": true,
+"name": &"calm3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6431f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umirw"]
+size = Vector2(4, 32)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("1_4232k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jrfm4")
+script = ExtResource("6_obwr8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_umirw")

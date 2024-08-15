@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjm8tdt88oyin"]
+
+[ext_resource type="Script" path="res://Damager/SplashDamager/splash_damager.gd" id="1_nj0nf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbuum"]
+radius = 1.0
+
+[node name="SplashDamager" type="Area2D"]
+monitorable = false
+script = ExtResource("1_nj0nf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rbuum")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

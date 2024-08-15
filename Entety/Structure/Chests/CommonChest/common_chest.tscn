@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckbxe68m2ki2y"]
+
+[ext_resource type="Script" path="res://Entety/Structure/Chests/CommonChest/common_chest.gd" id="1_evpf3"]
+[ext_resource type="Texture2D" uid="uid://gnu0k0qmt8i0" path="res://Entety/Structure/Chests/DefaultChest.png" id="1_hbw5s"]
+[ext_resource type="Script" path="res://Entety/Structure/Chests/CommonChest/common_chest_anim.gd" id="3_sif22"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8um0b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6png"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hbw5s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80vvq"]
+size = Vector2(16, 7)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_8um0b")
+gravity_scale = 0.0
+script = ExtResource("1_evpf3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v6png")
+script = ExtResource("3_sif22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_80vvq")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

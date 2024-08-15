@@ -1,0 +1,203 @@
+[gd_scene load_steps=13 format=3 uid="uid://ba0csbqnsm5t3"]
+
+[ext_resource type="Script" path="res://Scenes/GamePlayScenes/Level/Level.gd" id="1_x1ple"]
+[ext_resource type="Texture2D" uid="uid://kgq0625cn2j7" path="res://Entety/Plains/GrassTile.png" id="2_n7jii"]
+[ext_resource type="Texture2D" uid="uid://cass82mj8d5vt" path="res://Entety/Plains/QuitTile.png" id="3_0r75u"]
+[ext_resource type="Texture2D" uid="uid://dhfwbag87v2mp" path="res://Entety/Plains/GrassHole.png" id="3_ke3gb"]
+[ext_resource type="Texture2D" uid="uid://bicpw51m6h3jk" path="res://Entety/Plains/WaterTile.png" id="3_qfqig"]
+[ext_resource type="PackedScene" uid="uid://whggsav0yanr" path="res://Scenes/UserInterface/Menus/OptionMenu.tscn" id="4_2v4wt"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rgofp"]
+resource_name = "GrassTile"
+texture = ExtResource("2_n7jii")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6cb7"]
+texture = ExtResource("3_0r75u")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wopi"]
+texture = ExtResource("3_ke3gb")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88uld"]
+resource_name = "water"
+texture = ExtResource("3_qfqig")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_cf066"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rgofp")
+sources/400 = SubResource("TileSetAtlasSource_88uld")
+sources/200 = SubResource("TileSetAtlasSource_4wopi")
+sources/100 = SubResource("TileSetAtlasSource_d6cb7")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmcn5"]
+blend_mode = 3
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_x1ple")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_cf066")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 262148, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/GameMenu"]
+material = SubResource("CanvasItemMaterial_jmcn5")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -230.0
+offset_right = 164.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContiniuneButton" type="Button" parent="CanvasLayer/GameMenu/Panel"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 92.0
+offset_right = 245.0
+offset_bottom = 135.0
+text = "buttonContiniune"
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer/GameMenu/Panel"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 156.0
+offset_right = 248.0
+offset_bottom = 195.0
+text = "buttonOptions"
+
+[node name="StartButton" type="Button" parent="CanvasLayer/GameMenu/Panel"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 215.0
+offset_right = 249.0
+offset_bottom = 254.0
+text = "buttonStartOver"
+
+[node name="ReturnToLobbyButton" type="Button" parent="CanvasLayer/GameMenu/Panel"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 279.0
+offset_right = 250.0
+offset_bottom = 318.0
+text = "buttonReturnToLobby"
+
+[node name="ReturnToMenuButton" type="Button" parent="CanvasLayer/GameMenu/Panel"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 341.0
+offset_right = 254.0
+offset_bottom = 380.0
+text = "buttonReturnToMenu"
+
+[node name="Label" type="Label" parent="CanvasLayer/GameMenu/Panel"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 48.0
+offset_right = 204.0
+offset_bottom = 76.0
+text = "panelGameMenu"
+
+[node name="Options" parent="CanvasLayer/GameMenu" instance=ExtResource("4_2v4wt")]
+layout_mode = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_bottom = 646.0
+grow_horizontal = 0
+
+[node name="menuButton" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = 53.0
+grow_horizontal = 0
+text = "buttonMenu"
+
+[node name="movesLabel" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 67.0
+offset_bottom = 34.0
+text = "Moves: "
+
+[node name="leaveLevel" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_top = 59.0
+offset_right = -10.0
+offset_bottom = 90.0
+grow_horizontal = 0
+text = "buttonLeaveLevel"
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(-406, -323)
+zoom = Vector2(2, 2)
+
+[node name="Bombs" type="Node" parent="."]
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Chests" type="Node" parent="."]
+
+[node name="Void" type="Node" parent="."]
+
+[node name="Holes" type="Node" parent="."]
+
+[node name="TempInterface" type="Node" parent="."]
+
+[node name="Player" type="Node" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ContiniuneButton" to="." method="_on_continiune_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ContiniuneButton" to="CanvasLayer/GameMenu" method="_on_continiune_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/OptionsButton" to="CanvasLayer/GameMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ReturnToLobbyButton" to="." method="_on_return_to_lobby_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ReturnToLobbyButton" to="CanvasLayer/GameMenu" method="_on_return_to_lobby_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ReturnToMenuButton" to="CanvasLayer/GameMenu" method="_on_return_to_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/menuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/leaveLevel" to="." method="_on_leave_level_pressed"]

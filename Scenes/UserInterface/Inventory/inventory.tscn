@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dihg8it7wdajh"]
+
+[ext_resource type="Script" path="res://Scenes/UserInterface/Inventory/inventory.gd" id="1_f2eip"]
+[ext_resource type="Texture2D" uid="uid://ikt1ekd6tyxj" path="res://Scenes/UserInterface/Inventory/SelectedSlot.png" id="3_b8rek"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pd8ip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b8rek")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_f2eip")
+
+[node name="Box" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 42
+theme_override_constants/v_separation = 42
+columns = 4
+
+[node name="SelectedSlot" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pd8ip")
+animation = &"Default"

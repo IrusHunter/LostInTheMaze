@@ -1,0 +1,173 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy4jrr7c1ttx"]
+
+[ext_resource type="Script" path="res://Scenes/UserInterface/Lobby/Lobby.gd" id="1_o5c3n"]
+[ext_resource type="PackedScene" uid="uid://dihg8it7wdajh" path="res://Scenes/UserInterface/Inventory/inventory.tscn" id="2_e0wne"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i35ws"]
+blend_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b4twn"]
+blend_mode = 3
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_o5c3n")
+
+[node name="Levels" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -133.0
+offset_top = 23.0
+offset_right = -25.0
+offset_bottom = 63.0
+grow_horizontal = 0
+text = "buttonMenu"
+
+[node name="StorageButton" type="Button" parent="CanvasLayer"]
+offset_left = 34.0
+offset_top = 20.0
+offset_right = 154.0
+offset_bottom = 51.0
+text = "buttonStorage"
+
+[node name="ShopButton" type="Button" parent="CanvasLayer"]
+offset_left = 175.0
+offset_top = 20.0
+offset_right = 293.0
+offset_bottom = 51.0
+text = "buttonShop"
+
+[node name="StoragePanel" type="Panel" parent="CanvasLayer"]
+visible = false
+material = SubResource("CanvasItemMaterial_i35ws")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -348.0
+offset_top = -187.0
+offset_right = 348.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="Panel" parent="CanvasLayer/StoragePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -988.0
+offset_top = -644.5
+offset_right = 988.0
+offset_bottom = 644.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GeneralStorageLable" type="Label" parent="CanvasLayer/StoragePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_right = 54.5
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "labelStorage"
+
+[node name="ExitFromStorageButton" type="Button" parent="CanvasLayer/StoragePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "buttonQuit"
+
+[node name="PlayerInventoryLable" type="Label" parent="CanvasLayer/StoragePanel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 44.0
+offset_right = 176.0
+offset_bottom = 67.0
+text = "lablePlayerInventory"
+
+[node name="StorageInventoryLable2" type="Label" parent="CanvasLayer/StoragePanel"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 44.0
+offset_right = 431.0
+offset_bottom = 67.0
+text = "lableStorageInventory"
+
+[node name="ShopPanel" type="Panel" parent="CanvasLayer"]
+material = SubResource("CanvasItemMaterial_b4twn")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -186.0
+offset_right = 351.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="CanvasLayer/ShopPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -973.0
+offset_top = -519.0
+offset_right = 1005.0
+offset_bottom = 769.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopOffers" type="Panel" parent="CanvasLayer/ShopPanel"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 29.0
+offset_right = 348.0
+offset_bottom = 364.0
+
+[node name="Inventory" parent="CanvasLayer/ShopPanel" instance=ExtResource("2_e0wne")]
+offset_left = 394.0
+offset_top = 237.0
+offset_right = 394.0
+offset_bottom = 237.0
+
+[node name="ShopOffersLable" type="Label" parent="CanvasLayer/ShopPanel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 3.0
+offset_right = 227.0
+offset_bottom = 26.0
+text = "lableShopOffers"
+
+[node name="ExitFromShop" type="Button" parent="CanvasLayer/ShopPanel"]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 1.0
+offset_right = 698.0
+offset_bottom = 32.0
+text = "buttonQuit"
+
+[connection signal="pressed" from="CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StorageButton" to="." method="_on_storage_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/StoragePanel/ExitFromStorageButton" to="." method="_on_exit_from_storage_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopPanel/ExitFromShop" to="." method="_on_exit_from_shop_pressed"]

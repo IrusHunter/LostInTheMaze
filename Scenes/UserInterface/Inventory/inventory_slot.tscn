@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcm64mj1b7ks8"]
+
+[ext_resource type="Script" path="res://Scenes/UserInterface/Inventory/inventory_slot.gd" id="1_ljpyb"]
+
+[node name="InventorySlot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ljpyb")
+
+[node name="Frame" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Counter" type="Label" parent="Frame"]
+z_index = 1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 19.0
+offset_right = 13.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 12
+text = "0"

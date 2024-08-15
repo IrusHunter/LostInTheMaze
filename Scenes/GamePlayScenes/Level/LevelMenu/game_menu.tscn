@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqibo4f40kdbr"]
+
+[ext_resource type="Script" path="res://Scenes/GamePlayScenes/Level/LevelMenu/game_menu.gd" id="1_d5tsn"]
+[ext_resource type="PackedScene" uid="uid://whggsav0yanr" path="res://Scenes/UserInterface/Menus/OptionMenu/option_menu.tscn" id="2_u4h5h"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmcn5"]
+blend_mode = 3
+
+[node name="GameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d5tsn")
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource("CanvasItemMaterial_jmcn5")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -230.0
+offset_right = 164.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContiniuneButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 92.0
+offset_right = 245.0
+offset_bottom = 135.0
+text = "buttonContiniune"
+
+[node name="OptionsButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 156.0
+offset_right = 248.0
+offset_bottom = 195.0
+text = "buttonOptions"
+
+[node name="StartButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 215.0
+offset_right = 249.0
+offset_bottom = 254.0
+text = "buttonStartOver"
+
+[node name="ReturnToLobbyButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 279.0
+offset_right = 250.0
+offset_bottom = 318.0
+text = "buttonReturnToLobby"
+
+[node name="ReturnToMenuButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 341.0
+offset_right = 254.0
+offset_bottom = 380.0
+text = "ButtonReturnToMenu"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 48.0
+offset_right = 204.0
+offset_bottom = 76.0
+text = "panelGameMenu"
+
+[node name="Options" parent="." instance=ExtResource("2_u4h5h")]
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/ContiniuneButton" to="." method="_on_continiune_button_pressed"]
+[connection signal="pressed" from="Panel/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Panel/ReturnToLobbyButton" to="." method="_on_return_to_lobby_button_pressed"]
+[connection signal="pressed" from="Panel/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]

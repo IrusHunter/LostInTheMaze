@@ -1,0 +1,57 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="UltarMegaSuperPuperDuperAlfaOmegaDame"
+run/main_scene="res://Scenes/UserInterface/Menus/StartMenu/start_menu.tscn"
+config/features=PackedStringArray("4.2", "Mobile")
+run/max_fps=60
+config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Global/Global.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="UltarMegaSuperPuperDuperAlfaOmegaDame"
+
+[editor]
+
+movie_writer/movie_file="M:/Видео/game/example.avi"
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Localization/Transletion - Localization.en.translation", "res://Localization/Transletion - Localization.ua.translation")
+
+[layer_names]
+
+2d_physics/layer_1="floor"
+2d_physics/layer_2="0-1m"
+2d_physics/layer_3="1-2m"
+2d_physics/layer_4="2-3m"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

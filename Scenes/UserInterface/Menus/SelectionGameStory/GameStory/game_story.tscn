@@ -1,0 +1,148 @@
+[gd_scene load_steps=5 format=3 uid="uid://kr4l6lfilsyx"]
+
+[ext_resource type="Texture2D" uid="uid://bm18igyoau6pf" path="res://Scenes/UserInterface/Menus/SelectionGameStory/GameStory/New.png" id="1_ccetw"]
+[ext_resource type="Script" path="res://Scenes/UserInterface/Menus/SelectionGameStory/GameStory/game_story.gd" id="1_wqo2i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g4b5"]
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtm4l"]
+bg_color = Color(0.262745, 0.262745, 0.262745, 1)
+
+[node name="GameStory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wqo2i")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_right = 600.0
+offset_bottom = 600.0
+texture_normal = ExtResource("1_ccetw")
+
+[node name="Info" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 600.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4g4b5")
+
+[node name="NameOfTheStory" type="Label" parent="Info"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -268.0
+offset_top = 17.0
+offset_right = 268.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Stage" type="Label" parent="Info"]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 82.0
+offset_right = 148.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 25
+text = "labelStage"
+
+[node name="Part" type="Label" parent="Info"]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 124.0
+offset_right = 148.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 25
+text = "labelPart"
+
+[node name="Location" type="Label" parent="Info"]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 172.0
+offset_right = 148.0
+offset_bottom = 207.0
+theme_override_font_sizes/font_size = 25
+text = "labelLocation"
+
+[node name="Button" type="Button" parent="Info"]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 524.0
+offset_right = 577.0
+offset_bottom = 577.0
+theme_override_font_sizes/font_size = 30
+text = "buttonGameStoryPlay"
+clip_text = true
+
+[node name="Button2" type="Button" parent="Info"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 523.0
+offset_right = 224.0
+offset_bottom = 576.0
+theme_override_font_sizes/font_size = 30
+text = "buttonClose"
+
+[node name="NewSave" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+offset_right = 600.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xtm4l")
+
+[node name="Button" type="Button" parent="NewSave"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 522.0
+offset_right = 229.0
+offset_bottom = 578.0
+theme_override_font_sizes/font_size = 30
+text = "buttonClose"
+
+[node name="TextEdit" type="TextEdit" parent="NewSave"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -238.5
+offset_top = 106.0
+offset_right = 238.5
+offset_bottom = 157.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+placeholder_text = "textGameStoryNewStoryName"
+
+[node name="EnterNewSaveName" type="Label" parent="NewSave"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.5
+offset_top = 17.0
+offset_right = 243.5
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "labelGameStoryNewStoryName"
+
+[node name="Button2" type="Button" parent="NewSave"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -257.0
+offset_top = 428.0
+offset_right = 257.0
+offset_bottom = 502.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "buttonGameStoryCreateNewGame"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Info/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Info/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="NewSave/Button" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="NewSave/Button2" to="." method="_on_create_new_save_pressed"]
