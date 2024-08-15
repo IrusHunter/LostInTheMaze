@@ -1,7 +1,7 @@
 class_name Level
 extends Node2D
 
-var _level_file_path = Global.saves_path + "Levels/" + Global.current_level + "/"
+var _level_file_path = Global.tmp_level_path
 const path: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
 
 #region level data
@@ -50,7 +50,10 @@ func comunicate_with_panel(event):
 	if _inventory.set_selected_slot(event.position - _inventory.position) == 10:
 		_item_in_use = not _item_in_use
 func _ready():
-	Global.copy_dirs(_level_file_path, Global.tmp_level_path)
+	if not FileAccess.file_exists(_level_file_path + "main.txt"):
+		Global.copy_dirs(
+			Global.saves_path + Global.game_name + "/Levels/" + Global.current_level, _level_file_path
+		)
 	_ui.visible = false
 #region clearing level
 	for hole in _holes.get_children():
@@ -77,10 +80,6 @@ func _ready():
 		_chests.remove_child(chest)
 		chest.queue_free()
 	
-	for v in $Void.get_children():
-		$Void.remove_child(v)
-		v.queue_free()
-	
 	for exit_tile in _exits.get_children():
 		_exits.remove_child(exit_tile)
 		exit_tile.queue_free()
@@ -94,20 +93,16 @@ func _ready():
 	_moves = int(line[1])
 	line = lF.get_line().split(' ', false)
 #endregion
-#region initializating exits (*)
-	var ef = FileAccess.open(_level_file_path + "Config/Plains/exit.txt", FileAccess.READ)
-	line = ef.get_line().split(' ', false)
-	ExitTile.init(
-		_exits, tap_on_exit, Vector2(
-			int(line[0]) * Global.size + Global.size / 2, int(line[1]) * Global.size + Global.size / 2
-		)
-	)
-#endregion
+#region initializating inventory
 	if not _level_started_yet:
-		Global.copy_files(Global.user_path + "inventory.txt", _level_file_path + "Player/inventory.txt")
+		Global.copy_files(
+			Global.saves_path + Global.game_name + "/inventory.txt", 
+			_level_file_path + "Player/inventory.txt"
+		)
 	_player = Player.init_from_file(_level_file_path + "Player/main.txt", _players)
 	_player.independent_movement.movement_stoped.connect(next_move)
 	_inventory = Inventory.init(_ui, _player.inventory, Vector2(20, 176), 4)
+#endregion
 #region initializating tile map
 	var tmf = FileAccess.open(_level_file_path + "Config/tilemap.txt", FileAccess.READ)
 	line = tmf.get_line().split(' ', false)
@@ -137,16 +132,7 @@ func _ready():
 		line = tmf.get_line().split(' ', false)
 	tmf.close()
 #endregion
-#region void (*)
-	#for i in range(width):
-		#line = lF.get_line().split(' ', false)
-		#Global.p = 0
-		#for j in range(length):
-			#if int(line[j]):
-				#var voidTile = voidTilePreload.instantiate()
-				#voidTile.position = Vector2(j*size+ size/2, i*size + size/2)
-				#$Void.add_child(voidTile)
-#endregion
+	Exit.init_exits(_exits, _level_file_path + "Config/Plains/Exits/", tap_on_exit)
 	Wall.init_walls(_walls, _level_file_path + "Config/Structure/Walls/")
 	Chest.init_chests(_chests, _level_file_path + "Config/Structure/Chests/")
 	River.init_from_dir(_rivers, _level_file_path + "Config/Plains/Rivers")

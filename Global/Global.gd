@@ -15,6 +15,7 @@ var tmp_level_path = user_path + "CurrentLevel/"
 #endregion
 
 var size = 32
+var game_name: String = ""
 
 var void_visibility: bool = false
 
@@ -37,7 +38,7 @@ func at_the_start_of_game(from: String, to: String):
 	for file in fromDirectory.get_files():
 		copy_files(from+"/"+file, to+"/"+file)
 func copy_dirs(from: String, to: String):
-	at_the_start_of_game(from + '/', to + "/")
+	at_the_start_of_game(from, to)
 
 func _ready():
 	var tmp = DirAccess.make_dir_absolute("user://Data/Saves")
