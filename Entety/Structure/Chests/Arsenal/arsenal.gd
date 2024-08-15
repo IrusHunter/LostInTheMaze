@@ -22,7 +22,7 @@ static func init(
 ) -> Arsenal:
 	var a: Arsenal = preload(path).instantiate()
 	a._free_inventory = FreeInventory.new(inventory_path)
-	parent.call_deferred("add_child", a)
+	parent.add_child(a)
 	if a._health.current_health <= damage:
 		a._death_from_load = true
 	a._health.current_health -= damage
