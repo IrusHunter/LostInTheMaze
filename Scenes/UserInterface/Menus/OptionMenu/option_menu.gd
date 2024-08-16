@@ -47,10 +47,10 @@ func _input(event):
 		if event.pressed:
 			return
 		if visible:
-			event.position -= position
-			if event.position.x < -$Panel.size.x/2 || event.position.y < -$Panel.size.y/2:
+			var delta = event.position - position
+			if delta.x < -$Panel.size.x/2 || delta.y < -$Panel.size.y/2:
 				_on_exit_button_pressed()
-			elif event.position.x > $Panel.size.x/2 || event.position.y > $Panel.size.y/2:
+			elif delta.x > $Panel.size.x/2 || delta.y > $Panel.size.y/2:
 				_on_exit_button_pressed()
 
 

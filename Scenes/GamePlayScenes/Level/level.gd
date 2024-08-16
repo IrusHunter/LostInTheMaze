@@ -166,7 +166,16 @@ func _input(event):
 	# work with gamemenu
 	if $CanvasLayer/GameMenu.visible:
 		return
-	
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			# zoom in
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				_camera.zoom *= 1.2
+				# call the zoom function
+			# zoom out
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				_camera.zoom /= 1.2
+				# call the zoom function
 	#if $tmpForCamera.visible:
 		#if event is InputEventScreenDrag:
 			#if event.position.x < $CanvasLayer/Panel.position.x:
