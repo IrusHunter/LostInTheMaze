@@ -9,7 +9,6 @@ var current_level = "1_FirstLevel"
 var start_data_path = "res://UserData/StartData/"
 var user_path = "user://Data/"
 var init_unit_path = "user://Data/for_init_units.txt"
-var game_story = "Test1"
 var saves_path = user_path + "Saves/"
 var tmp_level_path = user_path + "CurrentLevel/"
 #endregion
@@ -29,7 +28,7 @@ func slovo(st):
 		p += 1
 	return s
 
-func at_the_start_of_game(from: String, to: String):
+func at_the_start_of_game(from: String, to: String) -> void:
 	var fromDirectory = DirAccess.open(from)
 	var toDirectory = DirAccess.open(to)
 	for dir in fromDirectory.get_directories():
@@ -37,7 +36,7 @@ func at_the_start_of_game(from: String, to: String):
 		at_the_start_of_game(from+"/"+dir, to+"/"+dir)
 	for file in fromDirectory.get_files():
 		copy_files(from+"/"+file, to+"/"+file)
-func copy_dirs(from: String, to: String):
+func copy_dirs(from: String, to: String) -> void:
 	at_the_start_of_game(from, to)
 
 func _ready():
@@ -50,7 +49,7 @@ func _ready():
 	#sounds_level = float(fSett.get_line())
 	#fSett.close()
 
-func copy_files(fromFilePath, toFilePath):
+func copy_files(fromFilePath, toFilePath) -> void:
 	var fF = FileAccess.open(fromFilePath, FileAccess.READ)
 	var tF = FileAccess.open(toFilePath, FileAccess.WRITE)
 	FileAccess.get_open_error()
@@ -59,6 +58,12 @@ func copy_files(fromFilePath, toFilePath):
 	fF.close()
 	tF.close()
 
+func delete_files(dir_path: String) -> void:
+	var dir = DirAccess.open(dir_path)
+	for d in dir.get_directories():
+		delete_files(dir_path + d + '/')
+	for f in dir.get_files():
+		DirAccess.remove_absolute(dir + f)
 
 
 

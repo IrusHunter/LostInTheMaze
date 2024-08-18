@@ -1,14 +1,15 @@
 class_name Level
 extends Node2D
 
-var _level_file_path = Global.tmp_level_path
+var _level_file_path = Global.saves_path + Global.game_name + "/Levels/" + Global.current_level + "/"
 const path: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
 
 #region level data
 @onready var _ui: Panel = $CanvasLayer/Panel
 @onready var _map: TileMap = $TileMap
 @onready var _camera: Camera2D = $MainCamera
-var _level_started_yet = 0
+@onready var _extra_camera: Camera2D = $ExtraCamera
+var _level_started_yet: int = 0
 #endregion
 #region gameplay data
 var _item_in_use = false
@@ -50,11 +51,12 @@ func comunicate_with_panel(event):
 	if _inventory.set_selected_slot(event.position - _inventory.position) == 10:
 		_item_in_use = not _item_in_use
 func _ready():
-	if not FileAccess.file_exists(_level_file_path + "main.txt"):
+	if not FileAccess.file_exists(Global.tmp_level_path + "main.txt"):
 		Global.copy_dirs(
-			Global.saves_path + Global.game_name + "/Levels/" + Global.current_level, _level_file_path
+			_level_file_path, Global.tmp_level_path
 		)
 	_ui.visible = false
+	_extra_camera.zoom /= 4
 #region clearing level
 	for hole in _holes.get_children():
 		if hole == _main_holes: continue
@@ -97,14 +99,14 @@ func _ready():
 	if not _level_started_yet:
 		Global.copy_files(
 			Global.saves_path + Global.game_name + "/inventory.txt", 
-			_level_file_path + "Player/inventory.txt"
+			Global.tmp_level_path + "Player/inventory.txt"
 		)
-	_player = Player.init_from_file(_level_file_path + "Player/main.txt", _players)
+	_player = Player.init_from_file(Global.tmp_level_path + "Player/main.txt", _players)
 	_player.independent_movement.movement_stoped.connect(next_move)
 	_inventory = Inventory.init(_ui, _player.inventory, Vector2(20, 176), 4)
 #endregion
 #region initializating tile map
-	var tmf = FileAccess.open(_level_file_path + "Config/tilemap.txt", FileAccess.READ)
+	var tmf = FileAccess.open(Global.tmp_level_path + "Config/tilemap.txt", FileAccess.READ)
 	line = tmf.get_line().split(' ', false)
 	var colum: int = 0
 	while line.size() != 0:
@@ -115,7 +117,7 @@ func _ready():
 	tmf.close()
 #endregion
 #region initializating unbreacable walls 
-	tmf = FileAccess.open(_level_file_path + "Config/tilemap.txt", FileAccess.READ)
+	tmf = FileAccess.open(Global.tmp_level_path + "Config/tilemap.txt", FileAccess.READ)
 	line = tmf.get_line().split(' ', false)
 	colum = 0
 	while line.size() != 0:
@@ -132,10 +134,10 @@ func _ready():
 		line = tmf.get_line().split(' ', false)
 	tmf.close()
 #endregion
-	Exit.init_exits(_exits, _level_file_path + "Config/Plains/Exits/", tap_on_exit)
-	Wall.init_walls(_walls, _level_file_path + "Config/Structure/Walls/")
-	Chest.init_chests(_chests, _level_file_path + "Config/Structure/Chests/")
-	River.init_from_dir(_rivers, _level_file_path + "Config/Plains/Rivers")
+	Exit.init_exits(_exits, Global.tmp_level_path + "Config/Plains/Exits/", tap_on_exit)
+	Wall.init_walls(_walls, Global.tmp_level_path + "Config/Structure/Walls/")
+	Chest.init_chests(_chests, Global.tmp_level_path + "Config/Structure/Chests/")
+	River.init_from_dir(_rivers, Global.tmp_level_path + "Config/Plains/Rivers")
 	
 	_camera.position = _player.position
 	_ui.visible = true
@@ -144,7 +146,9 @@ func _ready():
 func next_move():
 	EnvironmentMove.next_env_move()
 	_moves += 1
-	$CanvasLayer/Panel/movesLabel.text = "Moves: " + str(_moves)
+	$CanvasLayer/Panel/movesLabel.text = tr("labelLevelMoves") + ": " + str(_moves)
+	save_main_file()
+
 
 #region gameplay
 func player_death():
@@ -158,7 +162,22 @@ func tap_on_hole(hole: Hole):
 		next_move()
 func tap_on_exit(exit_tile: ExitTile):
 	if Level.to_tilemap_coords(_player.position) == Level.to_tilemap_coords(exit_tile.position):
-		_on_return_to_lobby_button_pressed()
+		_ui.hide()
+		_extra_camera.enabled = true
+		_camera.enabled = false
+		await RenderingServer.frame_post_draw
+		
+		var viewport = _extra_camera.get_viewport()
+		var img = viewport.get_texture().get_image()
+		img.save_png(_level_file_path + "texture.png")
+		_extra_camera.enabled = false
+		_camera.enabled = true
+		var eoln = EndOfLevelNotification.init(
+			$CanvasLayer, "ttt", _moves, _player.inventory, _player.inventory, _level_file_path + "texture.png"
+		)
+		await eoln.time_to_continue
+		save_level()
+		_ui.show()
 #endregion
 
 #control gameplay at the Level
@@ -250,117 +269,17 @@ func _input(event):
 		return
 #endregion
 
-#func saveLevel():
-	##saveLevel
-	#var lF = FileAccess.open(levelFilePath+Global.currentLevel+".txt", FileAccess.WRITE)
-	#lF.store_line(str(levelStartedYet) + " " + str(moves))
-	#var line
-	#
-	#lF.store_line(str(length) + " " + str(width))
-	#
-##region saving count of enteties (-)
-	##var nArsenals = $Arsenals.get_child_count()
-	#var nChests = chests.get_child_count()
-	#var nRivers = rivers_data.size()
-	#var nBombs = bombs.get_child_count()
-	#var nHoles = main_holes.get_child_count()
-	#lF.store_line(str(nChests) + " " + str(nRivers) + " " + str(nBombs) + " " + str(nHoles))
-##endregion
-##region saving exits data
-	#for e: ExitTile in exits.get_children():
-		#line = str(int(e.position.x/size)) + " " + str(int(e.position.y/size))
-	#lF.store_line(line)
-##endregion
-	#player.save_to_file(levelFilePath + "Config/Player.txt")
-##region saving tile map (-)
-	#var arr = []
-	##save TileMap
-	#arr = arr2Set(arr)
-	#for i in range(width):
-		#line = ""
-		#for j in range(length):
-			#line += str(map.get_cell_source_id(0, Vector2(j,i))) + " "
-		#lF.store_line(line)
-	#
-	#for voidTile in $Void.get_children():
-		#if int(voidTile.position.x)%size == int(voidTile.position.y)%size:
-			#var tmpVector2 = toTilemapCoords(voidTile.position)
-			#arr[tmpVector2.y][tmpVector2.x] += 1
-	#for i in range(width):
-		#line = ""
-		#for j in range(length):
-			#line += str(arr[i][j]) + " "
-		#lF.store_line(line)
-##endregion
-##region saving walls data
-	##save horizontal Walls
-	#for i in range(width + 1):
-		#for j in range(length*2):
-			#arr[i][j] = 0
-	#for voidTile in $Void.get_children():
-		#if (int(voidTile.position.x)%size == 16) && (int(voidTile.position.y)%size == 0):
-			#arr[int(voidTile.position.y/size)][int((voidTile.position.x)/size)*2] += 10000
-	#for wall: Wall in walls.get_children():
-		#if (int(wall.position.x)%size == 16) && (int(wall.position.y)%size == 0):
-			#arr[int(wall.position.y/size)][int((wall.position.x)/size)*2] += wall.type
-			#arr[int(wall.position.y/size)][int((wall.position.x)/size)*2+1] += \
-			#wall.get_top_health_points() - wall.get_health_points()
-	#for i in range(width + 1):
-		#line = ""
-		#for j in range(length*2):
-			#line += str(arr[i][j]) + " "
-		#lF.store_line(line)
-	##save wertical Walls
-	#for i in range(width + 1):
-		#for j in range(length*2 + 2):
-			#arr[i][j] = 0
-	#for voidTile in $Void.get_children():
-		#if (int(voidTile.position.y)%size == 16) && (int(voidTile.position.x)%size == 0):
-			#arr[int(voidTile.position.y/size)][int((voidTile.position.x)/size)*2] += 10000
-	#for wall: Wall in walls.get_children():
-		#if (int(wall.position.y)%size == 16) && (int(wall.position.x)%size == 0):
-			#arr[int(wall.position.y/size)][int((wall.position.x)/size)*2] += wall.type
-			#arr[int(wall.position.y/size)][int((wall.position.x)/size)*2 + 1] += \
-			#wall.get_top_health_points() - wall.get_health_points()
-	#for i in range(width):
-		#line = ""
-		#for j in range(length*2 + 2):
-			#line += str(arr[i][j]) + " "
-		#lF.store_line(line)
-##endregion
-##region saving chests
-	#for chest: Chest in chests.get_children():
-		#var tmpPos = toTilemapCoords(chest.position)
-		#lF.store_line(str(tmpPos.x) + " " + str(tmpPos.y) + " " + str(int(chest.rotation/PI*2+0.2)) + " " +\
-		 #str(chest.type) + " " + str(chest.get_number_of_key()) + " " + str(chest.get_top_health_points() -\
-		 #chest.get_health_points())) 
-		#line = chest.get_inventory_path().split('/',false)
-		#line = line[line.size()-1]
-		#lF.store_line(line)
-##endregion
-##region saving bombs
-	#for bomb: Bomb in bombs.get_children():
-		#lF.store_line(str(bomb.position.x) + " " + str(bomb.position.y) + " " + str(bomb.data.get_life_time()))
-##endregion
-##region saving rivers
-	#for r: River in rivers_data:
-		#line = str(r.get_speed())
-		#var rt = r.get_origin()
-		#while rt != null:
-			#line += " " + str(rt.position.x / size) + " " + str(rt.position.y / size)
-			#rt = rt.get_next()
-		#lF.store_line(line)
-##endregion
-##region saving holes
-	#for h: Hole in main_holes.get_children():
-		#line = ""
-		#while h != null:
-			#line += str(int(h.position.x/size)) + " " + str(int(h.position.y/size)) + " "
-			#h = h.get_next()
-		#lF.store_line(line)
-##endregion
-	#
-	#lF.close()
+func save_level() -> void:
+	_level_started_yet = 0
+	save_main_file()
+	Global.delete_files(Global.saves_path + Global.game_name + "/Levels/" + Global.current_level)
+	Global.copy_dirs(Global.tmp_level_path, _level_file_path)
+	Global.copy_files(_player.inventory.path, Global.saves_path + Global.game_name + "/inventory.txt")
+func save_main_file() -> void:
+	var mf = FileAccess.open(Global.tmp_level_path + "main.txt", FileAccess.WRITE)
+	mf.store_line(str(_level_started_yet) + " " + str(_moves))
+	mf.close()
+
 
 func _on_menu_button_pressed():
 	$CanvasLayer/GameMenu.show()

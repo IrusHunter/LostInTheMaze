@@ -169,6 +169,10 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 1, 0, 0
 position = Vector2(-406, -323)
 zoom = Vector2(2, 2)
 
+[node name="ExtraCamera" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(16, 9)
+
 [connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ContiniuneButton" to="." method="_on_continiune_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameMenu/Panel/ContiniuneButton" to="CanvasLayer/GameMenu" method="_on_continiune_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameMenu/Panel/OptionsButton" to="." method="_on_options_button_pressed"]
