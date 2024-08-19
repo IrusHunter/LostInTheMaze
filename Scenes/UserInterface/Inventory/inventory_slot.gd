@@ -15,6 +15,7 @@ static func init(parent: Node, item_data: ItemData) -> InventorySlot:
 	parent.add_child(inv)
 	inv._item = Item.init(inv._frame, item_data)
 	inv.data.count_changed.connect(inv.reset)
+	inv.reset()
 	return inv
 
 #region properties

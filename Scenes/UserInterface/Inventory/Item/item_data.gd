@@ -41,14 +41,14 @@ var max_number: int:
 #endregion
 
 #region metods
-func add_from_item(item: ItemData, c: int = item.get_count()) -> void:
+func add_from_item(item: ItemData, c: int = item.count) -> void:
 	if item.count < c:
 		c = item.count
 	
 	if equals(item):
 		var max_extra_count = max_number - count
 		if c < max_extra_count:
-			count -= c
+			count += c
 			item.count -= c
 		else:
 			count = max_number

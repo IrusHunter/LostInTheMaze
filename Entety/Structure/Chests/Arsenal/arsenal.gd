@@ -1,5 +1,5 @@
 class_name Arsenal
-extends StaticBody2D
+extends RigidBody2D
 
 #region fields
 const path: String = "res://Entety/Structure/Chests/Arsenal/arsenal.tscn"

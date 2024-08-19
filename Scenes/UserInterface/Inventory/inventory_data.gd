@@ -22,6 +22,8 @@ func _init(file: String):
 			add_new_item()
 		line = iF.get_line().split(' ', false)
 	iF.close()
+static func init(file_path: String) -> InventoryData:
+	return InventoryData.new(file_path)
 
 #region properties
 var items: Array[ItemData]:

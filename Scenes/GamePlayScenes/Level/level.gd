@@ -172,12 +172,29 @@ func tap_on_exit(exit_tile: ExitTile):
 		img.save_png(_level_file_path + "texture.png")
 		_extra_camera.enabled = false
 		_camera.enabled = true
+		
+		var prev_inv := InventoryData.init(Global.saves_path + Global.game_name + "/inventory.txt")
+		for i: ItemData in _player.inventory.items:
+			var tmp_i := ItemData.new()
+			tmp_i.fill(i)
+			tmp_i.count *= -1
+			prev_inv.add_item(tmp_i)
+			if tmp_i.count != 0:
+				prev_inv.add_new_item(tmp_i)
+		var get_inv := InventoryData.init("")
+		var spent_inv := InventoryData.init("")
+		for i: ItemData in prev_inv.items:
+			if i.count > 0:
+				spent_inv.add_new_item(i)
+			elif i.count < 0:
+				i.count *= -1
+				get_inv.add_new_item(i)
+		
 		var eoln = EndOfLevelNotification.init(
-			$CanvasLayer, "ttt", _moves, _player.inventory, _player.inventory, _level_file_path + "texture.png"
+			$CanvasLayer, Global.current_level, _moves, get_inv, spent_inv, _level_file_path + "texture.png"
 		)
 		await eoln.time_to_continue
-		save_level()
-		_ui.show()
+		#save_level()
 #endregion
 
 #control gameplay at the Level
