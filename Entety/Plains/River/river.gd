@@ -49,6 +49,7 @@ static func init_from_dir(parent: Node, dir: String) -> void:
 	var d = DirAccess.open(dir)
 	for f in d.get_files():
 		init_from_file(parent, dir + f)
+	Level.current_num_of_ls += 1
 
 #region properties
 #endregion

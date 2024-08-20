@@ -12,4 +12,4 @@ static func init_chests(parent: Node, dir: String) -> void:
 			"CommonChest":
 				#chests.append(CommonChest.init_from_file(parent, dir + f))
 				CommonChest.init_from_file(parent, dir + f)
-			
+	Level.current_num_of_ls += 1

@@ -9,6 +9,7 @@ const path: String = "res://Scenes/GamePlayScenes/Level/EndOfLevelNotification/e
 var _items_get_position := Vector2(26, 171)
 var _items_spent_position := Vector2(26, 243)
 @onready var _image: TextureRect = $Panel/TextureRect
+@onready var _continue_button: Button = $Panel/Info/Continue
 signal time_to_continue
 #endregion
 
@@ -24,6 +25,9 @@ static func init(
 		eoln._image.texture = ImageTexture.create_from_image(Image.load_from_file(image))
 		return eoln
 
+func _process(delta):
+	if Level.load_stages == Level.current_num_of_ls:
+		_continue_button.disabled = false
 
 func _on_continue_pressed():
 	time_to_continue.emit()

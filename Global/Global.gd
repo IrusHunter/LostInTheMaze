@@ -50,20 +50,21 @@ func _ready():
 	#fSett.close()
 
 func copy_files(fromFilePath, toFilePath) -> void:
-	var fF = FileAccess.open(fromFilePath, FileAccess.READ)
-	var tF = FileAccess.open(toFilePath, FileAccess.WRITE)
-	FileAccess.get_open_error()
-	while !(fF.eof_reached()):
-		tF.store_line(fF.get_line())
-	fF.close()
-	tF.close()
+	#var fF = FileAccess.open(fromFilePath, FileAccess.READ)
+	#var tF = FileAccess.open(toFilePath, FileAccess.WRITE)
+	#FileAccess.get_open_error()
+	#while !(fF.eof_reached()):
+		#tF.store_line(fF.get_line())
+	#fF.close()
+	#tF.close()
+	DirAccess.copy_absolute(fromFilePath, toFilePath)
 
 func delete_files(dir_path: String) -> void:
 	var dir = DirAccess.open(dir_path)
 	for d in dir.get_directories():
 		delete_files(dir_path + d + '/')
 	for f in dir.get_files():
-		DirAccess.remove_absolute(dir + f)
+		DirAccess.remove_absolute(dir_path + f)
 
 
 

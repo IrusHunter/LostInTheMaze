@@ -30,3 +30,4 @@ static func init_walls(parent: Node, dir: String) -> void:
 	for w in walls:
 		if w.has_meta("neighbors_control_module"):
 			w.neighbors_control_module.remove()
+	Level.current_num_of_ls += 1

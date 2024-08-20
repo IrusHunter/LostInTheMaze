@@ -3,6 +3,8 @@ extends Node2D
 
 var _level_file_path = Global.saves_path + Global.game_name + "/Levels/" + Global.current_level + "/"
 const path: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
+const load_stages: int = 6
+static var current_num_of_ls: int = 0
 
 #region level data
 @onready var _ui: Panel = $CanvasLayer/Panel
@@ -51,12 +53,15 @@ func comunicate_with_panel(event):
 	if _inventory.set_selected_slot(event.position - _inventory.position) == 10:
 		_item_in_use = not _item_in_use
 func _ready():
+	_extra_camera.zoom /= 4
+	load_level()
+func load_level():
+	current_num_of_ls = 0
 	if not FileAccess.file_exists(Global.tmp_level_path + "main.txt"):
 		Global.copy_dirs(
 			_level_file_path, Global.tmp_level_path
 		)
 	_ui.visible = false
-	_extra_camera.zoom /= 4
 #region clearing level
 	for hole in _holes.get_children():
 		if hole == _main_holes: continue
@@ -86,6 +91,13 @@ func _ready():
 		_exits.remove_child(exit_tile)
 		exit_tile.queue_free()
 	
+	for p in _players.get_children():
+		_players.remove_child(p)
+		p.queue_free()
+	
+	if not _inventory == null:
+		_ui.remove_child(_inventory)
+		_inventory.queue_free()
 	_map.clear()
 #endregion
 #region initializating start data
@@ -104,6 +116,7 @@ func _ready():
 	_player = Player.init_from_file(Global.tmp_level_path + "Player/main.txt", _players)
 	_player.independent_movement.movement_stoped.connect(next_move)
 	_inventory = Inventory.init(_ui, _player.inventory, Vector2(20, 176), 4)
+	current_num_of_ls += 1
 #endregion
 #region initializating tile map
 	var tmf = FileAccess.open(Global.tmp_level_path + "Config/tilemap.txt", FileAccess.READ)
@@ -133,6 +146,7 @@ func _ready():
 		colum += 1
 		line = tmf.get_line().split(' ', false)
 	tmf.close()
+	current_num_of_ls += 1
 #endregion
 	Exit.init_exits(_exits, Global.tmp_level_path + "Config/Plains/Exits/", tap_on_exit)
 	Wall.init_walls(_walls, Global.tmp_level_path + "Config/Structure/Walls/")
@@ -169,9 +183,10 @@ func tap_on_exit(exit_tile: ExitTile):
 		
 		var viewport = _extra_camera.get_viewport()
 		var img = viewport.get_texture().get_image()
-		img.save_png(_level_file_path + "texture.png")
-		_extra_camera.enabled = false
+		var t_path = _level_file_path + "texture.png"
+		img.save_png(Global.tmp_level_path + "texture.png")
 		_camera.enabled = true
+		_extra_camera.enabled = false
 		
 		var prev_inv := InventoryData.init(Global.saves_path + Global.game_name + "/inventory.txt")
 		for i: ItemData in _player.inventory.items:
@@ -190,8 +205,12 @@ func tap_on_exit(exit_tile: ExitTile):
 				i.count *= -1
 				get_inv.add_new_item(i)
 		
+		save_level()
+		_level_file_path = Global.saves_path + Global.game_name + "/Lobby/"
+		_ready()
+		
 		var eoln = EndOfLevelNotification.init(
-			$CanvasLayer, Global.current_level, _moves, get_inv, spent_inv, _level_file_path + "texture.png"
+			$CanvasLayer, tr(Global.current_level), _moves, get_inv, spent_inv, t_path
 		)
 		await eoln.time_to_continue
 		#save_level()
@@ -289,9 +308,10 @@ func _input(event):
 func save_level() -> void:
 	_level_started_yet = 0
 	save_main_file()
-	Global.delete_files(Global.saves_path + Global.game_name + "/Levels/" + Global.current_level)
+	Global.delete_files(Global.saves_path + Global.game_name + "/Levels/" + Global.current_level + "/")
 	Global.copy_dirs(Global.tmp_level_path, _level_file_path)
 	Global.copy_files(_player.inventory.path, Global.saves_path + Global.game_name + "/inventory.txt")
+	Global.delete_files(Global.tmp_level_path)
 func save_main_file() -> void:
 	var mf = FileAccess.open(Global.tmp_level_path + "main.txt", FileAccess.WRITE)
 	mf.store_line(str(_level_started_yet) + " " + str(_moves))
