@@ -14,7 +14,7 @@ var tmp_level_path = user_path + "CurrentLevel/"
 #endregion
 
 var size = 32
-var game_name: String = ""
+var game_name: String = "f"
 
 var void_visibility: bool = false
 

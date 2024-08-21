@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwkhs5fjkx6fa"]
+
+[ext_resource type="Script" path="res://Scenes/InNodePanel/in_node_panel.gd" id="1_qcwe0"]
+
+[node name="InNodePanel" type="CanvasLayer"]
+script = ExtResource("1_qcwe0")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1865.0
+offset_top = -922.0
+offset_right = 1865.0
+offset_bottom = 922.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -6,18 +6,22 @@ const path: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
 const load_stages: int = 6
 static var current_num_of_ls: int = 0
 
-#region level data
+#region level nodes
 @onready var _ui: Panel = $CanvasLayer/Panel
 @onready var _map: TileMap = $TileMap
 @onready var _camera: Camera2D = $MainCamera
 @onready var _extra_camera: Camera2D = $ExtraCamera
-var _level_started_yet: int = 0
+#endregion
+#region level data
+var _area: int
+var _total_moves: int
+var _count_of_death: int
+var _count_of_teleport: int # on level
 #endregion
 #region gameplay data
 var _item_in_use = false
 var _camera_in_move = false
 var _drag_on_panel = false
-var _moves: int = -1
 #endregion
 #region player data
 @onready var _player: Player
@@ -61,6 +65,10 @@ func load_level():
 		Global.copy_dirs(
 			_level_file_path, Global.tmp_level_path
 		)
+		Global.copy_files(
+			Global.saves_path + Global.game_name + "/inventory.txt", 
+			Global.tmp_level_path + "Player/inventory.txt"
+		)
 	_ui.visible = false
 #region clearing level
 	for hole in _holes.get_children():
@@ -103,18 +111,14 @@ func load_level():
 #region initializating start data
 	var lF = FileAccess.open(Global.tmp_level_path + "main.txt", FileAccess.READ)
 	var line: PackedStringArray = lF.get_line().split(' ', false)
-	_level_started_yet = int(line[0])
-	_moves = int(line[1])
-	line = lF.get_line().split(' ', false)
+	_area = int(line[0])
+	_total_moves = int(line[1])
+	_count_of_death = int(line[2])
+	_count_of_teleport = int(line[3]) + 1
 #endregion
 #region initializating inventory
-	if not _level_started_yet:
-		Global.copy_files(
-			Global.saves_path + Global.game_name + "/inventory.txt", 
-			Global.tmp_level_path + "Player/inventory.txt"
-		)
 	_player = Player.init_from_file(Global.tmp_level_path + "Player/main.txt", _players)
-	_player.independent_movement.movement_stoped.connect(next_move)
+	_player.moves_changed.connect(next_move)
 	_inventory = Inventory.init(_ui, _player.inventory, Vector2(20, 176), 4)
 	current_num_of_ls += 1
 #endregion
@@ -125,6 +129,8 @@ func load_level():
 	while line.size() != 0:
 		for i in range(line.size()):
 			_map.set_cell(0, Vector2i(i, colum), int(line[i]), Vector2(0,0), 0)
+			if _count_of_teleport == 1:
+				_area += 1
 		colum += 1
 		line = tmf.get_line().split(' ', false)
 	tmf.close()
@@ -155,12 +161,10 @@ func load_level():
 	
 	_camera.position = _player.position
 	_ui.visible = true
-	_level_started_yet = 1
 
 func next_move():
 	EnvironmentMove.next_env_move()
-	_moves += 1
-	$CanvasLayer/Panel/movesLabel.text = tr("labelLevelMoves") + ": " + str(_moves)
+	$CanvasLayer/Panel/movesLabel.text = tr("labelLevelMoves") + ": " + str(_player.movess)
 	save_main_file()
 
 
@@ -168,6 +172,7 @@ func next_move():
 func player_death():
 	if _player.independent_movement.on_move: 
 		_player.independent_movement.stop_move()
+		_count_of_death += 1
 	for e in _exits.get_children():
 		_player.position = e.positiond
 func tap_on_hole(hole: Hole):
@@ -210,7 +215,7 @@ func tap_on_exit(exit_tile: ExitTile):
 		_ready()
 		
 		var eoln = EndOfLevelNotification.init(
-			$CanvasLayer, tr(Global.current_level), _moves, get_inv, spent_inv, t_path
+			$CanvasLayer, tr(Global.current_level), _player.moves, get_inv, spent_inv, t_path
 		)
 		await eoln.time_to_continue
 		#save_level()
@@ -257,7 +262,6 @@ func _input(event):
 						#setGrenate(20, 0.3)
 						_player.throw_granate()
 						#$CanvasLayer/Panel/Inventory.selectedSlot.itemCount -= 1
-						next_move()
 #endregion
 #region using Bomb (*)
 			"Bomb":
@@ -269,7 +273,6 @@ func _input(event):
 					if delta_coords.x == 0 && delta_coords.y == 0:
 						_player.plant_bomb(event.position, _bombs)
 						_item_in_use = 0
-						next_move()
 #endregion
 		return
 #region changing camera position
@@ -306,15 +309,17 @@ func _input(event):
 #endregion
 
 func save_level() -> void:
-	_level_started_yet = 0
 	save_main_file()
+	_player.moves = 0
 	Global.delete_files(Global.saves_path + Global.game_name + "/Levels/" + Global.current_level + "/")
 	Global.copy_dirs(Global.tmp_level_path, _level_file_path)
 	Global.copy_files(_player.inventory.path, Global.saves_path + Global.game_name + "/inventory.txt")
 	Global.delete_files(Global.tmp_level_path)
 func save_main_file() -> void:
 	var mf = FileAccess.open(Global.tmp_level_path + "main.txt", FileAccess.WRITE)
-	mf.store_line(str(_level_started_yet) + " " + str(_moves))
+	mf.store_line(
+		str(_area) + " " + str(_total_moves + _player.moves) + " " + str(_count_of_death) + " " + str(_count_of_teleport)
+	)
 	mf.close()
 
 
