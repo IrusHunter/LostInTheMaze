@@ -8,7 +8,7 @@ var _main_panel: Panel
 #endregion
 
 func _ready():
-	#hide()
+	hide()
 	pass
 static func init(parent: Node, panel: Panel) -> InNodePanel:
 	var inp: InNodePanel = preload(path).instantiate()

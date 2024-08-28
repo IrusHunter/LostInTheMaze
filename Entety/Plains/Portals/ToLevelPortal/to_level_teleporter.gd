@@ -13,7 +13,7 @@ static func init(level_path: String) -> ToLevelTeleporter:
 #region metods
 static func add_teleport_func(call: Callable) -> void:
 	functions.append(call)
-func start_teleportation():
+func start_teleportation() -> void:
 	for c: Callable in functions:
 		c.call(_level_path)
 #endregion
