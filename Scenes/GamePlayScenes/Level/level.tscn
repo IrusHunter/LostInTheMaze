@@ -155,7 +155,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 1, 0, 0
 
 [node name="Rivers" type="Node" parent="."]
 
-[node name="Exits" type="Node" parent="."]
+[node name="Portals" type="Node" parent="."]
 
 [node name="Bombs" type="Node" parent="."]
 

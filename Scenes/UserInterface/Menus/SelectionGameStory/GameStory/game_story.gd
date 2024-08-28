@@ -47,7 +47,6 @@ func _on_texture_button_pressed():
 		_info_panel.show()
 
 func _on_button_pressed():
-	Global.current_level = _location
 	Global.game_name = _name_lable.text
 	get_tree().change_scene_to_file(Level.path)
 
@@ -58,7 +57,6 @@ func _on_button_2_pressed():
 func _on_create_new_save_pressed():
 	DirAccess.make_dir_absolute(Global.saves_path)
 	DirAccess.make_dir_absolute(Global.saves_path + _new_save_name_source.text)
-	Global.copy_dirs(Global.start_data_path + "Save", Global.saves_path + _new_save_name_source.text)
-	Global.current_level = "1_FirstLevel"
+	Global.copy_dirs(Global.start_data_path + "Save/", Global.saves_path + _new_save_name_source.text + "/")
 	Global.game_name = _new_save_name_source.text
 	get_tree().change_scene_to_file(Level.path)

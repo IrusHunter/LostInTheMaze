@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://c21vgrvnj0hrt"]
 
-[ext_resource type="Script" path="res://Entety/Plains/Teleport/ToLevelTeleporter/to_level_teleporter.gd" id="1_4bxhn"]
-[ext_resource type="Texture2D" uid="uid://ckjmjyydop8ka" path="res://Entety/Plains/Exit/ExitToAnotherLevel/Exit.png" id="1_vc5iq"]
+[ext_resource type="Script" path="res://Entety/Plains/Portals/ToLevelPortal/to_level_portal.gd" id="1_8g75p"]
+[ext_resource type="Texture2D" uid="uid://ckjmjyydop8ka" path="res://Entety/Plains/Portals/Exit.png" id="2_g6lx3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vywjj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_vc5iq")
+"texture": ExtResource("2_g6lx3")
 }],
 "loop": true,
 "name": &"default",
@@ -23,7 +23,7 @@ radius = 11.0
 
 [node name="Area2D" type="Area2D"]
 monitorable = false
-script = ExtResource("1_4bxhn")
+script = ExtResource("1_8g75p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vywjj")
@@ -104,4 +104,14 @@ offset_right = 826.0
 offset_bottom = 146.0
 text = "Count of teleport: 20"
 
+[node name="Play" type="Button" parent="LevelSelection"]
+layout_mode = 0
+offset_left = 683.0
+offset_top = 415.0
+offset_right = 882.0
+offset_bottom = 446.0
+text = "buttonToLevelPortalPlay"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="id_pressed" from="LevelSelection/MenuBar/Levels" to="." method="_on_levels_id_pressed"]
+[connection signal="pressed" from="LevelSelection/Play" to="." method="_on_play_pressed"]

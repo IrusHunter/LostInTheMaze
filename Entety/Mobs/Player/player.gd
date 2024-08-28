@@ -63,7 +63,7 @@ var moves: int:
 func save_to_file() -> void:
 	var pF = FileAccess.open(_save_path, FileAccess.WRITE)
 	var line: String = str(int(position.x/Global.size)) + " " + str(int(position.y/Global.size)) \
-	+ " " + str(rotation) + " " + str(health.top_health-health.current_health)
+	+ " " + str(rotation) + " " + str(health.top_health-health.current_health) + " " + str(_moves)
 	pF.store_line(line)
 	pF.store_line(_inventory.path.get_file())
 	pF.close()
