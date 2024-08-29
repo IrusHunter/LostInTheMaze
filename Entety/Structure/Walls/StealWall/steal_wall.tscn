@@ -53,9 +53,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3uj4k"]
 size = Vector2(4, 32)
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 15
 collision_mask = 15
+gravity_scale = 0.0
+freeze = true
 script = ExtResource("1_k5odn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

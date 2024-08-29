@@ -1,11 +1,11 @@
 class_name StealWall
-extends StaticBody2D
+extends RigidBody2D
 
 #region fields
 const path: String = "res://Entety/Structure/Walls/StealWall/steal_wall.tscn"
 var _save_path: String = Global.init_unit_path
 var _health: Health
-var _priority: int
+var _wall_priority: int
 var _neighbors_control_module: NeighborsControlModule
 @onready var _anim: StealWallAnim = $AnimatedSprite2D
 @onready var _collision_shape: CollisionShape2D = $CollisionShape2D
@@ -13,7 +13,7 @@ var _neighbors_control_module: NeighborsControlModule
 
 func _ready():
 	_neighbors_control_module = NeighborsControlModule.init(self, NeighborsControlModule.priorities.STEAL)
-	_priority = NeighborsControlModule.priorities.STEAL
+	_wall_priority = NeighborsControlModule.priorities.STEAL
 func _init():
 	_health = Health.new(100, death)
 	_health.health_changed.connect(save_to_file)
@@ -43,9 +43,12 @@ static func init_from_file(parent: Node, file: String) -> StealWall:
 var health: Health:
 	get:
 		return _health
-var priority: int: 
+var wall_priority: int: 
 	get:
-		return _priority
+		return _wall_priority
+var neighbors_control_module: NeighborsControlModule:
+	get:
+		return _neighbors_control_module
 #endregion
 
 #region metods

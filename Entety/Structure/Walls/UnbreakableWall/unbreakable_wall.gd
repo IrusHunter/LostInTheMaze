@@ -1,13 +1,13 @@
 class_name UnbreakableWall
-extends StaticBody2D
+extends RigidBody2D
 
 #region fields
 const path: String = "res://Entety/Structure/Walls/UnbreakableWall/unbreakable_wall.tscn"
-var _priority: int
+var _wall_priority: int
 #endregion\
 
 func _ready():
-	_priority = NeighborsControlModule.priorities.UNBREAKABLE
+	_wall_priority = NeighborsControlModule.priorities.UNBREAKABLE
 static func init(parent: Node, position: Vector2, rotation: float) -> UnbreakableWall:
 	var uw = preload(path).instantiate()
 	parent.add_child(uw)
@@ -28,9 +28,9 @@ static func init_from_file(parent: Node, file: String) -> UnbreakableWall:
 	return uw
 
 #region properties
-var priority: int:
+var wall_priority: int:
 	get:
-		return _priority
+		return _wall_priority
 #endregion
 
 #region metods

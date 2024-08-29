@@ -25,9 +25,9 @@ static func init_walls(parent: Node, dir: String) -> void:
 			"UnbreakableWall":
 				walls.append(UnbreakableWall.init_from_file(parent, dir + f))
 	for w in walls:
-		if w.has_meta("neighbors_control_module"):
-			w._anim.code = w.neighbors_control_module.get_neighbor_walls()
+		if not w.get("neighbors_control_module") == null:
+			w._anim.code = await w.neighbors_control_module.get_neighbor_walls()
 	for w in walls:
-		if w.has_meta("neighbors_control_module"):
+		if not w.get("neighbors_control_module") == null:
 			w.neighbors_control_module.remove()
 	Level.current_num_of_ls += 1
