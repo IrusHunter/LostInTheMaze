@@ -1,7 +1,3 @@
 class_name CommonChestAnim
-#extends ChestAnim
-extends AnimatedSprite2D
+extends ChestAnim
 
-var clear
-var opened
-var death

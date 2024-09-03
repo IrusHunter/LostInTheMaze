@@ -9,7 +9,6 @@ var _new_item_generator: NewItemGenerator
 var _save_path: String = Global.init_unit_path
 var _death_from_load: bool = false
 @onready var _anim: ArsenalAnim = $AnimatedSprite2D
-@onready var _collision_chape: CollisionShape2D = $CollisionShape2D
 #endregion
 
 func _ready():
@@ -59,13 +58,14 @@ func death():
 		for i in _free_inventory.items:
 			i.count = (i.count + 2) / 3
 		_free_inventory.save()
-	_collision_chape.set_deferred("disabled", true)
+	collision_layer = 1
 	_anim.dead = true
 func save_to_file() -> void:
 	var af = FileAccess.open(_save_path, FileAccess.WRITE)
 	af.store_line(
 		str(int(position.x / Global.size)) + " " + str(int(position.y / Global.size)) + " " + 
-		str(int((rotation + 0.2)/PI*2)) + " " + str(_health.top_health - _health.current_health)
+		str(int((rotation + sign(rotation) * 0.2)/PI*2)) + " " + str(int(_anim.opened)) + " " + 
+		str(_health.top_health - _health.current_health)
 	)
 	af.store_line(_free_inventory.path.get_file())
 #endregion
@@ -75,5 +75,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 		if !event.pressed:
 			if free_inventory.time_to_rob.get_connections().size() > 0:
 				_anim.opened = true
-				await _new_item_generator.start_creating_new_items()
+				#await _anim.animation_finished or _anim.animation_looped
+				_new_item_generator.start_creating_new_items()
 				_anim.clear = _free_inventory.is_clear()
+				save_to_file()

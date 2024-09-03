@@ -21,7 +21,7 @@ func start_creating_new_items() -> void:
 		itm.fill(inv.items[i])
 		itm.count -= _inventory.items[i].count
 		if itm.count != 0:
-			NewItem.init(self, Vector2(0,0), itm, 0.3)
 			await get_tree().create_timer(0.5).timeout
+			NewItem.init(self, Vector2(0,0), itm, 0.3)
 	_inventory.save()
 #endregion

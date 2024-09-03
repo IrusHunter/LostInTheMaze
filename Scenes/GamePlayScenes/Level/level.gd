@@ -241,9 +241,7 @@ func switch_to_lobby(lobby_path: String) -> void:
 	)
 	await eoln.time_to_continue
 	_ui.visible = ui_v
-#endregion
 
-# control gameplay at the Level
 func _input(event):	
 	# work with gamemenu
 	if $CanvasLayer/GameMenu.visible:
@@ -275,8 +273,8 @@ func _input(event):
 #region using Grenate (*)
 			"Grenate":
 				if event is InputEventScreenDrag:
-					event.position = transform_global_position_to_local(event.position)
-					var dir: Vector2 = -(_player.position - event.position)
+					var ep = transform_global_position_to_local(event.position)
+					var dir: Vector2 = -(_player.position - ep)
 					_player.rotation = dir.angle() + PI/2
 				elif event is InputEventScreenTouch:
 					if not event.pressed:
@@ -288,9 +286,9 @@ func _input(event):
 #region using Bomb (*)
 			"Bomb":
 				if event is InputEventScreenTouch:
-					event.position = transform_global_position_to_local(event.position)
+					var ep = transform_global_position_to_local(event.position)
 					var delta_coords = abs(
-						Level.to_tilemap_coords(_player.position) - Level.to_tilemap_coords(event.position)
+						Level.to_tilemap_coords(_player.position) - Level.to_tilemap_coords(ep)
 					)
 					if delta_coords.x == 0 && delta_coords.y == 0:
 						_player.plant_bomb(event.position, _bombs)
@@ -317,8 +315,8 @@ func _input(event):
 	if event.pressed:
 		return
 	
-	event.position = transform_global_position_to_local(event.position)
-	var event_tile_position = Level.to_tilemap_coords(event.position)
+	var ep = transform_global_position_to_local(event.position)
+	var event_tile_position = Level.to_tilemap_coords(ep)
 	var delta_coords = abs(Level.to_tilemap_coords(_player.position) - event_tile_position)
 	if (not delta_coords.x == 0 or delta_coords.y > 1) and (delta_coords.x > 1 or not delta_coords.y == 0):
 		return
@@ -328,6 +326,7 @@ func _input(event):
 		event_tile_position.y = event_tile_position.y * Global.size + Global.size / 2
 		_player.independent_movement.start_move(event_tile_position)
 		return
+#endregion
 #endregion
 
 func update_texture() -> void:
