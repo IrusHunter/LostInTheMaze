@@ -19,7 +19,7 @@ static func init(
 		var eoln: EndOfLevelNotification = preload(path).instantiate()
 		parent.add_child(eoln)
 		eoln._name_label.text = name
-		eoln._moves_label.text = Global.tr("labelLevelMoves") + ": " + str(moves)
+		eoln._moves_label.text = TranslationServer.tr("labelLevelMoves") + ": " + str(moves)
 		Inventory.init(eoln._info_panel, items_get, eoln._items_get_position, 10)
 		Inventory.init(eoln._info_panel, items_spent, eoln._items_spent_position, 10)
 		eoln._image.texture = ImageTexture.create_from_image(Image.load_from_file(image))
