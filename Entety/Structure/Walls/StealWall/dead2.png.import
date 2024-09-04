@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pih4st82jjvv"
-path="res://.godot/imported/StoneWall.png-144c6750f8a30fa3cf311d110ca37479.ctex"
+uid="uid://lx08a1ixfkbu"
+path="res://.godot/imported/dead2.png-45d40d9a23e8f7aa172b21fd45560270.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entety/Structure/Walls/StoneWall/StoneWall.png"
-dest_files=["res://.godot/imported/StoneWall.png-144c6750f8a30fa3cf311d110ca37479.ctex"]
+source_file="res://Entety/Structure/Walls/StealWall/dead2.png"
+dest_files=["res://.godot/imported/dead2.png-45d40d9a23e8f7aa172b21fd45560270.ctex"]
 
 [params]
 

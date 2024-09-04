@@ -8,7 +8,6 @@ var _health: Health
 var _wall_priority: int
 var _neighbors_control_module: NeighborsControlModule
 @onready var _anim: StealWallAnim = $AnimatedSprite2D
-@onready var _collision_shape: CollisionShape2D = $CollisionShape2D
 #endregion\
 
 func _ready():
@@ -65,6 +64,7 @@ func save_to_file() -> void:
 	)
 	swf.close()
 func death() -> void:
-	_anim.death()
-	_collision_shape.set_deferred("disabled", true)
+	_anim.dead = true
+	collision_layer = 1
+	collision_mask = 1
 #endregion
