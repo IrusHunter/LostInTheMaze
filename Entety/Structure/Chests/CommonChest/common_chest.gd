@@ -59,6 +59,7 @@ func death():
 			i.count = (i.count + 2) / 3
 		_free_inventory.save()
 	collision_layer = 1
+	collision_mask = 1
 	_anim.dead = true
 func save_to_file() -> void:
 	var ccf = FileAccess.open(_save_path, FileAccess.WRITE)

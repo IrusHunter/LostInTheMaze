@@ -33,9 +33,9 @@ var clear: bool:
 	get:
 		return _clear
 	set(value):
-		#if is_playing():
-			#await animation_looped or animation_finished
-			#pause()
+		if is_playing():
+			await animation_looped or animation_finished
+			pause()
 		if not value == _clear:
 			if not _clear:
 				_opened = true
