@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ckbxe68m2ki2y"]
+[gd_scene load_steps=55 format=3 uid="uid://ckbxe68m2ki2y"]
 
 [ext_resource type="Script" path="res://Entety/Structure/Chests/CommonChest/common_chest.gd" id="1_evpf3"]
 [ext_resource type="Texture2D" uid="uid://ddrmb4jdpp2qa" path="res://Entety/Structure/Chests/CommonChest/clearing_full.png" id="2_opit8"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://btefnnbv744b2" path="res://Entety/Structure/Chests/CommonChest/opening .png" id="5_daufn"]
 [ext_resource type="Texture2D" uid="uid://c51xba8vjuni5" path="res://Entety/Structure/Chests/CommonChest/full_dead.png" id="6_2nt31"]
 [ext_resource type="Texture2D" uid="uid://cvmflalhf4q4b" path="res://Entety/Structure/Chests/CommonChest/untouchable_dead.png" id="7_g2xlu"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8um0b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j28sc"]
 atlas = ExtResource("2_opit8")
@@ -382,11 +380,9 @@ size = Vector2(16, 7)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_layer = 3
-collision_mask = 3
+collision_mask = 0
 input_pickable = true
-physics_material_override = SubResource("PhysicsMaterial_8um0b")
 gravity_scale = 0.0
-freeze = true
 freeze_mode = 1
 script = ExtResource("1_evpf3")
 

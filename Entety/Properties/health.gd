@@ -25,8 +25,6 @@ var current_health: float:
 		if _current_health < 0 and not _is_death:
 			_is_death = true
 			death.emit()
-		else: 
-			_is_death = false
 		health_changed.emit()
 var top_health: float:
 	get: 

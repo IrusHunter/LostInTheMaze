@@ -15,7 +15,8 @@ func _ready():
 	_new_item_generator = NewItemGenerator.init(get_parent(), Vector2(-1000_000, -1000_000), _free_inventory)
 	_anim.clear = _free_inventory.is_clear()
 func _init():
-	_health = Health.new(120, death)
+	_health = Health.new(100, death)
+	_health.health_changed.connect(save_to_file)
 static func init(
 	parent: Node, position: Vector2, rotation: float, inventory_path: String, opened: bool, damage: float
 ) -> CommonChest:
@@ -59,7 +60,6 @@ func death():
 			i.count = (i.count + 2) / 3
 		_free_inventory.save()
 	collision_layer = 1
-	collision_mask = 1
 	_anim.dead = true
 func save_to_file() -> void:
 	var ccf = FileAccess.open(_save_path, FileAccess.WRITE)

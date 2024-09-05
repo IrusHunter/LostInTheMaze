@@ -66,5 +66,4 @@ func save_to_file() -> void:
 func death() -> void:
 	_anim.dead = true
 	collision_layer = 1
-	collision_mask = 1
 #endregion

@@ -69,9 +69,9 @@ func save_to_file() -> void:
 	pF.close()
 	_inventory.save()
 func throw_granate() -> void:
-	var pos = position + up_direction.orthogonal().normalized()*6
+	var pos = position + Vector2.from_angle(rotation).orthogonal()*6
 	var g = Grenate.init(get_parent(), pos, up_direction, 20, 0.3)
-	g.apply_impulse(up_direction.normalized()*100)
+	g.apply_impulse(Vector2.from_angle(rotation)*300*g.mass)
 func plant_bomb(_position: Vector2, bomb_parent: Node) -> void:
 	Bomb.init(bomb_parent, _position, 105, 15, 4)
 func death() -> void:
