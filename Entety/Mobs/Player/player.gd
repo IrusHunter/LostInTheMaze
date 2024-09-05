@@ -9,6 +9,7 @@ var _inventory: InventoryData
 var _inventory_robber: InventoryRobber
 @onready var _independent_movement: IndependentMovement
 var _moves: int
+var _grenate_thrower: GrenateThrower
 signal moves_changed
 #endregion
 
@@ -19,6 +20,7 @@ func _init():
 	_health.health_changed.connect(save_to_file)
 	_independent_movement = IndependentMovement.new(32*150, self)
 	_independent_movement.movement_stoped.connect(add_move)
+	_grenate_thrower = GrenateThrower.init(150)
 static func init(
 	perent: Node, position: Vector2, direction: float, damage: float, path_to_inv: String, moves: int
 ) -> Player:
@@ -70,8 +72,8 @@ func save_to_file() -> void:
 	_inventory.save()
 func throw_granate() -> void:
 	var pos = position + Vector2.from_angle(rotation).orthogonal()*6
-	var g = Grenate.init(get_parent(), pos, up_direction, 20, 0.3)
-	g.apply_impulse(Vector2.from_angle(rotation)*300*g.mass)
+	var g = Grenate.init(get_parent(), pos, 20, 0.3)
+	_grenate_thrower.throw_grenate(g, Vector2.from_angle(rotation))
 func plant_bomb(_position: Vector2, bomb_parent: Node) -> void:
 	Bomb.init(bomb_parent, _position, 105, 15, 4)
 func death() -> void:
