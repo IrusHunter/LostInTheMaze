@@ -25,9 +25,12 @@ var damager: Damager:
 		return _damager
 #endregion
 
-func explosion():
+#region metods
+func explose():
 	if get_overlapping_bodies().size() == 0:
 		await body_entered
 	for body in get_overlapping_bodies():
-		if body.has_meta("health"):
+		if not body.get("health") == null:
 			_damager.do_damage(body.health)
+#endregion
+

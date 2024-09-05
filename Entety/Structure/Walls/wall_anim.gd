@@ -20,7 +20,7 @@ var dead: bool:
 		return _dead
 	set(value):
 		if not value == _dead:
-			if not _code == -1:
+			if _code == -1:
 				_last_anim = "dead"
 			else:
 				death()
@@ -31,7 +31,7 @@ func reset() -> void:
 	play(_last_anim + "_calm" + str(_code))
 func death() -> void:
 	_last_anim = "dead"
-	play("dead" + str(code))
+	play("dead" + str(_code))
 	await animation_finished
-	play("dead_calm" + str(code))
+	play("dead_calm" + str(_code))
 #endregion

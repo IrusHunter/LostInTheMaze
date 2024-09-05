@@ -5,7 +5,7 @@ extends RigidBody2D
 var _health: Health
 const path: String = "res://Entety/Items/Grenate/grenate.tscn"
 @onready var _anim = $AnimatedSprite2D
-var _detonator: SplashDamager
+var _detonator: Detonator
 var _life_time: float = 0.3
 #endregion
 
@@ -23,7 +23,7 @@ static func init(
 	parent.add_child(g)
 	g.position = position
 	g.rotation = direction.angle()
-	g._detonator = SplashDamager.init(g, damage, radius)
+	g._detonator = Detonator.init(g, damage, radius)
 	#g.add_child(g.detonator.main_area)
 	return g
 
@@ -35,7 +35,8 @@ var health: Health:
 
 #region metods
 func death() -> void:
-	_detonator.explosion()
+	freeze = true
+	await _detonator.explose()
 	#main_b.get_parent().remove_child(main_b)
 	get_parent().remove_child(self)
 	queue_free()

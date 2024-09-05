@@ -5,7 +5,7 @@ extends RigidBody2D
 const path: String = "res://Entety/Items/Bomb/bomb.tscn"
 var _heath: Health
 var _environment_move: EnvironmentMove
-var _detonator: SplashDamager
+var _detonator: Detonator
 var _life_time: int
 signal end_env_move
 #endregion
@@ -20,7 +20,7 @@ static func init(parent: Node, position: Vector2, damage: float, radius: float, 
 	b._life_time = life_time
 	parent.add_child(b)
 	b.position = position
-	b._detonator = SplashDamager.init(b, damage, radius)
+	b._detonator = Detonator.init(b, damage, radius)
 	return b
 static func init_from_file(parent: Node, file_path: String) -> void:
 	var bF = FileAccess.open(file_path, FileAccess.READ)
@@ -49,7 +49,7 @@ func reduce_life_time() -> void:
 	end_env_move.emit()
 func death() -> void:
 	_environment_move.remove_move(EnvironmentMove.groups.BOMBS, reduce_life_time)
-	_detonator.explosion()
+	await _detonator.explose()
 	get_parent().remove_child(self)
 	queue_free()
 #endregion

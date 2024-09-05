@@ -15,6 +15,6 @@ var damage: float:
 
 #region metods
 func do_damage(health: Health):
-	health.current_health -= damage
+	health.current_health -= _damage
 #endregion
 

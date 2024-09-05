@@ -19,6 +19,9 @@ animations = [{
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_mask = 0
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
 script = ExtResource("1_cgbxa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

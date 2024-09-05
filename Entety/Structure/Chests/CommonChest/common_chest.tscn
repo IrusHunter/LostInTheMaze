@@ -386,6 +386,8 @@ collision_mask = 3
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_8um0b")
 gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
 script = ExtResource("1_evpf3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

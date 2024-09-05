@@ -19,8 +19,8 @@ var current_health: float:
 	get: 
 		return _current_health
 	set(value):
-		if value > top_health:
-			value = top_health
+		if value > _top_health:
+			value = _top_health
 		_current_health = value
 		if _current_health < 0 and not _is_death:
 			_is_death = true
@@ -33,7 +33,7 @@ var top_health: float:
 		return _top_health
 	set(value):
 		_top_health = value
-		if current_health > top_health:
-			current_health = top_health
+		if _current_health > _top_health:
+			current_health = _top_health
 		top_health_changed.emit()
 #endregion
