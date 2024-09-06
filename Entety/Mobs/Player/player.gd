@@ -71,8 +71,12 @@ func save_to_file() -> void:
 	pF.close()
 	_inventory.save()
 func throw_granate() -> void:
+	if not _inventory.selected_item.tag == "Grenate":
+		return
 	var pos = position + Vector2.from_angle(rotation).orthogonal()*6
 	var g = Grenate.init(get_parent(), pos, 20, 0.3)
+	_inventory.selected_item.count -= 1
+	_inventory.save()
 	_grenate_thrower.throw_grenate(g, Vector2.from_angle(rotation))
 func plant_bomb(_position: Vector2, bomb_parent: Node) -> void:
 	Bomb.init(bomb_parent, _position, 105, 15, 4)

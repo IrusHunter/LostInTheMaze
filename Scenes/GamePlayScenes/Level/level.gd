@@ -22,7 +22,6 @@ var _count_of_death: int
 var _count_of_teleport: int # on level
 #endregion
 #region gameplay data
-var _item_in_use = false
 var _camera_in_move = false
 var _drag_on_panel = false
 #endregion
@@ -55,10 +54,10 @@ static func to_tilemap_coords(coords: Vector2) -> Vector2i:
 	coords.y = int((coords.y) / Global.size)
 	return Vector2i(coords)
 
-func comunicate_with_panel(event):
+func comunicate_with_panel(event) -> void:
 	event.position -= _ui.position
-	if _inventory.set_selected_slot(event.position - _inventory.position) == 10:
-		_item_in_use = not _item_in_use
+	if _inventory.set_selected_slot(event.position - _inventory.position):
+		return
 func _ready():
 	var f = FileAccess.open(Global.saves_path + Global.game_name + "/main.txt",FileAccess.READ)
 	var stage = f.get_line()
@@ -268,7 +267,7 @@ func _input(event):
 				comunicate_with_panel(event)
 				return
 	
-	if _item_in_use:
+	if not _inventory.selected_slot == null:
 		match(_inventory.selected_slot.data.tag):
 #region using Grenate (*)
 			"Grenate":
@@ -278,9 +277,9 @@ func _input(event):
 					_player.rotation = dir.angle() + PI/2
 				elif event is InputEventScreenTouch:
 					if not event.pressed:
-						_item_in_use = 0
 						#setGrenate(20, 0.3)
 						_player.throw_granate()
+						_inventory.selected_slot = null
 						#$CanvasLayer/Panel/Inventory.selectedSlot.itemCount -= 1
 #endregion
 #region using Bomb (*)
@@ -292,7 +291,7 @@ func _input(event):
 					)
 					if delta_coords.x == 0 && delta_coords.y == 0:
 						_player.plant_bomb(event.position, _bombs)
-						_item_in_use = 0
+						_inventory.selected_slot = null
 #endregion
 		return
 #region changing camera position

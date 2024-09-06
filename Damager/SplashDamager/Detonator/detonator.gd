@@ -18,7 +18,7 @@ static func init(parent: Node, damage: float, radius: float) -> Detonator:
 
 #region metods
 func explose() -> void:
+	_splash_damager.explose()
 	_detonator.show()
 	await get_tree().create_timer(0.3).timeout
-	_splash_damager.explose()
 #endregion

@@ -26,10 +26,10 @@ var data: ItemData:
 
 #region metods
 func reset():
-	if data.count != 0:
+	if not data.count == 0:
 		_counter.text = str(data.count)
-	#else: 
-		#counter.text = ""
+	else: 
+		_counter.text = "-"
 #endregion
 
 

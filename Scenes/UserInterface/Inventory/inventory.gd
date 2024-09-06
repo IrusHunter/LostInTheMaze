@@ -32,24 +32,26 @@ var selected_slot: InventorySlot:
 	set(value):
 		_selected_slot = value
 		if not value == null:
-			data.selected_item = value.data
+			_data.selected_item = value.data
+			_selected_frame.position = _selected_slot.position + Vector2(20, 20)
+			_selected_frame.show()
 		else:
-			data.selected_item = null
+			_selected_frame.hide()
+			_data.selected_item = null
 #endregion
 
 #region metods
-#NOTE: return 10 if s_slot stay the same, 1 if s_slot is selected successfully, 0 in other variants
-func set_selected_slot(pos: Vector2) -> int:
+#NOTE: return true if s_slot has been set
+func set_selected_slot(pos: Vector2) -> bool:
 	for slot: InventorySlot in _box.get_children():
 		var delta_position = abs(pos - slot.position - Vector2(21,21))
 		if (delta_position.x < 21) && (delta_position.y < 21):
-			if selected_slot == slot:
-				return 10
-			selected_slot = slot
-			_selected_frame.position = selected_slot.position + Vector2(20, 20)
-			_selected_frame.visible = true
-			return 1
-	return 0
+			if _selected_slot == slot:
+				selected_slot = null
+			else:
+				selected_slot = slot
+			return true
+	return false
 #func clear_slots():
 	#selected_slot = null
 	#_selected_frame.visible = false
