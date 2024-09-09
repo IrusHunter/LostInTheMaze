@@ -14,7 +14,7 @@ func _init():
 	pass
 static func init(parent: Node, position: Vector2, previous: RiverTile) -> RiverTile:
 	var r = preload(path).instantiate()
-	r.previous = previous
+	r.previous_river_tile = previous
 	parent.call_deferred("add_child", r)
 	r.position = position
 	return r

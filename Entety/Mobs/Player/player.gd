@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 #region fields
-const path: String = "res://Entety/Mobs/Player/Player.tscn"
+const path: String = "res://Entety/Mobs/Player/player.tscn"
 var _save_path: String = Global.init_unit_path
 var _health: Health
 var _inventory: InventoryData
@@ -19,7 +19,6 @@ func _init():
 	_health = Health.new(100, death)
 	_health.health_changed.connect(save_to_file)
 	_independent_movement = IndependentMovement.new(32*150, self)
-	_independent_movement.movement_stoped.connect(add_move)
 	_grenate_thrower = GrenateThrower.init(150)
 static func init(
 	perent: Node, position: Vector2, direction: float, damage: float, path_to_inv: String, moves: int
@@ -90,5 +89,9 @@ func add_move() -> void:
 	_moves += 1
 	moves_changed.emit()
 	save_to_file()
+func move_to(pos: Vector2) -> void:
+	_independent_movement.start_move(pos)
+	await _independent_movement.movement_stoped
+	add_move()
 #endregion
 

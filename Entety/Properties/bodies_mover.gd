@@ -11,10 +11,20 @@ static func init(speed_multiplier: float = 1) -> BodiesMover:
 
 #region metods
 func move_body_to(body, position: Vector2) -> void:
-	if body.has_meta("independent_movement"):
+	if not body.get("independent_movement") == null:
 		if body.independent_movement.on_move:
 			await body.independent_movement.movement_stoped
 		body.independent_movement.start_move(position)
+	elif body is RigidBody2D:
+		var imp: Vector2 = position - body.position
+		if abs(imp.x) > abs(imp.y):
+			imp.y = 0
+		else:
+			imp.x = 0
+		body.apply_central_impulse(imp * body.mass * Global.size / 32)
+		await body.get_tree().create_timer(0.8).timeout
+		if not body == null:
+			body.apply_central_impulse(-imp * body.mass * Global.size / 35)
 	else:
 		print("Body, that BodiesMover can`t move")
 		breakpoint

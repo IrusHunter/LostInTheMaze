@@ -38,12 +38,16 @@ static func init(group: int, env_move: Callable) -> EnvironmentMove:
 
 #region metods
 static func next_env_move() -> void:
-	if _moves.size() == _current_group:
-		_current_group = 0
-	else:
+	while not _moves.size() == _current_group:
 		if not await _moves[_current_group].next_move():
 			_current_group += 1
-		next_env_move()
+	_current_group = 0
+	#if _moves.size() == _current_group:
+		#_current_group = 0
+	#else:
+		#if not await _moves[_current_group].next_move():
+			#_current_group += 1
+		#next_env_move()
 func remove_move(group: int, env_move: Callable) -> void:
 	_moves[group].remove_move(env_move)
 #endregion

@@ -172,7 +172,7 @@ func load_level():
 	Portal.init_portals(_portals, _tmp_level_path + "Config/Plains/Portals/")
 	Wall.init_walls(_walls, _tmp_level_path + "Config/Structure/Walls/")
 	Chest.init_chests(_chests, _tmp_level_path + "Config/Structure/Chests/")
-	River.init_from_dir(_rivers, _tmp_level_path + "Config/Plains/Rivers")
+	Rivers.init_rivers(_rivers, _tmp_level_path + "Config/Plains/Rivers/")
 	Bombs.init_bombs(_bombs, _tmp_level_path + "Config/Structure/Bombs/")
 	
 	_camera.position = _player.position
@@ -324,7 +324,7 @@ func _input(event):
 	if (not delta_coords.x == 0 or not delta_coords.y == 0):
 		event_tile_position.x = event_tile_position.x * Global.size + Global.size / 2
 		event_tile_position.y = event_tile_position.y * Global.size + Global.size / 2
-		_player.independent_movement.start_move(event_tile_position)
+		_player.move_to(event_tile_position)
 		return
 #endregion
 #endregion
