@@ -23,6 +23,9 @@ static func init(perent: Node, damage: float, radius: float) -> SplashDamager:
 var damager: Damager:
 	get:
 		return _damager
+var radius: float:
+	get:
+		return _radius
 #endregion
 
 #region metods

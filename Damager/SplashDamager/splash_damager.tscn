@@ -6,6 +6,7 @@
 radius = 1.0
 
 [node name="SplashDamager" type="Area2D"]
+input_pickable = false
 monitorable = false
 script = ExtResource("1_nj0nf")
 

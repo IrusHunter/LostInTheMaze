@@ -4,7 +4,7 @@ extends Node2D
 var _level_file_path: String #= Global.saves_path + Global.game_name + "/Levels/" + Global.current_level + "/"
 var _tmp_level_path: String
 const path: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
-const load_stages: int = 6
+const load_stages: int = 7
 static var current_num_of_ls: int = 0
 
 #region level nodes
@@ -173,6 +173,7 @@ func load_level():
 	Wall.init_walls(_walls, _tmp_level_path + "Config/Structure/Walls/")
 	Chest.init_chests(_chests, _tmp_level_path + "Config/Structure/Chests/")
 	River.init_from_dir(_rivers, _tmp_level_path + "Config/Plains/Rivers")
+	Bombs.init_bombs(_bombs, _tmp_level_path + "Config/Structure/Bombs/")
 	
 	_camera.position = _player.position
 	_ui.visible = ui_v
@@ -290,7 +291,7 @@ func _input(event):
 						Level.to_tilemap_coords(_player.position) - Level.to_tilemap_coords(ep)
 					)
 					if delta_coords.x == 0 && delta_coords.y == 0:
-						_player.plant_bomb(event.position, _bombs)
+						_player.plant_bomb(ep, _bombs)
 						_inventory.selected_slot = null
 #endregion
 		return

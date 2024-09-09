@@ -78,8 +78,12 @@ func throw_granate() -> void:
 	_inventory.selected_item.count -= 1
 	_inventory.save()
 	_grenate_thrower.throw_grenate(g, Vector2.from_angle(rotation))
+	add_move()
 func plant_bomb(_position: Vector2, bomb_parent: Node) -> void:
+	_inventory.selected_item.count -= 1
+	_inventory.save()
 	Bomb.init(bomb_parent, _position, 105, 15, 4)
+	add_move()
 func death() -> void:
 	_health.current_health = _health.top_health
 func add_move() -> void:

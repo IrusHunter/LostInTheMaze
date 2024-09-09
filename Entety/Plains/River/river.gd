@@ -18,11 +18,10 @@ var _bodies_mover: BodiesMover
 var _speed: int #tiles per move
 var _save_path: String = Global.init_unit_path
 var _control_the_speed: Array[DataForControl] = []
-signal _stream_stoped
 #endregion
 
 func _init(parent: Node, speed: int, stream: Array[Vector2]):
-	_environment_move = EnvironmentMove.init(_stream_stoped, EnvironmentMove.groups.RIVERS, activate)
+	_environment_move = EnvironmentMove.init(EnvironmentMove.groups.RIVERS, activate)
 	_bodies_mover = BodiesMover.init(speed)
 	_speed = speed
 	var previous: RiverTile = null
@@ -71,7 +70,7 @@ func activate() -> void:
 		else:
 			_control_the_speed.remove_at(_control_the_speed.find(dfc))
 	if _control_the_speed.size() == 0:
-		_stream_stoped.emit()
+		return
 func all_bodies_were_moved() -> bool:
 	for dfc in _control_the_speed:
 		if dfc.steps < _speed:
@@ -97,6 +96,6 @@ func body_entered(river_tile: RiverTile, body):
 			dfc.steps += 1
 	else:
 		if all_bodies_were_moved():
-			_stream_stoped.emit()
+			return
 
 

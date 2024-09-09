@@ -16,6 +16,12 @@ static func init(parent: Node, damage: float, radius: float) -> Detonator:
 	d._detonator.scale *= radius
 	return d
 
+#redion properties
+var splash_damager: SplashDamager:
+	get:
+		return _splash_damager
+#endregion
+
 #region metods
 func explose() -> void:
 	_splash_damager.explose()
