@@ -191,10 +191,6 @@ func player_death():
 		_count_of_death += 1
 	for p in _portals.get_children():
 		_player.position = p.positiond
-func tap_on_hole(hole: Hole):
-	if hole.get_is_active():
-		_player.position = hole.position
-		next_move()
 func switch_to_level(level_path) -> void:
 	var ui_v = _ui.visible
 	_ui.hide()

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0i414l3aqaio"]
-
-[ext_resource type="Texture2D" uid="uid://mwgjjevxk72h" path="res://Entety/Plains/Hole/ShinyHole.png" id="1_liqg5"]
-[ext_resource type="Script" path="res://Entety/Plains/Hole/ShinyHole.gd" id="2_ve5s0"]
-
-[node name="Sprite2D" type="Sprite2D"]
-z_index = 1
-texture = ExtResource("1_liqg5")
-script = ExtResource("2_ve5s0")

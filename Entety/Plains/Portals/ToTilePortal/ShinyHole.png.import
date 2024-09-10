@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mwgjjevxk72h"
-path="res://.godot/imported/ShinyHole.png-ecc697ea0b45a2669999ecdc6dc4a33f.ctex"
+path="res://.godot/imported/ShinyHole.png-0724e4755cb9edce37c9697a6086b039.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entety/Plains/Hole/ShinyHole.png"
-dest_files=["res://.godot/imported/ShinyHole.png-ecc697ea0b45a2669999ecdc6dc4a33f.ctex"]
+source_file="res://Entety/Plains/Portals/ToTilePortal/ShinyHole.png"
+dest_files=["res://.godot/imported/ShinyHole.png-0724e4755cb9edce37c9697a6086b039.ctex"]
 
 [params]
 
