@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://rpkd605vju8o"]
+[gd_scene load_steps=6 format=3 uid="uid://rpkd605vju8o"]
 
 [ext_resource type="Script" path="res://Entety/Mobs/Player/player.gd" id="1_2q85g"]
 [ext_resource type="Texture2D" uid="uid://c1t1bu5midept" path="res://Entety/Mobs/Player/Hero.png" id="2_k1tle"]
+[ext_resource type="Texture2D" uid="uid://53gxtggwcn1m" path="res://Entety/Mobs/Player/Light.png" id="3_fom6b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_otlhv"]
 animations = [{
@@ -33,5 +34,11 @@ shape = SubResource("CapsuleShape2D_8apxy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(16, 9)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("3_fom6b")
+texture_scale = 0.6
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

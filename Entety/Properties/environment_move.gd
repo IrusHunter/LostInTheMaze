@@ -50,5 +50,8 @@ static func next_env_move() -> void:
 		#next_env_move()
 func remove_move(group: int, env_move: Callable) -> void:
 	_moves[group].remove_move(env_move)
+static func clear() -> void:
+	_moves.clear()
+	_static_init()
 #endregion
 

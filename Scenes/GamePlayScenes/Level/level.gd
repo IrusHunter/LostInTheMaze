@@ -33,8 +33,6 @@ var _drag_on_panel = false
 @onready var _walls: Node = $Walls
 @onready var _chests: Node = $Chests
 @onready var _bombs: Node = $Bombs
-@onready var _holes: Node = $Holes
-@onready var _main_holes: Node = $Holes/MainHoles
 @onready var _rivers: Node = $Rivers
 @onready var _portals: Node = $Portals
 @onready var _players: Node = $Player
@@ -74,7 +72,7 @@ func _ready():
 func load_level():
 	var ui_v = _ui.visible
 	_ui.hide()
-	
+	EnvironmentMove.clear()
 	current_num_of_ls = 0
 	if not FileAccess.file_exists(_tmp_level_path + "main.txt"):
 		Global.copy_dirs(
@@ -84,15 +82,7 @@ func load_level():
 			Global.saves_path + Global.game_name + "/inventory.txt", 
 			_tmp_level_path + "Player/inventory.txt"
 		)
-#region clearing level
-	for hole in _holes.get_children():
-		if hole == _main_holes: continue
-		_holes.remove_child(hole)
-		hole.queue_free()
-	for hole in _main_holes.get_children():
-		_main_holes.remove_child(hole)
-		hole.queue_free()
-	
+#region clearing level	
 	for river_tile in _rivers.get_children():
 		_rivers.remove_child(river_tile)
 		river_tile.queue_free()
@@ -133,6 +123,7 @@ func load_level():
 #region initializating player and inventory
 	_player = Player.init_from_file(_tmp_level_path + "Player/main.txt", _players)
 	_player.moves_changed.connect(next_move)
+	_player.health.death.connect(player_death)
 	_inventory = Inventory.init(_ui, _player.inventory, Vector2(20, 176), 4)
 	current_num_of_ls += 1
 	_moves_label.text =  tr("labelLevelMoves") + ": " + str(_player.moves)
@@ -190,7 +181,8 @@ func player_death():
 		_player.independent_movement.stop_move()
 		_count_of_death += 1
 	for p in _portals.get_children():
-		_player.position = p.positiond
+		if p is ToLobbyPortal:
+			_player.position = p.position
 func switch_to_level(level_path) -> void:
 	var ui_v = _ui.visible
 	_ui.hide()
