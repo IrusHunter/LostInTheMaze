@@ -162,6 +162,11 @@ offset_right = 54.0
 offset_bottom = 614.0
 text = "100"
 
+[node name="Inventory" type="Control" parent="CanvasLayer/Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_cf066")
 format = 2

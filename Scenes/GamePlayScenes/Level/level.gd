@@ -29,7 +29,7 @@ var _drag_on_panel = false
 @onready var _player: Player
 @onready var _inventory: Inventory
 #endregion
-#region enteties data
+#region enteties conteiners
 @onready var _perant_for_group_nodes: Node = $PerantForGroupNodes
 @onready var _walls: Node = $PerantForGroupNodes/Walls
 @onready var _chests: Node = $PerantForGroupNodes/Chests
@@ -38,6 +38,9 @@ var _drag_on_panel = false
 @onready var _portals: Node = $PerantForGroupNodes/Portals
 @onready var _players: Node = $PerantForGroupNodes/Player
 @onready var _entety_massege_parent: Node = $PerantForGroupNodes/EntetyMassegeParent
+#endregion
+#region ui conteiners
+@onready var _inventory_father: Node = $CanvasLayer/Panel/Inventory
 #endregion
 
 func transform_global_position_to_local(pos: Vector2) -> Vector2:
@@ -67,7 +70,7 @@ func _ready():
 	_tmp_level_path = Global.saves_path + Global.game_name + "/CurrentLevel/"
 	f.close()
 	
-	_extra_camera.zoom /= 4
+	_extra_camera.zoom /= 2
 	EntityMessageParent.parent = _entety_massege_parent
 	ToLobbyTeleporter.add_teleport_func(switch_to_lobby)
 	ToLevelTeleporter.add_teleport_func(switch_to_level)
@@ -90,6 +93,9 @@ func load_level():
 		for child in node.get_children():
 			node.remove_child(child)
 			child.queue_free()
+	for inv in _inventory_father.get_children():
+		_inventory_father.remove_child(inv)
+		inv.queue_free()
 	_map.clear()
 #endregion
 #region initializating start data
@@ -104,7 +110,7 @@ func load_level():
 	_player = Player.init_from_file(_tmp_level_path + "Player/main.txt", _players)
 	_player.moves_changed.connect(next_move)
 	_player.health.death.connect(player_death)
-	_inventory = Inventory.init(_ui, _player.inventory, Vector2(20, 176), 4)
+	_inventory = Inventory.init(_inventory_father, _player.inventory, Vector2(20, 176), 4)
 	current_num_of_ls += 1
 	_moves_label.text =  tr("labelLevelMoves") + ": " + str(_player.moves)
 #endregion
@@ -175,7 +181,7 @@ func switch_to_level(level_path) -> void:
 	
 	_ui.visible = ui_v
 func switch_to_lobby(lobby_path: String) -> void:
-	_level_name = "Lobby"
+	#level_name = "Lobby"
 	var t_path = _level_file_path + "texture.png"
 	var ui_v = _ui.visible
 	_ui.hide()
