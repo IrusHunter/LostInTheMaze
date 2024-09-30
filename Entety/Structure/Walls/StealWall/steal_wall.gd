@@ -8,6 +8,7 @@ var _health: Health
 var _wall_priority: int
 var _neighbors_control_module: NeighborsControlModule
 @onready var _anim: StealWallAnim = $AnimatedSprite2D
+@onready var _occluder: LightOccluder2D = $LightOccluder2D
 #endregion\
 
 func _ready():
@@ -66,4 +67,5 @@ func save_to_file() -> void:
 func death() -> void:
 	_anim.dead = true
 	collision_layer = 1
+	_occluder.occluder_light_mask = 0
 #endregion

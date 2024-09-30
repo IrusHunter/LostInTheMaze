@@ -12,9 +12,6 @@ var _to_tile_teleporter: ToTileTeleporter
 #endregion
 
 func _ready():
-	_shine = preload(ShinyToTilePortal.path).instantiate()
-	add_child(_shine)
-	_shine.hide()
 	_to_tile_teleporter = ToTileTeleporter.init()
 func _init():
 	pass
@@ -23,6 +20,7 @@ static func init(parent: Node, position: Vector2, previous: ToTilePortal = null)
 	ttp.previous = previous
 	parent.add_child(ttp)
 	ttp.position = position
+	ttp._shine = ShinyToTilePortal.init(position)
 	return ttp
 static func init_from_file(parent: Node, file: String) -> ToTilePortal:
 	var ttpf = FileAccess.open(file, FileAccess.READ)

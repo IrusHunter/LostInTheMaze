@@ -30,12 +30,14 @@ var _drag_on_panel = false
 @onready var _inventory: Inventory
 #endregion
 #region enteties data
-@onready var _walls: Node = $Walls
-@onready var _chests: Node = $Chests
-@onready var _bombs: Node = $Bombs
-@onready var _rivers: Node = $Rivers
-@onready var _portals: Node = $Portals
-@onready var _players: Node = $Player
+@onready var _perant_for_group_nodes: Node = $PerantForGroupNodes
+@onready var _walls: Node = $PerantForGroupNodes/Walls
+@onready var _chests: Node = $PerantForGroupNodes/Chests
+@onready var _bombs: Node = $PerantForGroupNodes/Bombs
+@onready var _rivers: Node = $PerantForGroupNodes/Rivers
+@onready var _portals: Node = $PerantForGroupNodes/Portals
+@onready var _players: Node = $PerantForGroupNodes/Player
+@onready var _entety_massege_parent: Node = $PerantForGroupNodes/EntetyMassegeParent
 #endregion
 
 func transform_global_position_to_local(pos: Vector2) -> Vector2:
@@ -66,9 +68,10 @@ func _ready():
 	f.close()
 	
 	_extra_camera.zoom /= 4
-	load_level()
+	EntityMessageParent.parent = _entety_massege_parent
 	ToLobbyTeleporter.add_teleport_func(switch_to_lobby)
 	ToLevelTeleporter.add_teleport_func(switch_to_level)
+	load_level()
 func load_level():
 	var ui_v = _ui.visible
 	_ui.hide()
@@ -83,33 +86,10 @@ func load_level():
 			_tmp_level_path + "Player/inventory.txt"
 		)
 #region clearing level	
-	for river_tile in _rivers.get_children():
-		_rivers.remove_child(river_tile)
-		river_tile.queue_free()
-	
-	for bomb in _bombs.get_children():
-		_bombs.remove_child(bomb)
-		bomb.queue_free()
-	
-	for wall in _walls.get_children():
-		_walls.remove_child(wall)
-		wall.queue_free()
-	
-	for chest in _chests.get_children():
-		_chests.remove_child(chest)
-		chest.queue_free()
-	
-	for portal in _portals.get_children():
-		_portals.remove_child(portal)
-		portal.queue_free()
-	
-	for p in _players.get_children():
-		_players.remove_child(p)
-		p.queue_free()
-	
-	if not _inventory == null:
-		_ui.remove_child(_inventory)
-		_inventory.queue_free()
+	for node in _perant_for_group_nodes.get_children():
+		for child in node.get_children():
+			node.remove_child(child)
+			child.queue_free()
 	_map.clear()
 #endregion
 #region initializating start data
@@ -322,6 +302,7 @@ func update_texture() -> void:
 	_ui.hide()
 	_extra_camera.enabled = true
 	_camera.enabled = false
+	_extra_camera.position = _player.position
 	await RenderingServer.frame_post_draw
 	var viewport = _extra_camera.get_viewport()
 	var img = viewport.get_texture().get_image()

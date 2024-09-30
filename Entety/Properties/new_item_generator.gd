@@ -5,10 +5,10 @@ extends Node2D
 var _inventory: FreeInventory
 #endregion
 
-static func init(parent: Node, start_position: Vector2, inventory: FreeInventory) -> NewItemGenerator:
+static func init(start_position: Vector2, inventory: FreeInventory) -> NewItemGenerator:
 	var nig = NewItemGenerator.new()
 	nig._inventory = inventory
-	parent.add_child(nig)
+	EntityMessageParent.add_child(nig)
 	nig.position = start_position
 	return nig
 

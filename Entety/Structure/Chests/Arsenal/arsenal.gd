@@ -12,7 +12,7 @@ var _death_from_load: bool = false
 #endregion
 
 func _ready():
-	_new_item_generator = NewItemGenerator.init(get_parent(), Vector2(-1000_000, -1000_000), _free_inventory)
+	_new_item_generator = NewItemGenerator.init(Vector2(-1000_000, -1000_000), _free_inventory)
 	_anim.clear = _free_inventory.is_clear()
 func _init():
 	_health = Health.new(120, death)
