@@ -88,6 +88,7 @@ func load_level():
 			Global.saves_path + Global.game_name + "/inventory.txt", 
 			_tmp_level_path + "Player/inventory.txt"
 		)
+	change_game_main_file()
 #region clearing level	
 	for node in _perant_for_group_nodes.get_children():
 		for child in node.get_children():
@@ -160,6 +161,15 @@ func next_move():
 	_moves_label.text = tr("labelLevelMoves") + ": " + str(_player.moves)
 	save_main_file()
 
+func change_game_main_file() -> void:
+	var gmain = FileAccess.open(Global.saves_path + Global.game_name + "/main.txt", FileAccess.READ)
+	var line = gmain.get_as_text().split('\n', false)
+	gmain.close()
+	gmain = FileAccess.open(Global.saves_path + Global.game_name + "/main.txt", FileAccess.WRITE)
+	line[2] = _level_name
+	for l in line:
+		gmain.store_line(l)
+	gmain.close()
 
 #region gameplay
 func player_death():

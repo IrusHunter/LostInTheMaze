@@ -10,7 +10,7 @@ var _save_path: String = ""
 @onready var _stage_lable: Label = $Info/Stage
 @onready var _part_lable: Label = $Info/Part
 @onready var _location_label: Label = $Info/Location
-var _location: String = "1_FirstLevel"
+var _location: String = "01FirstLevel"
 @onready var _new_save_panel: Panel = $NewSave
 @onready var _new_save_name_source: TextEdit = $NewSave/TextEdit
 #endregion
@@ -27,6 +27,9 @@ func _ready():
 		_part_lable.text = tr("labelGameStoryPart") + ": \"" + tr(gsf.get_line()) + "\""
 		_location = gsf.get_line()
 		_location_label.text = tr("labelGameStoryLocation") + ": \"" + tr(_location) + "\""
+		_main_button.texture_normal = ImageTexture.create_from_image(Image.load_from_file(
+			_save_path + "Levels/" + _location + "/texture.png"
+		))
 		gsf.close()
 static func init(parent: Node, position: Vector2, dir: String) -> GameStory:
 	var gs: GameStory = preload(path).instantiate()
