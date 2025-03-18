@@ -1,18 +1,24 @@
 class_name Global
 
 #region settings data
+static var version: int
 static var sounds_level = 0
 static var music_level = 0
 #endregion
-#region path
+#region paths
 const start_data_path = "res://UserData/StartData/"
 const user_path = "user://Data/"
 const init_unit_path = "user://Data/for_init_units.txt"
 const saves_path = user_path + "Saves/"
+#endregion
+#region current game data
+static var game_data: GameData ## general data about current game
+#endregion
+#region level data
 const size = 32
 #endregion
 
-static var game_name: String
+
 static var void_visibility: bool = false
 
 static func copy_dirs(from: String, to: String) -> void:
@@ -25,9 +31,10 @@ static func copy_dirs(from: String, to: String) -> void:
 		copy_files(from+file, to+file)
 
 static func _ready():
-	var tmp = DirAccess.make_dir_absolute("user://Data/Saves")
-	if tmp == 0: 
-		copy_dirs("res://UserData/StartData/Data/", "user://Data/")
+	pass
+	#var tmp = DirAccess.make_dir_absolute("user://Data/Saves")
+	#if tmp == 0: 
+		#copy_dirs("res://UserData/StartData/Data/", "user://Data/")
 
 
 static func copy_files(fromFilePath, toFilePath) -> void:
@@ -46,7 +53,3 @@ static func delete_files(dir_path: String) -> void:
 		delete_files(dir_path + d + '/')
 	for f in dir.get_files():
 		DirAccess.remove_absolute(dir_path + f)
-
-
-
-

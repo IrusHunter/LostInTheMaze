@@ -62,12 +62,12 @@ func comunicate_with_panel(event) -> void:
 	if _inventory.set_selected_slot(event.position - _inventory.position):
 		return
 func _ready():
-	var f = FileAccess.open(Global.saves_path + Global.game_name + "/main.txt",FileAccess.READ)
+	var f = FileAccess.open(Global.saves_path + Global.game_data.name + "/main.txt",FileAccess.READ)
 	var stage = f.get_line()
 	var part = f.get_line()
 	_level_name = f.get_line()
-	_level_file_path = Global.saves_path + Global.game_name + '/Levels/' + _level_name + "/"
-	_tmp_level_path = Global.saves_path + Global.game_name + "/CurrentLevel/"
+	_level_file_path = Global.saves_path + Global.game_data.name + '/Levels/' + _level_name + "/"
+	_tmp_level_path = Global.saves_path + Global.game_data.name + "/CurrentLevel/"
 	f.close()
 	
 	_extra_camera.zoom /= 2
@@ -85,7 +85,7 @@ func load_level():
 			_level_file_path, _tmp_level_path
 		)
 		Global.copy_files(
-			Global.saves_path + Global.game_name + "/inventory.txt", 
+			Global.saves_path + Global.game_data.name + "/inventory.txt", 
 			_tmp_level_path + "Player/inventory.txt"
 		)
 	change_game_main_file()
@@ -162,10 +162,10 @@ func next_move():
 	save_main_file()
 
 func change_game_main_file() -> void:
-	var gmain = FileAccess.open(Global.saves_path + Global.game_name + "/main.txt", FileAccess.READ)
+	var gmain = FileAccess.open(Global.saves_path + Global.game_data.name + "/main.txt", FileAccess.READ)
 	var line = gmain.get_as_text().split('\n', false)
 	gmain.close()
-	gmain = FileAccess.open(Global.saves_path + Global.game_name + "/main.txt", FileAccess.WRITE)
+	gmain = FileAccess.open(Global.saves_path + Global.game_data.name + "/main.txt", FileAccess.WRITE)
 	line[2] = _level_name
 	for l in line:
 		gmain.store_line(l)
@@ -198,7 +198,7 @@ func switch_to_lobby(lobby_path: String) -> void:
 	
 	await update_texture()
 	
-	var prev_inv := InventoryData.init(Global.saves_path + Global.game_name + "/inventory.txt")
+	var prev_inv := InventoryData.init(Global.saves_path + Global.game_data.name + "/inventory.txt")
 	for i: ItemData in _player.inventory.items:
 		var tmp_i := ItemData.new()
 		tmp_i.fill(i)
@@ -331,7 +331,7 @@ func save_level() -> void:
 	_player.moves = 0
 	Global.delete_files(_level_file_path)
 	Global.copy_dirs(_tmp_level_path, _level_file_path)
-	Global.copy_files(_player.inventory.path, Global.saves_path + Global.game_name + "/inventory.txt")
+	Global.copy_files(_player.inventory.path, Global.saves_path + Global.game_data.name + "/inventory.txt")
 	Global.delete_files(_tmp_level_path)
 func save_main_file() -> void:
 	var mf = FileAccess.open(_tmp_level_path + "main.txt", FileAccess.WRITE)
@@ -371,4 +371,3 @@ func _process(delta):
 		##$CanvasLayer/Panel/Inventory.sslot.play("Default")
 		#$CanvasLayer/Panel/Inventory.sslot.modulate.g=1
 		#$CanvasLayer/Panel/Inventory.sslot.modulate.b=1
-

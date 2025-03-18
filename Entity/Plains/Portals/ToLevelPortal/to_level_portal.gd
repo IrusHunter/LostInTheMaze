@@ -38,17 +38,17 @@ func _ready():
 	_in_node_panel = InNodePanel.init(self, _level_selection_panel)
 	
 	_levels_buttons.clear()
-	var dir := DirAccess.open(Global.saves_path + Global.game_name + "/Levels/")
+	var dir := DirAccess.open(Global.saves_path + Global.game_data.name + "/Levels/")
 	var counter: int = 0
 	for d in dir.get_directories():
-		var f := FileAccess.open(Global.saves_path + Global.game_name + "/Levels/" + d + "/main.txt", FileAccess.READ)
+		var f := FileAccess.open(Global.saves_path + Global.game_data.name + "/Levels/" + d + "/main.txt", FileAccess.READ)
 		_levels_buttons.add_item(tr(d), counter)
 		counter += 1
 		var line = f.get_line().split(' ', false)
 		_levels.append(LevelData.new(
 			int(line[0]), int(line[1]), int(line[2]), int(line[3]), 
-			Global.saves_path + Global.game_name + "/Levels/" + d + "/texture.png",
-			Global.saves_path + Global.game_name + "/Levels/" + d + "/"
+			Global.saves_path + Global.game_data.name + "/Levels/" + d + "/texture.png",
+			Global.saves_path + Global.game_data.name + "/Levels/" + d + "/"
 		))
 		f.close()
 	reset(_levels[0])

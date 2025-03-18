@@ -2,6 +2,7 @@ class_name StartMenu
 extends Control
 
 const path: String = "res://Scenes/UserInterface/Menus/StartMenu/start_menu.tscn"
+@onready var backfround: TextureRect = $Background
 
 func _ready():
 	$Options.hide()
