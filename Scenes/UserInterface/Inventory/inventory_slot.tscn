@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dcm64mj1b7ks8"]
 
-[ext_resource type="Script" path="res://Scenes/UserInterface/Inventory/inventory_slot.gd" id="1_ljpyb"]
+[ext_resource type="Script" uid="uid://bsos282obr1c0" path="res://Scenes/UserInterface/Inventory/inventory_slot.gd" id="1_ljpyb"]
 
 [node name="InventorySlot" type="Control"]
 layout_mode = 3

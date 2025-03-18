@@ -1,6 +1,6 @@
 [gd_scene load_steps=62 format=3 uid="uid://bovlub60w7k2w"]
 
-[ext_resource type="Script" path="res://Entety/Structure/Chests/Arsenal/arsenal.gd" id="1_4iq5w"]
+[ext_resource type="Script" uid="uid://b8qggmeoa242c" path="res://Entety/Structure/Chests/Arsenal/arsenal.gd" id="1_4iq5w"]
 [ext_resource type="Texture2D" uid="uid://oqcvgliel2mw" path="res://Entety/Structure/Chests/Arsenal/ArsenalFree.png" id="2_x8cih"]
 [ext_resource type="Texture2D" uid="uid://q0xck83bckn4" path="res://Entety/Structure/Chests/Arsenal/ArsenalFreeDeath.png" id="3_skpv6"]
 [ext_resource type="Texture2D" uid="uid://gnu0k0qmt8i0" path="res://Entety/Structure/Chests/DefaultChest.png" id="4_p0f6f"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://3ybxe160u3gc" path="res://Entety/Structure/Chests/Arsenal/Arsenal.png" id="5_upnsj"]
 [ext_resource type="Texture2D" uid="uid://br54qwvsoroqh" path="res://Entety/Structure/Chests/Arsenal/ArsenalFullDeath.png" id="6_7p1mn"]
 [ext_resource type="Texture2D" uid="uid://dklfjcwsnl8se" path="res://Entety/Structure/Chests/Arsenal/ArsenalUntouchableDeath.png" id="7_fyhsy"]
-[ext_resource type="Script" path="res://Entety/Structure/Chests/Arsenal/arsenal_anim.gd" id="8_2tgyt"]
+[ext_resource type="Script" uid="uid://tdkax3mqus84" path="res://Entety/Structure/Chests/Arsenal/arsenal_anim.gd" id="8_2tgyt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nm8a8"]
 atlas = ExtResource("2_x8cih")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dx7alon6ffouo"]
 
-[ext_resource type="Script" path="res://Scenes/UserInterface/Lobby/LevelIcon.gd" id="1_cbgt1"]
+[ext_resource type="Script" uid="uid://clm84titylamj" path="res://Scenes/UserInterface/Lobby/LevelIcon.gd" id="1_cbgt1"]
 
 [node name="Level" type="Button"]
 offset_right = 166.0

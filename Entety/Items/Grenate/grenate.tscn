@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://oaitiwrb14uj"]
 
-[ext_resource type="Script" path="res://Entety/Items/Grenate/grenate.gd" id="1_kkkth"]
+[ext_resource type="Script" uid="uid://co2xim1ms6wg" path="res://Entety/Items/Grenate/grenate.gd" id="1_kkkth"]
 [ext_resource type="Texture2D" uid="uid://cgu4xnqnjnijy" path="res://Entety/Items/Grenate/Grenate.png" id="2_xi81t"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hi8sx"]

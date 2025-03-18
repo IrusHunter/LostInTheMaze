@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c21vgrvnj0hrt"]
 
-[ext_resource type="Script" path="res://Entety/Plains/Portals/ToLevelPortal/to_level_portal.gd" id="1_8g75p"]
+[ext_resource type="Script" uid="uid://12hgcdm7ma7x" path="res://Entety/Plains/Portals/ToLevelPortal/to_level_portal.gd" id="1_8g75p"]
 [ext_resource type="Texture2D" uid="uid://ckjmjyydop8ka" path="res://Entety/Plains/Portals/Exit.png" id="2_g6lx3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vywjj"]

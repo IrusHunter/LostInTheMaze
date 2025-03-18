@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4g1rftxu5x4o"]
 
-[ext_resource type="Script" path="res://Entety/Properties/InventoryRobber/inventory_robber.gd" id="1_g7kd6"]
+[ext_resource type="Script" uid="uid://cw4gd4thlud6e" path="res://Entety/Properties/InventoryRobber/inventory_robber.gd" id="1_g7kd6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_061a0"]
 radius = 1.0

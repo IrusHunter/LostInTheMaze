@@ -1,11 +1,11 @@
 [gd_scene load_steps=46 format=3 uid="uid://dbiqnrh1bpd2m"]
 
-[ext_resource type="Script" path="res://Entety/Structure/Walls/StoneWall/stone_wall.gd" id="1_4232k"]
+[ext_resource type="Script" uid="uid://ck5cs0o45gvm3" path="res://Entety/Structure/Walls/StoneWall/stone_wall.gd" id="1_4232k"]
 [ext_resource type="Texture2D" uid="uid://whucmdx301ve" path="res://Entety/Structure/Walls/StoneWall/dead0.png" id="2_sp72c"]
 [ext_resource type="Texture2D" uid="uid://dbjkbpfh0imgl" path="res://Entety/Structure/Walls/StoneWall/dead1.png" id="3_hou85"]
 [ext_resource type="Texture2D" uid="uid://dqmxt1dtspo4j" path="res://Entety/Structure/Walls/StoneWall/dead2.png" id="4_mw1d5"]
 [ext_resource type="Texture2D" uid="uid://8xm8vh6stw05" path="res://Entety/Structure/Walls/StoneWall/dead3.png" id="5_vjirr"]
-[ext_resource type="Script" path="res://Entety/Structure/Walls/StoneWall/stone_wall_anim.gd" id="6_obwr8"]
+[ext_resource type="Script" uid="uid://b8xat11mq4t7p" path="res://Entety/Structure/Walls/StoneWall/stone_wall_anim.gd" id="6_obwr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0b6io"]
 atlas = ExtResource("2_sp72c")

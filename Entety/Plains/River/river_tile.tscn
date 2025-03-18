@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c2staskcxkgdp"]
 
-[ext_resource type="Script" path="res://Entety/Plains/River/river_tile.gd" id="1_6klo7"]
+[ext_resource type="Script" uid="uid://c13pxmstk7lwg" path="res://Entety/Plains/River/river_tile.gd" id="1_6klo7"]
 [ext_resource type="Texture2D" uid="uid://bicpw51m6h3jk" path="res://Entety/Plains/River/WaterTile.png" id="2_h02jp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7hkpw"]

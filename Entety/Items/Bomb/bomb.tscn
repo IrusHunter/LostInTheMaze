@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw7hapjcqx7ma"]
 
-[ext_resource type="Script" path="res://Entety/Items/Bomb/bomb.gd" id="1_cgbxa"]
+[ext_resource type="Script" uid="uid://om2owl5np63h" path="res://Entety/Items/Bomb/bomb.gd" id="1_cgbxa"]
 [ext_resource type="Texture2D" uid="uid://bwvsg0qxcqe8p" path="res://Entety/Items/Bomb/Bomb.png" id="2_q3ss1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eo5si"]

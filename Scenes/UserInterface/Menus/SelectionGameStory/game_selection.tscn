@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0xwnokuawsq4"]
 
-[ext_resource type="Script" path="res://Scenes/UserInterface/Menus/SelectionGameStory/game_selection.gd" id="1_owxjg"]
+[ext_resource type="Script" uid="uid://blrohm8payra6" path="res://Scenes/UserInterface/Menus/SelectionGameStory/game_selection.gd" id="1_owxjg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnqqy"]
 bg_color = Color(0.305882, 0.305882, 0.305882, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://kr4l6lfilsyx"]
 
 [ext_resource type="Texture2D" uid="uid://bm18igyoau6pf" path="res://Scenes/UserInterface/Menus/SelectionGameStory/GameStory/New.png" id="1_ccetw"]
-[ext_resource type="Script" path="res://Scenes/UserInterface/Menus/SelectionGameStory/GameStory/game_story.gd" id="1_wqo2i"]
+[ext_resource type="Script" uid="uid://wh4y34ml23p4" path="res://Scenes/UserInterface/Menus/SelectionGameStory/GameStory/game_story.gd" id="1_wqo2i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g4b5"]
 bg_color = Color(0.27451, 0.27451, 0.27451, 1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dwkhs5fjkx6fa"]
 
-[ext_resource type="Script" path="res://Scenes/InNodePanel/in_node_panel.gd" id="1_qcwe0"]
+[ext_resource type="Script" uid="uid://bny2dsfertxh6" path="res://Scenes/InNodePanel/in_node_panel.gd" id="1_qcwe0"]
 
 [node name="InNodePanel" type="CanvasLayer"]
 script = ExtResource("1_qcwe0")

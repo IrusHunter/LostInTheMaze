@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c2doqeehli42q"]
 
-[ext_resource type="Script" path="res://Entety/Structure/Walls/UnbreakableWall/unbreakable_wall.gd" id="1_aneu7"]
+[ext_resource type="Script" uid="uid://cs5owl6fcbue5" path="res://Entety/Structure/Walls/UnbreakableWall/unbreakable_wall.gd" id="1_aneu7"]
 [ext_resource type="Texture2D" uid="uid://cy5re7idol5yk" path="res://Entety/Structure/Walls/UnbreakableWall/UnbreakingWall.png" id="1_fhko2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jmt4h"]

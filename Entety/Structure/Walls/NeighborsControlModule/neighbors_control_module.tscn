@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c36iqjcmom7f8"]
 
-[ext_resource type="Script" path="res://Entety/Structure/Walls/NeighborsControlModule/neighbors_control_module.gd" id="1_1x4od"]
+[ext_resource type="Script" uid="uid://eocyi07msqw7" path="res://Entety/Structure/Walls/NeighborsControlModule/neighbors_control_module.gd" id="1_1x4od"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6mre4"]
 size = Vector2(4, 1.125)

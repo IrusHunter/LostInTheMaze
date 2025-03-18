@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dr04600aefcwc"]
 
-[ext_resource type="Script" path="res://Entety/Plains/Portals/ToTilePortal/to_tile_portal.gd" id="1_qcxyf"]
+[ext_resource type="Script" uid="uid://dvi1oq5mp1g28" path="res://Entety/Plains/Portals/ToTilePortal/to_tile_portal.gd" id="1_qcxyf"]
 [ext_resource type="Texture2D" uid="uid://bs6els5dvum6t" path="res://Entety/Plains/Portals/ToTilePortal/Hole.png" id="2_12goy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nkd2v"]

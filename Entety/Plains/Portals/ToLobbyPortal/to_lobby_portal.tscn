@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgx3u4tvtjkst"]
 
-[ext_resource type="Script" path="res://Entety/Plains/Portals/ToLobbyPortal/to_lobby_portal.gd" id="1_xqy7h"]
+[ext_resource type="Script" uid="uid://dfu4vs238tmcf" path="res://Entety/Plains/Portals/ToLobbyPortal/to_lobby_portal.gd" id="1_xqy7h"]
 [ext_resource type="Texture2D" uid="uid://ckjmjyydop8ka" path="res://Entety/Plains/Portals/Exit.png" id="2_roxlm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oxuw0"]

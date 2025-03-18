@@ -1,9 +1,9 @@
 [gd_scene load_steps=55 format=3 uid="uid://ckbxe68m2ki2y"]
 
-[ext_resource type="Script" path="res://Entety/Structure/Chests/CommonChest/common_chest.gd" id="1_evpf3"]
+[ext_resource type="Script" uid="uid://4sleh50yloj3" path="res://Entety/Structure/Chests/CommonChest/common_chest.gd" id="1_evpf3"]
 [ext_resource type="Texture2D" uid="uid://ddrmb4jdpp2qa" path="res://Entety/Structure/Chests/CommonChest/clearing_full.png" id="2_opit8"]
 [ext_resource type="Texture2D" uid="uid://grf057udds6b" path="res://Entety/Structure/Chests/CommonChest/clear_dead.png" id="3_1plx5"]
-[ext_resource type="Script" path="res://Entety/Structure/Chests/CommonChest/common_chest_anim.gd" id="3_sif22"]
+[ext_resource type="Script" uid="uid://basymj6qghrxk" path="res://Entety/Structure/Chests/CommonChest/common_chest_anim.gd" id="3_sif22"]
 [ext_resource type="Texture2D" uid="uid://dj88ly034qc8j" path="res://Entety/Structure/Chests/CommonChest/clearing_full_dead.png" id="4_bv4j2"]
 [ext_resource type="Texture2D" uid="uid://btefnnbv744b2" path="res://Entety/Structure/Chests/CommonChest/opening .png" id="5_daufn"]
 [ext_resource type="Texture2D" uid="uid://c51xba8vjuni5" path="res://Entety/Structure/Chests/CommonChest/full_dead.png" id="6_2nt31"]
