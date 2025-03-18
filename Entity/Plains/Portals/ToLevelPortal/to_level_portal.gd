@@ -20,7 +20,7 @@ class LevelData:
 		to_level_teleporter = ToLevelTeleporter.init(_to_level_path)
 
 #region fields
-const path := "res://Entety/Plains/Portals/ToLevelPortal/to_level_portal.tscn"
+const path := "res://Entity/Plains/Portals/ToLevelPortal/to_level_portal.tscn"
 var _in_node_panel: InNodePanel
 @onready var _level_selection_panel: Panel = $LevelSelection
 @onready var _levels_buttons: PopupMenu = $LevelSelection/MenuBar/Levels

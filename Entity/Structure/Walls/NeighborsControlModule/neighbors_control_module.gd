@@ -2,7 +2,7 @@ class_name NeighborsControlModule
 extends Node2D
 
 #region properties
-const path = "res://Entety/Structure/Walls/NeighborsControlModule/neighbors_control_module.tscn"
+const path = "res://Entity/Structure/Walls/NeighborsControlModule/neighbors_control_module.tscn"
 var _down_n1: bool = false
 var _up_n2: bool = false
 var _priority: int

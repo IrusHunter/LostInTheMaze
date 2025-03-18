@@ -2,7 +2,7 @@ class_name InventoryRobber
 extends Area2D
 
 #region fields
-const path: String = "res://Entety/Properties/InventoryRobber/inventory_robber.tscn"
+const path: String = "res://Entity/Properties/InventoryRobber/inventory_robber.tscn"
 #var _available_free_inv: Array[FreeInventory] = []
 var _inventory: InventoryData
 #endregion

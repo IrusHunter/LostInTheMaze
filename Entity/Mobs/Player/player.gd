@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 #region fields
-const path: String = "res://Entety/Mobs/Player/player.tscn"
+const path: String = "res://Entity/Mobs/Player/player.tscn"
 var _save_path: String = Global.init_unit_path
 var _health: Health
 var _inventory: InventoryData
@@ -94,4 +94,3 @@ func move_to(pos: Vector2) -> void:
 	await _independent_movement.movement_stoped
 	add_move()
 #endregion
-

@@ -2,7 +2,7 @@ class_name Bomb
 extends RigidBody2D
 
 #region fields
-const path: String = "res://Entety/Items/Bomb/bomb.tscn"
+const path: String = "res://Entity/Items/Bomb/bomb.tscn"
 var _save_path := Global.init_unit_path
 var _health: Health
 var _environment_move: EnvironmentMove
@@ -57,16 +57,3 @@ func death() -> void:
 	get_parent().remove_child(self)
 	queue_free()
 #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-

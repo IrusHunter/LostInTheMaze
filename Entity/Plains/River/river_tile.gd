@@ -2,7 +2,7 @@ class_name RiverTile
 extends Area2D
 
 #region fields
-const path: String = "res://Entety/Plains/River/river_tile.tscn"
+const path: String = "res://Entity/Plains/River/river_tile.tscn"
 var _next: RiverTile
 var _previous: RiverTile
 signal new_body(river_tile: RiverTile, body)

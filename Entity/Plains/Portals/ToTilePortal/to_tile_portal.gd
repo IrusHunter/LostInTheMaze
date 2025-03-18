@@ -2,7 +2,7 @@ class_name ToTilePortal
 extends Area2D
 
 #region fields
-const path: String = "res://Entety/Plains/Portals/ToTilePortal/to_tile_portal.tscn"
+const path: String = "res://Entity/Plains/Portals/ToTilePortal/to_tile_portal.tscn"
 var _next: ToTilePortal
 var _previous: ToTilePortal
 var _is_active = false

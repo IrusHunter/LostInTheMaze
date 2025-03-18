@@ -2,7 +2,7 @@ class_name Arsenal
 extends RigidBody2D
 
 #region fields
-const path: String = "res://Entety/Structure/Chests/Arsenal/arsenal.tscn"
+const path: String = "res://Entity/Structure/Chests/Arsenal/arsenal.tscn"
 var _health: Health
 var _free_inventory: FreeInventory
 var _new_item_generator: NewItemGenerator

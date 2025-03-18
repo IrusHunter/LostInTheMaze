@@ -2,7 +2,7 @@ class_name StoneWall
 extends RigidBody2D
 
 #region fields
-const path: String = "res://Entety/Structure/Walls/StoneWall/stone_wall.tscn"
+const path: String = "res://Entity/Structure/Walls/StoneWall/stone_wall.tscn"
 var _save_path: String = Global.init_unit_path
 var _health: Health
 var _neighbors_control_module: NeighborsControlModule

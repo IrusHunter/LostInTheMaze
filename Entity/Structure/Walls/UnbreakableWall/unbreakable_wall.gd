@@ -2,7 +2,7 @@ class_name UnbreakableWall
 extends RigidBody2D
 
 #region fields
-const path: String = "res://Entety/Structure/Walls/UnbreakableWall/unbreakable_wall.tscn"
+const path: String = "res://Entity/Structure/Walls/UnbreakableWall/unbreakable_wall.tscn"
 var _wall_priority: int
 #endregion\
 
@@ -47,4 +47,3 @@ var wall_priority: int:
 	#)
 	#swf.close()
 #endregion
-

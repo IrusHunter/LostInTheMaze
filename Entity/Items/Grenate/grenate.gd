@@ -3,7 +3,7 @@ extends RigidBody2D
 
 #region fields
 var _health: Health
-const path: String = "res://Entety/Items/Grenate/grenate.tscn"
+const path: String = "res://Entity/Items/Grenate/grenate.tscn"
 @onready var _anim = $AnimatedSprite2D
 var _detonator: Detonator
 var _life_time: float = 0.3

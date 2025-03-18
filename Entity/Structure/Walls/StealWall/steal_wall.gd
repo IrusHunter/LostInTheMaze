@@ -2,7 +2,7 @@ class_name StealWall
 extends RigidBody2D
 
 #region fields
-const path: String = "res://Entety/Structure/Walls/StealWall/steal_wall.tscn"
+const path: String = "res://Entity/Structure/Walls/StealWall/steal_wall.tscn"
 var _save_path: String = Global.init_unit_path
 var _health: Health
 var _wall_priority: int

@@ -2,7 +2,7 @@ class_name ToLobbyPortal
 extends Area2D
 
 #region fields
-const path: String = "res://Entety/Plains/Portals/ToLobbyPortal/to_lobby_portal.tscn"
+const path: String = "res://Entity/Plains/Portals/ToLobbyPortal/to_lobby_portal.tscn"
 var _save_path: String = Global.init_unit_path
 #endregion
 
