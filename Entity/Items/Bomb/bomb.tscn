@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw7hapjcqx7ma"]
+
+[ext_resource type="Script" uid="uid://om2owl5np63h" path="res://Entity/Items/Bomb/bomb.gd" id="1_cgbxa"]
+[ext_resource type="Texture2D" uid="uid://bwvsg0qxcqe8p" path="res://Entity/Items/Bomb/Bomb.png" id="2_q3ss1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eo5si"]
+size = Vector2(8, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kth5v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q3ss1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_cgbxa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eo5si")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kth5v")
