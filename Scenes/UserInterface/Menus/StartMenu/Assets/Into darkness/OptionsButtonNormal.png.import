@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp3nx8t2p26kk"
-path="res://.godot/imported/BigButton3.png-f9836e44e8733d604e555b7547d8168d.ctex"
+uid="uid://dktfy7ysmdf7q"
+path="res://.godot/imported/OptionsButtonNormal.png-2033a46f759ebbe2496db7859d8189bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/UserInterface/Menus/StartMenu/BigButton3.png"
-dest_files=["res://.godot/imported/BigButton3.png-f9836e44e8733d604e555b7547d8168d.ctex"]
+source_file="res://Scenes/UserInterface/Menus/StartMenu/Assets/Into darkness/OptionsButtonNormal.png"
+dest_files=["res://.godot/imported/OptionsButtonNormal.png-2033a46f759ebbe2496db7859d8189bd.ctex"]
 
 [params]
 

@@ -5,5 +5,5 @@ static var path: String = "res://Global/FirstScene/FirstScene.tscn" ## path to s
 
 func _ready() -> void:
 	Global.game_data = GameData.new("test")
-	Global.game_data.section = "2"
-	get_tree().change_scene_to_file(StartMenu.path)
+	#Global.game_data.section = "1"
+	get_tree().change_scene_to_file(StartMenu.PATH)

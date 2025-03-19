@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e03rx4v30o51"
-path="res://.godot/imported/BigButtonPressed2.png-0590bf630eed718addbc2d87e796b468.ctex"
+uid="uid://cp3nx8t2p26kk"
+path="res://.godot/imported/QuitButtonNormal.png-8049a22fe408859cbb7c57792a9a834f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/UserInterface/Menus/StartMenu/BigButtonPressed2.png"
-dest_files=["res://.godot/imported/BigButtonPressed2.png-0590bf630eed718addbc2d87e796b468.ctex"]
+source_file="res://Scenes/UserInterface/Menus/StartMenu/Assets/Into darkness/QuitButtonNormal.png"
+dest_files=["res://.godot/imported/QuitButtonNormal.png-8049a22fe408859cbb7c57792a9a834f.ctex"]
 
 [params]
 
