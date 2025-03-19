@@ -1,6 +1,7 @@
 class_name GameData
 ## contains general information about current game
 
+const SECTIONS: PackedStringArray = ["Origin", "Into darkness"] ## contains section names
 var _name: String ## game name
 var _section: int ## code of game paragraph
 var _data_saver: DataSaver
@@ -15,12 +16,9 @@ func _init(n: String):
 ## to set use int value in string brackets ([b]"1"[/b])
 var section: String: 
 	get:
-		if _section == 0:
-			return "Origin" ## Зародження
+		if _section > 0:
+			return SECTIONS[_section]
 		return ""
-	set(value):
-		_section = int(value)
-		_data_saver.save_data()
 var name: String:
 	get:
 		return _name
@@ -35,3 +33,11 @@ func _init_dictionary() -> Dictionary:
 func _init_from_dictionary():
 	var d = _data_saver.get_data()
 	_section = int(d["section_id"])
+
+## passing to the next section of game
+func go_to_the_next_section() -> void:
+	_section += 1
+	if _section > len(SECTIONS):
+		_section -= 1
+		return
+	_data_saver.save_data()
