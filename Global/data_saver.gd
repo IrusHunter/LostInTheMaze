@@ -27,3 +27,7 @@ func get_data() -> Dictionary:
 		l = l.split("=")
 		d[l[0]] = l[1]
 	return d
+
+## save only 1 property
+func save_property(_key: String, _value: String) -> void:
+	save_data()

@@ -16,7 +16,7 @@ func _init(n: String):
 ## to set use int value in string brackets ([b]"1"[/b])
 var section: String: 
 	get:
-		if _section > 0:
+		if _section >= 0:
 			return SECTIONS[_section]
 		return ""
 var name: String:
@@ -40,4 +40,4 @@ func go_to_the_next_section() -> void:
 	if _section > len(SECTIONS):
 		_section -= 1
 		return
-	_data_saver.save_data()
+	_data_saver.save_property("section_id", str(_section))
