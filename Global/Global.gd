@@ -4,6 +4,7 @@ class_name Global
 static var version: int
 static var sounds_level = 0
 static var music_level = 0
+static var options_gata: OptionsData ## contain general information about the program
 #endregion
 #region paths
 const start_data_path = "res://UserData/StartData/"
@@ -11,9 +12,7 @@ const user_path = "user://Data/"
 const init_unit_path = "user://Data/for_init_units.txt"
 const saves_path = user_path + "Saves/"
 #endregion
-#region current game data
 static var game_data: GameData ## general data about current game
-#endregion
 #region level data
 const size = 32
 #endregion

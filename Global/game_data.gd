@@ -7,7 +7,11 @@ var _section: int ## code of game paragraph
 var _data_saver: DataSaver
 
 ## [b]n[/b] - game name
-func _init(n: String):
+func _init(n: String, default: bool = false):
+	if default:
+		_name = ""
+		_section = 0
+		return
 	_name = n
 	_data_saver = DataSaver.new(Global.saves_path + _name + "/main_data.txt", _init_dictionary)
 	_init_from_dictionary()
