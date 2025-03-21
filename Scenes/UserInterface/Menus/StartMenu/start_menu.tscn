@@ -132,6 +132,8 @@ layout_mode = 1
 offset_left = 2.0
 offset_right = 2.0
 
+[node name="PopupContainer" type="Node" parent="."]
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

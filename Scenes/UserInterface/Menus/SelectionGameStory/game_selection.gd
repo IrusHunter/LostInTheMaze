@@ -1,10 +1,8 @@
 class_name GameSelection
 extends Control
 
-#region properties
-const path: String = "res://Scenes/UserInterface/Menus/SelectionGameStory/game_selection.tscn"
+const PATH: String = "res://Scenes/UserInterface/Menus/SelectionGameStory/game_selection.tscn"
 @onready var _game_stories_conteiner: BoxContainer = $GameStoriesContainer
-#endregion
 
 func _ready():
 	var dir = DirAccess.open(Global.saves_path)
