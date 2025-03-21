@@ -13,7 +13,7 @@ func _init(n: String, default: bool = false):
 		_section = 0
 		return
 	_name = n
-	_data_saver = DataSaver.new(Global.saves_path + _name + "/main_data.txt", _init_dictionary)
+	_data_saver = DataSaver.new(Global.saves_path + _name + "/main_data", _init_dictionary)
 	_init_from_dictionary()
 
 ## returns in-game name of section [br]

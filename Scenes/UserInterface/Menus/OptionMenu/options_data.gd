@@ -5,7 +5,7 @@ var _current_game_name: String ## name of current game
 var _data_saver: DataSaver
 
 func _init() -> void:
-	_data_saver = DataSaver.new(Global.user_path + "Options.txt", _init_dictionary)
+	_data_saver = DataSaver.new(Global.user_path + "Options", _init_dictionary)
 	_init_from_dictionary()
 
 ## name of current game

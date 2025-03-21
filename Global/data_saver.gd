@@ -8,7 +8,7 @@ var path: String ## path to file
 ## [b]f[/b] - function, that returns [b]{String:String}[/b]
 func _init(p: String, f: Callable) -> void:
 	self.dict_func = f
-	self.path = p
+	self.path = p + ".txt"
 
 ## Saves data to [member path] in format [b]"key&&value"[/b]
 func save_data() -> void:
