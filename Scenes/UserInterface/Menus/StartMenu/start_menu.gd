@@ -8,11 +8,9 @@ var continue_game_menu: ContinueGameMenu
 @onready var play_button: TextureButton = $PlayButton
 @onready var options_button: TextureButton =  $OptionsButton
 @onready var quit_button: TextureButton = $QuitButton
-@onready var options: Control = $Options
 @onready var popup_container: Node = $PopupContainer
 
 func _ready():
-	options.hide()
 	var assets: String = FOLDER_PATH + "Assets/" + Global.game_data.section + "/"
 	var buttons = [play_button, options_button, quit_button]
 	var names = ["PlayButton", "OptionsButton", "QuitButton"]
@@ -34,7 +32,7 @@ func _on_play_button_pressed():
 	else:
 		continue_game_menu.show()
 func _on_options_button_pressed():
-	$Options.show()
+	return
 func _on_upload_button_pressed():
-	Global.copy_dirs(Global.start_data_path, Global.user_path)
+	Global.copy_dirs("user://Data2/", Global.user_path)
 	print("Update complete")

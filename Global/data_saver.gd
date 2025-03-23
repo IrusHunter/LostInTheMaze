@@ -22,7 +22,7 @@ func save_data() -> void:
 func get_data() -> Dictionary:
 	var pF = FileAccess.open(path, FileAccess.READ)
 	var lines = pF.get_as_text().split('/n')
-	var d = {}
+	var d = dict_func.call()
 	for l in lines:
 		l = l.split("=")
 		d[l[0]] = l[1]
