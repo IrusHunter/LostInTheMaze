@@ -35,10 +35,6 @@ version_control/autoload_on_startup=true
 
 pointing/emulate_touch_from_mouse=true
 
-[internationalization]
-
-locale/translations=PackedStringArray("res://Localization/Transletion - Localization.en.translation", "res://Localization/Transletion - Localization.ua.translation")
-
 [layer_names]
 
 2d_physics/layer_1="floor"

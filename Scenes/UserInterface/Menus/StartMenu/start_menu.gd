@@ -3,7 +3,7 @@ extends Control
 
 const FOLDER_PATH: String = "res://Scenes/UserInterface/Menus/StartMenu/"
 const PATH: String = FOLDER_PATH + "start_menu.tscn"
-var continue_game_menu: ContinueGameMenu
+var continue_game_menu: ContinueLastGameWindow
 @onready var backfround: TextureRect = $Background
 @onready var play_button: TextureButton = $PlayButton
 @onready var options_button: TextureButton =  $OptionsButton
@@ -20,7 +20,7 @@ func _ready():
 		buttons[i].texture_hover = load(assets + names[i] + "Normal.png")
 	backfround.texture = load(assets + "Background.png")
 	
-	continue_game_menu = ContinueGameMenu.init(popup_container)
+	continue_game_menu = ContinueLastGameWindow.init(popup_container)
 	continue_game_menu.hide()
 
 
