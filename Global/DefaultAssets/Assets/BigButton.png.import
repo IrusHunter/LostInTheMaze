@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm18igyoau6pf"
-path="res://.godot/imported/New.png-7579c972ef2f27a382c93e38a849e81c.ctex"
+uid="uid://c5ksjucjiw5og"
+path="res://.godot/imported/BigButton.png-60d249bb671523a1d6e60e1061678065.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/UserInterface/Menus/SelectionGameStory/GameStory/New.png"
-dest_files=["res://.godot/imported/New.png-7579c972ef2f27a382c93e38a849e81c.ctex"]
+source_file="res://Global/DefaultAssets/Assets/BigButton.png"
+dest_files=["res://.godot/imported/BigButton.png-60d249bb671523a1d6e60e1061678065.ctex"]
 
 [params]
 

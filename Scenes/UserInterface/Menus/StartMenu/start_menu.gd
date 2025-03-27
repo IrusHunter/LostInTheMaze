@@ -28,7 +28,7 @@ func _on_quit_button_pressed():
 	get_tree().quit()
 func _on_play_button_pressed():
 	if Global.options_gata.current_game_name == "":
-		get_tree().change_scene_to_file(GameSelection.PATH)
+		get_tree().change_scene_to_file(GameSelectionMenu.PATH)
 	else:
 		continue_game_menu.show()
 func _on_options_button_pressed():

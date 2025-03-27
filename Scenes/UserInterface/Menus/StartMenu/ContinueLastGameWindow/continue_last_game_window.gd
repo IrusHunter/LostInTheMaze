@@ -26,7 +26,7 @@ func _close_menu() -> void:
 	self.hide()
 
 func _on_continue_button_pressed() -> void:
-	pass # jump into the game
+	get_tree().change_scene_to_file(Level.PATH)
 
 func _on_select_game_button_pressed() -> void:
-	get_tree().change_scene_to_file(GameSelection.PATH)
+	get_tree().change_scene_to_file(GameSelectionMenu.PATH)

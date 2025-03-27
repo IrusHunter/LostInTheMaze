@@ -3,7 +3,7 @@ extends Node2D
 
 var _level_file_path: String #= Global.saves_path + Global.game_name + "/Levels/" + Global.current_level + "/"
 var _tmp_level_path: String
-const path: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
+const PATH: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
 const load_stages: int = 7
 static var current_num_of_ls: int = 0
 
