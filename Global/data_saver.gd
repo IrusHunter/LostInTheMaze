@@ -21,11 +21,12 @@ func save_data() -> void:
 ## Return a [b]{String:String}[/b]
 func get_data() -> Dictionary:
 	var pF = FileAccess.open(_path, FileAccess.READ)
-	var lines = pF.get_as_text().split('/n')
 	var d = _dict_func.call()
-	for l in lines:
-		l = l.split("=")
-		d[l[0]] = l[1]
+	var line: String = pF.get_line()
+	while line != "":
+		var dl = line.split('=')
+		d[dl[0]] = dl[1]
+		line = pF.get_line()
 	return d
 
 ## save only 1 property
