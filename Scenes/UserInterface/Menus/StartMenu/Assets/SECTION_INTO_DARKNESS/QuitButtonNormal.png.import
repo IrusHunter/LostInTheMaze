@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btgmgfmoildxh"
-path="res://.godot/imported/Background.png-e50c655e639fd3f13e41d677f963c245.ctex"
+uid="uid://cp3nx8t2p26kk"
+path="res://.godot/imported/QuitButtonNormal.png-ce0ce9648e791d38794fcf79865afd4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/UserInterface/Menus/StartMenu/Assets/Into darkness/Background.png"
-dest_files=["res://.godot/imported/Background.png-e50c655e639fd3f13e41d677f963c245.ctex"]
+source_file="res://Scenes/UserInterface/Menus/StartMenu/Assets/SECTION_INTO_DARKNESS/QuitButtonNormal.png"
+dest_files=["res://.godot/imported/QuitButtonNormal.png-ce0ce9648e791d38794fcf79865afd4e.ctex"]
 
 [params]
 

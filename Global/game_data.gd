@@ -1,7 +1,7 @@
 class_name GameData
 ## contains general information about current game
 
-const SECTIONS: PackedStringArray = ["Origins", "Into darkness"] ## contains section names
+const SECTIONS: PackedStringArray = ["SECTION_ORIGINS", "SECTION_INTO_DARKNESS"] ## contains section names
 var _name: String ## game name
 var _section: int ## code of game paragraph
 var _data_saver: DataSaver

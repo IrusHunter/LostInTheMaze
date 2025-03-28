@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs2lumx1w3o07"
-path="res://.godot/imported/OptionsButtonHover.png-7fbee8c271a41c55504ba793d9bacc79.ctex"
+uid="uid://bcgv6d33dg2g"
+path="res://.godot/imported/PlayButtonNormal.png-5275c6eacca129512e36182acece994d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/UserInterface/Menus/StartMenu/Assets/Into darkness/OptionsButtonHover.png"
-dest_files=["res://.godot/imported/OptionsButtonHover.png-7fbee8c271a41c55504ba793d9bacc79.ctex"]
+source_file="res://Scenes/UserInterface/Menus/StartMenu/Assets/SECTION_INTO_DARKNESS/PlayButtonNormal.png"
+dest_files=["res://.godot/imported/PlayButtonNormal.png-5275c6eacca129512e36182acece994d.ctex"]
 
 [params]
 
