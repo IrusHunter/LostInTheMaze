@@ -21,7 +21,7 @@ class LevelData:
 
 #region fields
 const path := "res://Entity/Plains/Portals/ToLevelPortal/to_level_portal.tscn"
-var _in_node_panel: InNodePanel
+#var _in_node_panel: InNodePanel
 @onready var _level_selection_panel: Panel = $LevelSelection
 @onready var _levels_buttons: PopupMenu = $LevelSelection/MenuBar/Levels
 var _levels: Array[LevelData] = []
@@ -35,7 +35,7 @@ var _save_path: String = Global.init_unit_path
 #endregion
 
 func _ready():
-	_in_node_panel = InNodePanel.init(self, _level_selection_panel)
+	#_in_node_panel = InNodePanel.init(self, _level_selection_panel)
 	
 	_levels_buttons.clear()
 	var dir := DirAccess.open(Global.saves_path + Global.game_data.name + "/Levels/")
@@ -52,7 +52,7 @@ func _ready():
 		))
 		f.close()
 	reset(_levels[0])
-	_in_node_panel.hide()
+	#_in_node_panel.hide()
 static func init(parent: Node, position: Vector2) -> ToLevelPortal:
 	var tlt: ToLevelPortal = preload(path).instantiate()
 	parent.add_child(tlt)
@@ -92,7 +92,8 @@ func _on_input_event(viewport, event, shape_idx):
 		if not event.pressed:
 			for body in get_overlapping_bodies():
 				if not body.get("independent_movement") == null:
-					_in_node_panel.show()
+					#_in_node_panel.show()
+					pass
 
 func _on_play_pressed():
 	_current_level_data.to_level_teleporter.start_teleportation()

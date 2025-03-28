@@ -1,0 +1,183 @@
+[gd_scene load_steps=3 format=3 uid="uid://whggsav0yanr"]
+
+[ext_resource type="Script" uid="uid://cwrgwsryovabo" path="res://Scenes/Menus/OptionMenu/option_menu.gd" id="1_rq8fc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v1k4n"]
+blend_mode = 3
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rq8fc")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10068.0
+offset_top = -7844.0
+offset_right = 10068.0
+offset_bottom = 7844.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="exitScreen" type="Window" parent="."]
+initial_position = 1
+size = Vector2i(300, 100)
+visible = false
+always_on_top = true
+popup_window = true
+
+[node name="yesButton" type="Button" parent="exitScreen"]
+offset_left = 55.0
+offset_top = 55.0
+offset_right = 95.0
+offset_bottom = 86.0
+text = "buttonYes"
+
+[node name="noButton" type="Button" parent="exitScreen"]
+offset_left = 200.0
+offset_top = 55.0
+offset_right = 240.0
+offset_bottom = 86.0
+text = "buttonNo"
+
+[node name="Label" type="Label" parent="exitScreen"]
+offset_left = 32.075
+offset_top = 15.37
+offset_right = 262.075
+offset_bottom = 38.37
+text = "lableSettingsChange
+"
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource("CanvasItemMaterial_v1k4n")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -195.0
+offset_right = 270.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cancelButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 371.0
+offset_top = 315.0
+offset_right = 473.0
+offset_bottom = 349.0
+text = "buttonCancle"
+
+[node name="music" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 65.0
+offset_right = 478.0
+offset_bottom = 105.0
+
+[node name="sounds" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 113.0
+offset_right = 479.0
+offset_bottom = 153.0
+
+[node name="music2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 69.0
+offset_right = 169.0
+offset_bottom = 95.0
+text = "lableMusic"
+
+[node name="sounds2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 118.0
+offset_right = 181.0
+offset_bottom = 147.0
+text = "lableSounds"
+
+[node name="saveButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 261.0
+offset_top = 317.0
+offset_right = 362.0
+offset_bottom = 348.0
+text = "buttonSave"
+
+[node name="exitButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_top = 18.0
+offset_right = -21.0
+offset_bottom = 49.0
+grow_horizontal = 0
+text = "buttonQuit"
+
+[node name="resetButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 275.0
+offset_right = 481.0
+offset_bottom = 306.0
+text = "buttonResetOptions"
+
+[node name="language2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 170.0
+offset_right = 201.0
+offset_bottom = 193.0
+text = "lableLanguage"
+
+[node name="LanguageButtons" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 270.0
+offset_top = 195.0
+offset_right = 310.0
+offset_bottom = 235.0
+
+[node name="english" type="Button" parent="Panel/LanguageButtons"]
+layout_mode = 0
+offset_left = -51.0
+offset_top = -30.0
+offset_right = 12.0
+offset_bottom = 1.0
+action_mode = 0
+keep_pressed_outside = true
+text = "English"
+
+[node name="ucrainian" type="Button" parent="Panel/LanguageButtons"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = -29.0
+offset_right = 120.0
+offset_bottom = 2.0
+text = "Українська"
+
+[connection signal="pressed" from="exitScreen/yesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="exitScreen/noButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="Panel/cancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="Panel/saveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Panel/exitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Panel/resetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Panel/LanguageButtons/english" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="Panel/LanguageButtons/ucrainian" to="." method="_on_ucrainian_pressed"]
