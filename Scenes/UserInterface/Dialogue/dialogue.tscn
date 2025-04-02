@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn3fbriwubdt6"]
+
+[ext_resource type="Script" uid="uid://cy0f4ghfaw0ni" path="res://Scenes/UserInterface/Dialogue/dialogue.gd" id="1_5agw8"]
+
+[node name="Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5agw8")

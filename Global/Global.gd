@@ -7,6 +7,7 @@ static var music_level = 0
 static var options_gata: OptionsData ## contain general information about the program
 #endregion
 #region paths
+const dialogue_path = "res://UserData/Dialogue"
 const start_data_path = "res://UserData/StartData/"
 const user_path = "user://Data/"
 const init_unit_path = "user://Data/for_init_units.txt"
