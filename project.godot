@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="UltarMegaSuperPuperDuperAlfaOmegaDame"
-run/main_scene="res://Scenes/UserInterface/Menus/StartMenu/start_menu.tscn"
-config/features=PackedStringArray("4.2", "Mobile")
+run/main_scene="res://Scenes/Menus/StartMenu/start_menu.tscn"
+config/features=PackedStringArray("4.4", "Mobile")
 run/max_fps=60
 config/icon="res://icon.svg"
 
@@ -34,10 +34,6 @@ version_control/autoload_on_startup=true
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-
-[internationalization]
-
-locale/translations=PackedStringArray("res://Localization/Transletion - Localization.en.translation", "res://Localization/Transletion - Localization.ua.translation")
 
 [layer_names]
 

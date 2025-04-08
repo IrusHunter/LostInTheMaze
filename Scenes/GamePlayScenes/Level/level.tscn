@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ba0csbqnsm5t3"]
 
-[ext_resource type="Script" path="res://Scenes/GamePlayScenes/Level/level.gd" id="1_x1ple"]
-[ext_resource type="Texture2D" uid="uid://kgq0625cn2j7" path="res://Entety/Plains/Tile/GrassTile.png" id="2_n7jii"]
-[ext_resource type="PackedScene" uid="uid://whggsav0yanr" path="res://Scenes/UserInterface/Menus/OptionMenu/option_menu.tscn" id="4_2v4wt"]
+[ext_resource type="Script" uid="uid://bswgwslkg7m7l" path="res://Scenes/GamePlayScenes/Level/level.gd" id="1_x1ple"]
+[ext_resource type="Texture2D" uid="uid://kgq0625cn2j7" path="res://Entity/Plains/Tile/GrassTile.png" id="2_n7jii"]
+[ext_resource type="PackedScene" uid="uid://whggsav0yanr" path="res://Scenes/Menus/OptionMenu/option_menu.tscn" id="4_2v4wt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pam04"]
 
@@ -14,8 +14,6 @@ resource_name = "GrassTile"
 texture = ExtResource("2_n7jii")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_cf066"]
 tile_size = Vector2i(32, 32)

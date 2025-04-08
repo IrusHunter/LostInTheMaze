@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy4jrr7c1ttx"]
 
-[ext_resource type="Script" path="res://Scenes/UserInterface/Lobby/Lobby.gd" id="1_o5c3n"]
+[ext_resource type="Script" uid="uid://yuckp1jexwoi" path="res://Scenes/UserInterface/Lobby/Lobby.gd" id="1_o5c3n"]
 [ext_resource type="PackedScene" uid="uid://dihg8it7wdajh" path="res://Scenes/UserInterface/Inventory/inventory.tscn" id="2_e0wne"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i35ws"]

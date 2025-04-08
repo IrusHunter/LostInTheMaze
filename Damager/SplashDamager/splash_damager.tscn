@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjm8tdt88oyin"]
 
-[ext_resource type="Script" path="res://Damager/SplashDamager/splash_damager.gd" id="1_nj0nf"]
+[ext_resource type="Script" uid="uid://dh70kfqy05rlb" path="res://Damager/SplashDamager/splash_damager.gd" id="1_nj0nf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rbuum"]
 radius = 1.0

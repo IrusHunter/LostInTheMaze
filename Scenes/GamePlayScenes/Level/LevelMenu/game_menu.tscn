@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqibo4f40kdbr"]
 
-[ext_resource type="Script" path="res://Scenes/GamePlayScenes/Level/LevelMenu/game_menu.gd" id="1_d5tsn"]
-[ext_resource type="PackedScene" uid="uid://whggsav0yanr" path="res://Scenes/UserInterface/Menus/OptionMenu/option_menu.tscn" id="2_u4h5h"]
+[ext_resource type="Script" uid="uid://b51w6m7v58nsj" path="res://Scenes/GamePlayScenes/Level/LevelMenu/game_menu.gd" id="1_d5tsn"]
+[ext_resource type="PackedScene" uid="uid://whggsav0yanr" path="res://Scenes/Menus/OptionMenu/option_menu.tscn" id="2_u4h5h"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmcn5"]
 blend_mode = 3

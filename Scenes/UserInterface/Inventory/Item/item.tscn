@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dgmlo871r1ger" path="res://Scenes/UserInterface/Inventory/Item/Icons/GrenateIcon.png" id="4_br6li"]
 [ext_resource type="Texture2D" uid="uid://dimrjmc8oowy2" path="res://Scenes/UserInterface/Inventory/Item/Icons/SilverCoin.png" id="5_dov6n"]
 [ext_resource type="Texture2D" uid="uid://v6i8jegd218h" path="res://Scenes/UserInterface/Inventory/Item/Icons/free.png" id="6_8rlyk"]
-[ext_resource type="Script" path="res://Scenes/UserInterface/Inventory/Item/item.gd" id="7_fdxvk"]
+[ext_resource type="Script" uid="uid://by1exucxklo5u" path="res://Scenes/UserInterface/Inventory/Item/item.gd" id="7_fdxvk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rig4n"]
 animations = [{

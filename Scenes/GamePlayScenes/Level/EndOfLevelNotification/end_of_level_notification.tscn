@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dey7p6ked27qj"]
 
-[ext_resource type="Script" path="res://Scenes/GamePlayScenes/Level/EndOfLevelNotification/end_of_level_notification.gd" id="1_pdwe4"]
+[ext_resource type="Script" uid="uid://kqv63m66ll1b" path="res://Scenes/GamePlayScenes/Level/EndOfLevelNotification/end_of_level_notification.gd" id="1_pdwe4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dgm1"]
 
