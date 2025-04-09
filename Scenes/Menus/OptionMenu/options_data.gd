@@ -6,7 +6,7 @@ var _program_version: int ## version of the program
 var _data_saver: DataSaver
 
 func _init() -> void:
-	_data_saver = DataSaver.new(Global.user_path + "Options", _init_dictionary)
+	_data_saver = DataSaver.new(Paths.USER_PATH + "Options", _init_dictionary)
 	_init_from_dictionary()
 
 ## name of current game

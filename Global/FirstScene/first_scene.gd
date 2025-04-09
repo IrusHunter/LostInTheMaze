@@ -4,7 +4,7 @@ extends Control
 static var path: String = "res://Global/FirstScene/FirstScene.tscn" ## path to scene file
 
 func _ready() -> void:
-	var dir = DirAccess.open(Global.saves_path)
+	var dir = DirAccess.open(Paths.SAVES_PATH)
 	if dir == null:
 		_update(0)
 	

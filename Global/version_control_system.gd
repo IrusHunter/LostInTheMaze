@@ -12,6 +12,6 @@ func update(from: int) -> void:
 
 func _from_0_to_1():
 	new_update_phase.emit("something")
-	DirAccess.make_dir_recursive_absolute(Global.saves_path)
-	var sf = FileAccess.open(Global.user_path + "Options.txt", FileAccess.WRITE)
+	DirAccess.make_dir_recursive_absolute(Paths.SAVES_PATH)
+	var sf = FileAccess.open(Paths.USER_PATH + "Options.txt", FileAccess.WRITE)
 	sf.store_line("program_version=1")

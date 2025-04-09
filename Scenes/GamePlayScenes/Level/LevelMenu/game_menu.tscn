@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqibo4f40kdbr"]
+[gd_scene load_steps=3 format=3 uid="uid://dqibo4f40kdbr"]
 
 [ext_resource type="Script" uid="uid://b51w6m7v58nsj" path="res://Scenes/GamePlayScenes/Level/LevelMenu/game_menu.gd" id="1_d5tsn"]
-[ext_resource type="PackedScene" uid="uid://whggsav0yanr" path="res://Scenes/Menus/OptionMenu/option_menu.tscn" id="2_u4h5h"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmcn5"]
 blend_mode = 3
@@ -77,9 +76,6 @@ offset_top = 48.0
 offset_right = 204.0
 offset_bottom = 76.0
 text = "panelGameMenu"
-
-[node name="Options" parent="." instance=ExtResource("2_u4h5h")]
-layout_mode = 1
 
 [connection signal="pressed" from="Panel/ContiniuneButton" to="." method="_on_continiune_button_pressed"]
 [connection signal="pressed" from="Panel/OptionsButton" to="." method="_on_options_button_pressed"]

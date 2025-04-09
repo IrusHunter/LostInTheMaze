@@ -34,5 +34,6 @@ func _on_play_button_pressed():
 func _on_options_button_pressed():
 	return
 func _on_upload_button_pressed():
-	Global.copy_dirs("user://Data2/", Global.user_path)
+	Paths.delete_files(Paths.USER_PATH)
+	Paths.copy_dirs("user://Data2/", Paths.USER_PATH)
 	print("Update complete")
