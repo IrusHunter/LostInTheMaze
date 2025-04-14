@@ -1,14 +1,14 @@
 class_name OptionsData
 ## contain general information about the program
 
-var _current_game_name: String ## name of current game
-var _program_version: int ## version of the program
-var _music_level: int ## loudness of music
-var _sound_level: int ## loudness of sounds
-var _brightness: float ## brightness of the program
-var _fog_brightness: float ## brightness of fog
-var _memory_brightness: float ## brightness of objects in the main character memory
-var _default_camera_zoom: float ## default zoom for camera
+var _current_game_name: String = "" ## name of current game
+var _program_version: int = 0 ## version of the program
+var _music_level: int = 50 ## loudness of music
+var _sound_level: int = 50 ## loudness of sounds
+var _brightness: float = 1 ## brightness of the program
+var _fog_brightness: float = 0.5 ## brightness of fog
+var _memory_brightness: float = 0.5 ## brightness of objects in the main character memory
+var _default_camera_zoom: float = 4 ## default zoom for camera
 var _data_saver: DataSaver
 
 func _init() -> void:
