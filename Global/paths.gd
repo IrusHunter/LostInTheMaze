@@ -25,6 +25,12 @@ static func get_game_path(game_name: String) -> String:
 		printerr("game_name is empty")
 	return "".join([SAVES_PATH, game_name, "/"])
 
+## returns path to TileMap directory at the [b]level_path[/b] level directory
+static func get_tile_map_dir(level_path: String) -> String:
+	if level_path == "":
+		printerr("level_path is empty")
+	return "".join([level_path, "TileMap/"])
+
 ## coping files from [b]from[/b] directory to [b]to[/b] directory
 static func copy_dirs(from: String, to: String) -> void:
 	var fromDirectory = DirAccess.open(from)

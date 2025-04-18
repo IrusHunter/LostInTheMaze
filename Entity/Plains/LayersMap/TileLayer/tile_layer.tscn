@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://y7m2lws6yiff"]
+
+[ext_resource type="Texture2D" uid="uid://kgq0625cn2j7" path="res://Entity/Plains/LayersMap/TileLayer/Assets/GrassTile.png" id="1_l7743"]
+[ext_resource type="Script" uid="uid://conp88dut0ie5" path="res://Entity/Plains/LayersMap/TileLayer/tile_layer.gd" id="1_lqt2g"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_68cm3"]
+texture = ExtResource("1_l7743")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_rucnm"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_68cm3")
+
+[node name="TileLayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_rucnm")
+script = ExtResource("1_lqt2g")

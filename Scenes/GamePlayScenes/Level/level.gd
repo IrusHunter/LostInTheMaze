@@ -10,7 +10,9 @@ const MIN_CAMERA_ZOOM: float = 0.2 * TILE_SIZE/32
 
 var current_level_path: String = Paths.get_level_path(Global.game_data.name, "CurrentLevel")
 
+var layers_map: LayersMap
 @onready var walls_container = $PerantForGroupNodes/Walls
+@onready var layers_map_parrent = $PerantForGroupNodes/LayersMap
 
 @onready var map: TileMapLayer = $Map0
 @onready var camera: Camera2D = $MainCamera ## show screen to the user
@@ -70,7 +72,6 @@ func load_level():
 	#for inv in _inventory_father.get_children():
 		#_inventory_father.remove_child(inv)
 		#inv.queue_free()
-	map.clear()
 	#endregion
 	#region initializating level data
 	Paths.delete_files(current_level_path)
@@ -89,34 +90,24 @@ func load_level():
 	#current_num_of_ls += 1
 	#_moves_label.text =  tr("labelLevelMoves") + ": " + str(_player.moves)
 	#endregion
-	#region initializating tile map
-	var tmf = FileAccess.open(current_level_path + "tilemap.txt", FileAccess.READ)
-	var line: PackedStringArray = tmf.get_line().split(' ', false)
-	var colum: int = 0
-	while line.size() != 0:
-		for i in range(line.size()):
-			map.set_cell(Vector2i(i, colum), int(line[i]), Vector2i(0,0))
-		colum += 1
-		line = tmf.get_line().split(' ', false)
-	tmf.close()
-	#endregion
+	layers_map = LayersMap.new(Paths.get_tile_map_dir(current_level_path), layers_map_parrent, 0)
 	#region initializating unbreacable walls 
-	tmf = FileAccess.open(current_level_path + "tilemap.txt", FileAccess.READ)
-	line = tmf.get_line().split(' ', false)
-	colum = 0
-	while line.size() != 0:
-		for i in range(line.size()):
-			if map.get_cell_source_id(Vector2i(i, colum - 1)) == -1:
-				UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i, colum), false), PI/2)
-			if map.get_cell_source_id(Vector2i(i - 1, colum)) == -1:
-				UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i, colum), true), 0)
-			if map.get_cell_source_id(Vector2i(i, colum + 1)) == -1:
-				UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i, colum + 1), false), PI/2)
-			if map.get_cell_source_id(Vector2i(i + 1, colum)) == -1:
-				UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i + 1, colum), true), 0)
-		colum += 1
-		line = tmf.get_line().split(' ', false)
-	tmf.close()
+	#tmf = FileAccess.open(current_level_path + "tilemap.txt", FileAccess.READ)
+	#line = tmf.get_line().split(' ', false)
+	#colum = 0
+	#while line.size() != 0:
+		#for i in range(line.size()):
+			#if map.get_cell_source_id(Vector2i(i, colum - 1)) == -1:
+				#UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i, colum), false), PI/2)
+			#if map.get_cell_source_id(Vector2i(i - 1, colum)) == -1:
+				#UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i, colum), true), 0)
+			#if map.get_cell_source_id(Vector2i(i, colum + 1)) == -1:
+				#UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i, colum + 1), false), PI/2)
+			#if map.get_cell_source_id(Vector2i(i + 1, colum)) == -1:
+				#UnbreakableWall.init(walls_container, Wall.get_position(Vector2i(i + 1, colum), true), 0)
+		#colum += 1
+		#line = tmf.get_line().split(' ', false)
+	#tmf.close()
 	#endregion
 	#Portal.init_portals(_portals, _tmp_level_path + "Config/Plains/Portals/")
 	#Wall.init_walls(_walls, _tmp_level_path + "Config/Structure/Walls/")
