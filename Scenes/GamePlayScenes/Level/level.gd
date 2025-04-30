@@ -5,6 +5,7 @@ const PATH: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
 const START_LEVEL_PATH: String = Paths.USER_PATH + "Level/"
 
 const TILE_SIZE: int = 32
+const PIXELS_PER_METER: int = 16
 const MAX_CAMERA_ZOOM: float = 10.0 * TILE_SIZE/32
 const MIN_CAMERA_ZOOM: float = 0.2 * TILE_SIZE/32
 

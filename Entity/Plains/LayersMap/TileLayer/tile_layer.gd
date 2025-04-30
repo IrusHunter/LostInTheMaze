@@ -3,6 +3,7 @@ extends TileMapLayer
 ## one tile layer for game
 
 const PATH: String = "res://Entity/Plains/LayersMap/TileLayer/tile_layer.tscn"
+const PIXELS_PER_METER = 8
 
 ##[b]parent[/b] - parent for this Node [br]
 ##[b]path_to_file[/b] - file with tile board [br]
@@ -23,3 +24,9 @@ static func init(parent: Node, path_to_file: String, start_position: Vector2i = 
 	tmf.close()
 	
 	return tl
+
+
+func _ready() -> void:
+	var scale_delta: float = float(Level.PIXELS_PER_METER) / float(PIXELS_PER_METER)
+	scale = Vector2(scale_delta, scale_delta)
+	
