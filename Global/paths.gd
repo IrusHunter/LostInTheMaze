@@ -29,7 +29,15 @@ static func get_game_path(game_name: String) -> String:
 static func get_tile_map_dir(level_path: String) -> String:
 	if level_path == "":
 		printerr("level_path is empty")
+		return ""
 	return "".join([level_path, "TileMap/"])
+
+## returns path to level_data file of the [b]level_path[/b] level
+static func get_level_data_path(level_path: String) -> String:
+	if level_path == "":
+		printerr("level_path is empty")
+		return ""
+	return "".join([level_path, "level_data"])
 
 ## coping files from [b]from[/b] directory to [b]to[/b] directory
 static func copy_dirs(from: String, to: String) -> void:

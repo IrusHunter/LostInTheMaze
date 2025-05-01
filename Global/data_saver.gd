@@ -22,6 +22,8 @@ func save_data() -> void:
 func get_data() -> Dictionary:
 	var pF = FileAccess.open(_path, FileAccess.READ)
 	var d = _dict_func.call()
+	if pF == null:
+		return d
 	var line: String = pF.get_line()
 	while line != "":
 		var dl = line.split('=')

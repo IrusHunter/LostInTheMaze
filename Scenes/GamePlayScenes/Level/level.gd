@@ -81,6 +81,7 @@ func load_level():
 	if dir == null:
 		Paths.copy_dirs(Paths.get_start_level_path(Global.game_data.current_level_name), level_path)
 	Paths.copy_dirs(level_path, current_level_path)
+	Global.level_data = LevelData.new(Paths.get_level_data_path(level_path))
 	## initing level_data
 	#endregion
 	#region initializating player and inventory
@@ -91,7 +92,9 @@ func load_level():
 	#current_num_of_ls += 1
 	#_moves_label.text =  tr("labelLevelMoves") + ": " + str(_player.moves)
 	#endregion
-	layers_map = LayersMap.new(Paths.get_tile_map_dir(current_level_path), layers_map_parrent, 0)
+	layers_map = LayersMap.new(Paths.get_tile_map_dir(current_level_path), 
+		layers_map_parrent, 
+		Global.level_data.current_layer)
 	#region initializating unbreacable walls 
 	#tmf = FileAccess.open(current_level_path + "tilemap.txt", FileAccess.READ)
 	#line = tmf.get_line().split(' ', false)

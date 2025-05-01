@@ -6,6 +6,7 @@ static var sounds_level = 0
 static var music_level = 0
 static var options_gata: OptionsData ## contain general information about the program
 static var game_data: GameData ## general data about current game
+static var level_data: LevelData
 
 const dialogue_path = "res://UserData/Dialogue"
 const start_data_path = "res://UserData/StartData/"
