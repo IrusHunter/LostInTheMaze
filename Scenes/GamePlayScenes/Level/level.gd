@@ -5,7 +5,7 @@ const PATH: String = "res://Scenes/GamePlayScenes/Level/level.tscn"
 const START_LEVEL_PATH: String = Paths.USER_PATH + "Level/"
 
 const TILE_SIZE: int = 32
-const PIXELS_PER_METER: int = 16
+const PIXELS_PER_METER: int = 8
 const MAX_CAMERA_ZOOM: float = 10.0 * TILE_SIZE/32
 const MIN_CAMERA_ZOOM: float = 0.2 * TILE_SIZE/32
 
@@ -81,7 +81,7 @@ func load_level():
 	if dir == null:
 		Paths.copy_dirs(Paths.get_start_level_path(Global.game_data.current_level_name), level_path)
 	Paths.copy_dirs(level_path, current_level_path)
-	Global.level_data = LevelData.new(Paths.get_level_data_path(level_path))
+	Global.level_data = LevelData.new(Paths.get_level_data_path(current_level_path))
 	## initing level_data
 	#endregion
 	#region initializating player and inventory
@@ -96,6 +96,19 @@ func load_level():
 		layers_map_parrent, 
 		Global.level_data.current_layer)
 	#region initializating unbreacable walls 
+	
+	if Global.level_data.first_loaded:
+		var h_vals = layers_map.current_layer.horizontal_walls
+		for key in h_vals:
+			if h_vals[key]:
+				print(key)
+				UnbreakableWall.init(walls_container, Wall.get_position(key, false), PI/2)
+		
+		var v_vals = layers_map.current_layer.vertical_walls
+		for key in v_vals:
+			if v_vals[key]:
+				print(key)
+				UnbreakableWall.init(walls_container, Wall.get_position(key, true), 0)
 	#tmf = FileAccess.open(current_level_path + "tilemap.txt", FileAccess.READ)
 	#line = tmf.get_line().split(' ', false)
 	#colum = 0
@@ -121,6 +134,7 @@ func load_level():
 	#
 	#_camera.position = _player.position
 	#_ui.visible = ui_v
+	Global.level_data.first_loaded = false
 
 func _input(event):	
 	## work with gamemenu

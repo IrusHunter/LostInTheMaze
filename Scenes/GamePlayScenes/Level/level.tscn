@@ -85,6 +85,8 @@ blend_mode = 1
 
 [node name="PerantForGroupNodes" type="Node" parent="."]
 
+[node name="LayersMap" type="Node" parent="PerantForGroupNodes"]
+
 [node name="Rivers" type="Node" parent="PerantForGroupNodes"]
 
 [node name="Portals" type="Node" parent="PerantForGroupNodes"]
@@ -99,7 +101,5 @@ blend_mode = 1
 
 [node name="EntetyMassegeParent" type="CanvasLayer" parent="PerantForGroupNodes"]
 follow_viewport_enabled = true
-
-[node name="LayersMap" type="Node" parent="PerantForGroupNodes"]
 
 [connection signal="pressed" from="CanvasLayer/Panel/menuButton" to="." method="_on_menu_button_pressed"]
