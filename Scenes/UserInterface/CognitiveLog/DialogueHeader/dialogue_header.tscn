@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://gvdy7ah2yrof"]
+
+[ext_resource type="Script" uid="uid://2fpb01xta87m" path="res://Scenes/UserInterface/CognitiveLog/DialogueHeader/dialogue_header.gd" id="1_f6igw"]
+[ext_resource type="Texture2D" uid="uid://c5ksjucjiw5og" path="res://Global/DefaultAssets/Assets/BigButton.png" id="2_sac1i"]
+[ext_resource type="Texture2D" uid="uid://c3b6uo1cfej84" path="res://Scenes/UserInterface/CognitiveLog/DialogueHeader/Assets/ImportanceMark.png" id="3_6w1du"]
+
+[node name="DialogueHeader" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 62.0
+script = ExtResource("1_f6igw")
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(280, 50)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -25.0
+offset_right = 696.0
+offset_bottom = 25.0
+grow_vertical = 2
+texture = ExtResource("2_sac1i")
+
+[node name="ImportanceMark" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -13.0
+offset_right = 40.0
+offset_bottom = 13.0
+grow_vertical = 2
+texture = ExtResource("3_6w1du")
+
+[node name="StartMark" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -20.0
+offset_right = -11.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Title"
+
+[node name="ToDialogueButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("2_sac1i")
+stretch_mode = 0

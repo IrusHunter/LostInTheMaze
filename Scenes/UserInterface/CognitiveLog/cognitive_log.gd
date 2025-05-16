@@ -8,7 +8,8 @@ const PATH = "res://Scenes/UserInterface/CognitiveLog/cognitive_log.tscn"
 
 var _background_panel: BackgroundPanel
 @onready var _main_content: Control = $MainContent ## clips the tablet screnn (content)
-@onready var _apps_container: GridContainer = $MainContent/AppsPanel/AppsContainer ## container (panel) for apps
+@warning_ignore("unused_private_class_variable") 
+@onready var _apps_container: GridContainer = $MainContent/AppsPanel/AppsContainer ## container for apps
  
 ##
 static func init(parent: Node) -> CognitiveLog:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0c45jlrf01dn"]
+[gd_scene load_steps=8 format=3 uid="uid://d0c45jlrf01dn"]
 
 [ext_resource type="Script" uid="uid://c2gs0kg7g6x5f" path="res://Scenes/UserInterface/CognitiveLog/cognitive_log.gd" id="1_a420p"]
+[ext_resource type="PackedScene" uid="uid://gvdy7ah2yrof" path="res://Scenes/UserInterface/CognitiveLog/DialogueHeader/dialogue_header.tscn" id="2_a2vy1"]
 [ext_resource type="PackedScene" uid="uid://cmygnoixqohpx" path="res://Scenes/UserInterface/CognitiveLog/Apps/app.tscn" id="2_jqajs"]
 [ext_resource type="Texture2D" uid="uid://e83ra6ynls5u" path="res://Scenes/UserInterface/CognitiveLog/Assets/tablet_frame.png" id="2_tl26a"]
 [ext_resource type="Script" uid="uid://cuv030nbprrxy" path="res://Scenes/UserInterface/CognitiveLog/apps_panel.gd" id="2_ytwlx"]
@@ -47,6 +48,19 @@ offset_right = 466.0
 offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MainInfoScreen" type="Control" parent="MainContent"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 52.0
+offset_top = -128.0
+offset_right = 924.0
+offset_bottom = 128.0
+grow_vertical = 2
+
+[node name="DialogueHeader" parent="MainContent/MainInfoScreen" instance=ExtResource("2_a2vy1")]
 
 [node name="AppsPanel" type="Control" parent="MainContent"]
 layout_mode = 1
