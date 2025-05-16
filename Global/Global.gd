@@ -2,8 +2,6 @@ class_name Global
 ## contains global gata about the program and 
 ## serves as a container for non constant vars for external use
 
-static var sounds_level = 0
-static var music_level = 0
 static var options_gata: OptionsData ## contain general information about the program
 static var game_data: GameData ## general data about current game
 static var level_data: LevelData ## general information about level

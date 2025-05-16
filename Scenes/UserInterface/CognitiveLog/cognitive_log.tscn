@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0c45jlrf01dn"]
+
+[ext_resource type="Script" uid="uid://c2gs0kg7g6x5f" path="res://Scenes/UserInterface/CognitiveLog/cognitive_log.gd" id="1_a420p"]
+[ext_resource type="PackedScene" uid="uid://cmygnoixqohpx" path="res://Scenes/UserInterface/CognitiveLog/Apps/app.tscn" id="2_jqajs"]
+[ext_resource type="Texture2D" uid="uid://e83ra6ynls5u" path="res://Scenes/UserInterface/CognitiveLog/Assets/tablet_frame.png" id="2_tl26a"]
+[ext_resource type="Script" uid="uid://cuv030nbprrxy" path="res://Scenes/UserInterface/CognitiveLog/apps_panel.gd" id="2_ytwlx"]
+[ext_resource type="Texture2D" uid="uid://c5ksjucjiw5og" path="res://Global/DefaultAssets/Assets/BigButton.png" id="3_51e8y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqajs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tl26a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CognitiveLog" type="Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -578.0
+offset_top = -330.0
+offset_right = 578.0
+offset_bottom = 330.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a420p")
+
+[node name="MainContent" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -466.0
+offset_top = -144.0
+offset_right = 466.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AppsPanel" type="Control" parent="MainContent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -467.0
+offset_top = -144.0
+offset_right = 28.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ytwlx")
+
+[node name="BPContainer" type="Control" parent="MainContent/AppsPanel"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 145.0
+offset_top = 146.0
+offset_right = 241.0
+offset_bottom = 266.0
+
+[node name="AppsContainer" type="GridContainer" parent="MainContent/AppsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -122.0
+offset_right = 441.0
+offset_bottom = 122.0
+grow_vertical = 2
+columns = 4
+
+[node name="App" parent="MainContent/AppsPanel/AppsContainer" instance=ExtResource("2_jqajs")]
+layout_mode = 2
+
+[node name="App2" parent="MainContent/AppsPanel/AppsContainer" instance=ExtResource("2_jqajs")]
+layout_mode = 2
+
+[node name="App3" parent="MainContent/AppsPanel/AppsContainer" instance=ExtResource("2_jqajs")]
+layout_mode = 2
+
+[node name="App4" parent="MainContent/AppsPanel/AppsContainer" instance=ExtResource("2_jqajs")]
+layout_mode = 2
+
+[node name="App5" parent="MainContent/AppsPanel/AppsContainer" instance=ExtResource("2_jqajs")]
+layout_mode = 2
+
+[node name="Switcher" type="TextureButton" parent="MainContent/AppsPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -130.0
+offset_bottom = 128.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("3_51e8y")
+stretch_mode = 0
+
+[node name="TableFrame" type="AnimatedSprite2D" parent="."]
+position = Vector2(582, 329)
+scale = Vector2(32.4, 32.4)
+sprite_frames = SubResource("SpriteFrames_jqajs")
+
+[connection signal="pressed" from="MainContent/AppsPanel/Switcher" to="MainContent/AppsPanel" method="_on_switcher_pressed"]
