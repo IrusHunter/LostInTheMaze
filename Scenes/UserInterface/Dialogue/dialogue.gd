@@ -1,27 +1,41 @@
 class_name Dialogue
 extends Control
+## show dialogue to user [br]
+## only one instance could be exist
 
 const PATH: String = "res://Scenes/UserInterface/Dialogue/dialogue.tscn"
-var _for_back_panel_node: Control
+static var _single: Dialogue = null ## the single instance
+var _current_node: DialogueTreeNode
+var _for_back_panel_node: Control = self
 var _background_panel: BackgroundPanel
-var _next_node_func: Callable
 
 
-static func init(parent: Control, update: Signal, next_node: Callable) -> Dialogue:
+static func init(parent: Node) -> Dialogue:
 	var d: Dialogue = preload(PATH).instantiate()
 	parent.add_child(d)
-	update.connect(d._activate)
-	d._next_node_func = next_node
 	d._background_panel = BackgroundPanel.init(d._for_back_panel_node,Control.new(), d._next_frase)
+	
+	if _single != null:
+		_single.get_parent().remove_child(_single)
+		_single.queue_free()
+	_single = d
+	
 	return d
+static func get_single() -> Dialogue:
+	return _single
 
-func _activate(s: String) -> void:
-	if s.is_absolute_path():
-		_change_portrain(s)
-	show()
-	_next_node_func.call()
-	if s == "":
+func _activate(node: DialogueTreeNode) -> void:
+	_current_node = node
+	
+	if node == null:
 		_end_dialogue()
+		return
+	if !visible:
+		show()
+	
+		# відображення слів
+	print(_current_node.words)
+	_to_next_node()
 
 func _change_portrain(s: String) -> void:
 	pass
@@ -29,6 +43,10 @@ func _change_portrain(s: String) -> void:
 func _next_frase() -> void:
 	pass
 
+func _to_next_node() -> void:
+	DialogueTree.to_next_node(_current_node.get_next_node_key())
+
 func _end_dialogue() -> void:
-	get_parent().remove_child(self)
-	queue_free()
+	hide()
+	#get_parent().remove_child(self)
+	#queue_free()

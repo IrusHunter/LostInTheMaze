@@ -6,8 +6,8 @@ const START_LEVEL_PATH: String = Paths.USER_PATH + "Level/"
 
 const TILE_SIZE: int = 32
 const PIXELS_PER_METER: int = 8
-const MAX_CAMERA_ZOOM: float = 10.0 * TILE_SIZE/32
-const MIN_CAMERA_ZOOM: float = 0.2 * TILE_SIZE/32
+const MAX_CAMERA_ZOOM: float = 10.0 * PIXELS_PER_METER/8
+const MIN_CAMERA_ZOOM: float = 0.2 * PIXELS_PER_METER/8
 
 var current_level_path: String = Paths.get_level_path(Global.game_data.name, "CurrentLevel")
 
@@ -17,6 +17,7 @@ var layers_map: LayersMap
 
 @onready var map: TileMapLayer = $Map0
 @onready var camera: Camera2D = $MainCamera ## show screen to the user
+@onready var _interface_layer: CanvasLayer = $CanvasLayer
 
 ## use to convert touch coordinates to platform coordinates
 func transform_global_position_to_local(pos: Vector2) -> Vector2:
@@ -28,11 +29,11 @@ func transform_global_position_to_local(pos: Vector2) -> Vector2:
 ## use to convert platform coordinates to tile coordinates
 static func to_tilemap_coords(coords: Vector2) -> Vector2i:
 	if coords.x<0:
-		coords.x -= Level.TILE_SIZE
+		coords.x -= 32
 	if coords.y<0:
-		coords.y -= Level.TILE_SIZE
-	coords.x = int((coords.x) / Level.TILE_SIZE)
-	coords.y = int((coords.y) / Level.TILE_SIZE)
+		coords.y -= 32
+	coords.x = int((coords.x) / 32)
+	coords.y = int((coords.y) / 32)
 	return Vector2i(coords)
 
 func _ready():
@@ -50,9 +51,10 @@ func _ready():
 	#ToLevelTeleporter.add_teleport_func(switch_to_level)
 	#load_level()
 	Global.options_gata.current_game_name = Global.game_data.name
+	Dialogue.init(_interface_layer)
 	load_level()
 
-func load_level():
+func load_level():	
 	#var ui_v = _ui.visible
 	#_ui.hide()
 	#EnvironmentMove.clear()
@@ -101,13 +103,11 @@ func load_level():
 		var h_vals = layers_map.current_layer.horizontal_walls
 		for key in h_vals:
 			if h_vals[key]:
-				print(key)
 				UnbreakableWall.init(walls_container, Wall.get_position(key, false), PI/2)
 		
 		var v_vals = layers_map.current_layer.vertical_walls
 		for key in v_vals:
 			if v_vals[key]:
-				print(key)
 				UnbreakableWall.init(walls_container, Wall.get_position(key, true), 0)
 	#tmf = FileAccess.open(current_level_path + "tilemap.txt", FileAccess.READ)
 	#line = tmf.get_line().split(' ', false)

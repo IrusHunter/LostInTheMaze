@@ -39,6 +39,16 @@ static func get_level_data_path(level_path: String) -> String:
 		return ""
 	return "".join([level_path, "level_data"])
 
+## returns path to [b]key[/b] dialogue node save file in [b]d_path[/b] directory
+static func get_dialogue_node_path(d_path: String, key: String) -> String:
+	if d_path == "":
+		printerr("d_path is empty")
+		return ""
+	if key == "":
+		printerr("key is empty")
+		return ""
+	return "".join([d_path, key])
+
 ## coping files from [b]from[/b] directory to [b]to[/b] directory
 static func copy_dirs(from: String, to: String) -> void:
 	var fromDirectory = DirAccess.open(from)
