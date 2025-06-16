@@ -27,14 +27,14 @@ var first_loaded: bool:
 			_first_loaded = value
 			_data_saver.save_property("first_loaded", str(int(_first_loaded)))
 
-## func for data_saver
+## returns default values of saved property for DataSaver
 func _init_dictionary() -> Dictionary:
 	var d: Dictionary = {}
 	d["current_layer"] = str(_current_layer)
 	d["first_loaded"] = str(int(_first_loaded))
 	return d
-
-## func for extract info from data_saver
+## initialize (resets) intance from property dictionary [br]
+## USE ONLY DICTIONARY FROM [member _data_saver]
 func _init_from_dictionary():
 	var d = _data_saver.get_data()
 	_current_layer = int(d["current_layer"])
