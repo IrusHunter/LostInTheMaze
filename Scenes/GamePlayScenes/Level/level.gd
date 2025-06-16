@@ -14,10 +14,13 @@ var current_level_path: String = Paths.get_level_path(Global.game_data.name, "Cu
 var layers_map: LayersMap
 @onready var walls_container = $PerantForGroupNodes/Walls
 @onready var layers_map_parrent = $PerantForGroupNodes/LayersMap
+@onready var player: Player = Player.init($PerantForGroupNodes/Player)
 
 @onready var map: TileMapLayer = $Map0
 @onready var camera: Camera2D = $MainCamera ## show screen to the user
 @onready var _interface_layer: CanvasLayer = $CanvasLayer
+
+@onready var _joystick: Joystick = $CanvasLayer/Joystick
 
 ## use to convert touch coordinates to platform coordinates
 func transform_global_position_to_local(pos: Vector2) -> Vector2:
@@ -51,7 +54,8 @@ func _ready():
 	#ToLevelTeleporter.add_teleport_func(switch_to_level)
 	#load_level()
 	Global.options_gata.current_game_name = Global.game_data.name
-	Dialogue.init(_interface_layer)
+	_joystick.new_vector.connect(player.move_unit.change_direction)
+	#Dialogue.init(_interface_layer)
 	load_level()
 
 func load_level():	
@@ -100,15 +104,16 @@ func load_level():
 	#region initializating unbreacable walls 
 	
 	if Global.level_data.first_loaded:
-		var h_vals = layers_map.current_layer.horizontal_walls
-		for key in h_vals:
-			if h_vals[key]:
-				UnbreakableWall.init(walls_container, Wall.get_position(key, false), PI/2)
-		
-		var v_vals = layers_map.current_layer.vertical_walls
-		for key in v_vals:
-			if v_vals[key]:
-				UnbreakableWall.init(walls_container, Wall.get_position(key, true), 0)
+		#var h_vals = layers_map.current_layer.horizontal_walls
+		#for key in h_vals:
+			#if h_vals[key]:
+				#UnbreakableWall.init(walls_container, Wall.get_position(key, false), PI/2)
+		#
+		#var v_vals = layers_map.current_layer.vertical_walls
+		#for key in v_vals:
+			#if v_vals[key]:
+				#UnbreakableWall.init(walls_container, Wall.get_position(key, true), 0)
+		pass
 	#tmf = FileAccess.open(current_level_path + "tilemap.txt", FileAccess.READ)
 	#line = tmf.get_line().split(' ', false)
 	#colum = 0
@@ -361,9 +366,8 @@ func _on_menu_button_pressed():
 	#mf.close()
 #
 #
-#func _process(delta):
-	##print($Player.NOTIFICATION_PROCESS)
-	#$CanvasLayer/Panel/FPSCounter.text = str(1/delta)
-	#if float($CanvasLayer/Panel/FPSCounter2.text) < 1/delta:
-		#$CanvasLayer/Panel/FPSCounter2.text = str(1/delta)
-	#pass
+func _process(delta):
+	#print($Player.NOTIFICATION_PROCESS)
+	$CanvasLayer/Panel/FPSCounter.text = str(1/delta)
+	
+	#player.move_unit.change_direction(Vector2(-1, 0.9))

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://ba0csbqnsm5t3"]
+[gd_scene load_steps=7 format=4 uid="uid://ba0csbqnsm5t3"]
 
 [ext_resource type="Script" uid="uid://bswgwslkg7m7l" path="res://Scenes/GamePlayScenes/Level/level.gd" id="1_x1ple"]
+[ext_resource type="PackedScene" uid="uid://m0agmolr4bl7" path="res://Scenes/UserInterface/Joystick/joystick.tscn" id="2_hvdn2"]
 [ext_resource type="Texture2D" uid="uid://kgq0625cn2j7" path="res://Entity/Plains/LayersMap/TileLayer/Assets/GrassTile.png" id="2_n7jii"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pam04"]
@@ -64,6 +65,10 @@ offset_top = 615.0
 offset_right = 56.0
 offset_bottom = 638.0
 text = "111"
+
+[node name="Joystick" parent="CanvasLayer" instance=ExtResource("2_hvdn2")]
+offset_top = 457.0
+offset_right = -914.0
 
 [node name="Map0" type="TileMapLayer" parent="."]
 visible = false

@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://m0agmolr4bl7"]
+
+[ext_resource type="Texture2D" uid="uid://tnndhyl5gk3y" path="res://Scenes/UserInterface/Joystick/Assets/joystick_back.png" id="1_55b45"]
+[ext_resource type="Script" uid="uid://db566m64fk7pj" path="res://Scenes/UserInterface/Joystick/joystick.gd" id="1_ec15u"]
+[ext_resource type="Texture2D" uid="uid://di3t8v7mrv3be" path="res://Scenes/UserInterface/Joystick/Assets/joystick_front.png" id="3_yxkfq"]
+
+[node name="Joystick" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ec15u")
+
+[node name="MainFrame" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_55b45")
+expand_mode = 1
+
+[node name="Pointer" type="TextureRect" parent="MainFrame"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 100.0
+offset_bottom = 98.0
+texture = ExtResource("3_yxkfq")
+expand_mode = 1
+
+[connection signal="gui_input" from="MainFrame/Pointer" to="." method="_on_pointer_gui_input"]

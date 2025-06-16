@@ -14,7 +14,8 @@ func _ready():
 	await get_tree().create_timer(_life_time,1).timeout
 	_health.current_health = -1
 func _init():
-	_health = Health.new(1, death)
+	#_health = Health.new(1, death)
+	pass
 static func init(
 	parent: Node, position: Vector2, damage: float, life_time: float, radius: float = 7
 ) -> Grenate:

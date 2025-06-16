@@ -36,6 +36,7 @@ shape = SubResource("CapsuleShape2D_8apxy")
 zoom = Vector2(16, 9)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(6, 0)
 blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("3_fom6b")
