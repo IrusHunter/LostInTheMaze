@@ -8,10 +8,10 @@ signal new_update_phase ## pass one String parametr - key of the update
 func update(from: int) -> void:
 	if from <= 0:
 		_from_0_to_1()
+	#Global.options_gata._program_version = CURRENT_VERSION
 	new_update_phase.emit("end")
 
 func _from_0_to_1():
 	new_update_phase.emit("something")
 	DirAccess.make_dir_recursive_absolute(Paths.SAVES_PATH)
-	var sf = FileAccess.open(Paths.USER_PATH + "Options.txt", FileAccess.WRITE)
-	sf.store_line("program_version=1")
+	

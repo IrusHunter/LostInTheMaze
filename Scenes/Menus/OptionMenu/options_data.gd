@@ -12,7 +12,7 @@ var _default_camera_zoom: float = 4 ## default zoom for camera
 var _data_saver: DataSaver
 
 func _init() -> void:
-	_data_saver = DataSaver.new(Paths.USER_PATH + "Options", _init_dictionary)
+	_data_saver = DataSaver.new(Paths.USER_PATH + "options", _init_dictionary)
 	_init_from_dictionary()
 
 ## name of current game
@@ -84,6 +84,14 @@ var memory_brightness: float:
 	set(value):
 		_memory_brightness = value
 		_data_saver.save_property("memory_brightness", str(_memory_brightness))
+
+## version of the program
+var program_version: int:
+	get:
+		return _program_version
+	set(value):
+		_program_version = value
+		_data_saver.save_property("program_version", value, true)
 
 ## default zoom for camera
 var default_camera_zoom: float:
