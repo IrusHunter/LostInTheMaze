@@ -43,7 +43,7 @@ func _init(path: String, death_func: Callable) -> void:
 	_shield.resize(COUNT_OF_HP_TYPES)
 	_shield.fill(0.0)
 	
-	_data_saver = DataSaver.new(path, _init_dictionary)
+	_data_saver = DataSaver.new(path, _init_dictionary, DataSaver.SECTION.GAME_OBJECT)
 	_from_dictionary(_data_saver.get_data())
 	_set_default_values()
 
@@ -70,26 +70,27 @@ func reset(c_hp: float, t_hp: float, hp_t: HP_TYPE, vul: Array[float], sh: Array
 		_shield[i] = s
 
 ## returns default values of saved property for DataSaver
-func _init_dictionary() -> Dictionary[String, String]:
-	var d: Dictionary[String, String] = {}
-	d["current_hp"] = str(_current_hp)
-	d["top_hp"] = str(_top_hp)
-	d["hp_type"] = str(_hp_type)
-	d["vulnerability"] = _get_str_vul()
-	d["shield"] = _get_str_sh()
+func _init_dictionary() -> Dictionary[String, Variant]:
+	var d: Dictionary[String, Variant] = {}
+	d["current_hp"] = _current_hp
+	d["top_hp"] = _top_hp
+	d["hp_type"] = _hp_type
+	d["vulnerability"] = _vulnerability
+	d["shield"] = _shield
 	return d
 ## initialize (resets) intance from property dictionary [br]
 ## USE ONLY DICTIONARY FROM [member _data_saver]
-func _from_dictionary(d: Dictionary[String, String]) -> void:
-	_current_hp = float(d["current_hp"])
-	_top_hp = float(d["top_hp"])
-	_hp_type = int(d["hp_type"])
+func _from_dictionary(d: Dictionary[String, Variant]) -> void:
+	_current_hp = d["current_hp"]
+	_top_hp = d["top_hp"]
 	
-	var v_str := d["vulnerability"].split("&", false)
-	var s_str := d["shield"].split("&", false)
+	_hp_type = HP_TYPE.get(d["hp_type"], 0)
+	
+	var tmp_v = d["vulnerability"]
+	var tmp_s = d["shield"]
 	for i in range(COUNT_OF_HP_TYPES):
-		_vulnerability[i] = float(v_str[i])
-		_shield[i] = float(s_str[i])
+		_vulnerability[i] = tmp_v[i]
+		_shield[i] = tmp_s[i]
 
 ## set immunity for health to special damage type
 func _set_default_values() -> void:
@@ -101,21 +102,6 @@ func _set_default_values() -> void:
 	elif hp_type == HP_TYPE.MORAL:
 		_vulnerability[HP_TYPE.BIOLOGICAL] = -1.0
 		_vulnerability[HP_TYPE.MECHANICAL] = -1.0
-
-## convert [member _vulnerability] to String
-func _get_str_vul() -> String:
-	var v_str: Array[String] = []
-	v_str.resize(COUNT_OF_HP_TYPES)
-	for i in range(COUNT_OF_HP_TYPES):
-		v_str[i] = str(_vulnerability[i])
-	return "&".join(v_str)
-## convert [member _shield] to String
-func _get_str_sh() -> String:
-	var s_str: Array[String] = []
-	s_str.resize(COUNT_OF_HP_TYPES)
-	for i in range(COUNT_OF_HP_TYPES):
-		s_str[i] = str(_shield[i])
-	return "&".join(s_str)
 #endregion
 
 #region properties
@@ -170,7 +156,7 @@ var shield: Array[float]:
 ## emited vulnerability_changed signal
 func increase_vulnerability(type: HP_TYPE, value: float) -> void:
 	_vulnerability[type] *= value
-	_data_saver.save_property("vulnerability", _get_str_vul())
+	_data_saver.save_property("vulnerability", _vulnerability)
 	vulnerability_changed.emit(type)
 ## divides the current [b]type[/b] vulnerability by [b]value[/b] [br]
 ## emited vulnerability_changed signal
@@ -181,7 +167,7 @@ func reduce_vulnerability(type: HP_TYPE, value: float) -> void:
 ## emited shield_changed signal
 func increase_shield(type: HP_TYPE, value: float) -> void:
 	_shield[type] += value
-	_data_saver.save_property("shield", _get_str_sh())
+	_data_saver.save_property("shield", _shield)
 	shield_changed.emit(type)
 ## reducec the current [b]type[/b] shield by [b]value[/b] [br]
 ## emited shield_changed signal

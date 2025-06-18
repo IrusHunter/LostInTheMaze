@@ -31,6 +31,7 @@ static func init(parent: Node) -> Player:
 	parent.add_child(p)
 	
 	p._move_unit = MoveUnit.new(0, 4*Level.PIXELS_PER_METER*60, p)
+	p._move_unit.direction_changed.connect(p.move_in)
 	
 	return p
 #static func init(
@@ -60,32 +61,14 @@ static func init(parent: Node) -> Player:
 var move_unit: MoveUnit:
 	get:
 		return _move_unit
-#var health: Health:
-	#get:
-		#return _health
-#var independent_movement: IndependentMovement:
-	#get:
-		#return _independent_movement
-#var inventory: InventoryData:
-	#get:
-		#return _inventory
-#var moves: int:
-	#get:
-		#return _moves
-	#set(value):
-		#_moves = value
-		#save_to_file() 
+var health: Health:
+	get:
+		return _health
 #endregion
 
 #region metods
-#func save_to_file() -> void:
-	#var pF = FileAccess.open(_save_path, FileAccess.WRITE)
-	#var line: String = str(int(position.x/Global.size)) + " " + str(int(position.y/Global.size)) \
-	#+ " " + str(rotation) + " " + str(health.top_health-health.current_health) + " " + str(_moves)
-	#pF.store_line(line)
-	#pF.store_line(_inventory.path.get_file())
-	#pF.close()
-	#_inventory.save()
+func move_in(d: Vector2) -> void:
+	rotation = d.angle()
 #func throw_granate() -> void:
 	#if not _inventory.selected_item.tag == "Grenate":
 		#return
@@ -102,12 +85,4 @@ var move_unit: MoveUnit:
 	#add_move()
 #func death() -> void:
 	#_health.current_health = _health.top_health
-#func add_move() -> void:
-	#_moves += 1
-	#moves_changed.emit()
-	#save_to_file()
-#func move_to(pos: Vector2) -> void:
-	#_independent_movement.start_move(pos)
-	#await _independent_movement.movement_stoped
-	#add_move()
 #endregion

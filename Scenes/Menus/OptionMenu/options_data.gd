@@ -21,7 +21,7 @@ var current_game_name: String:
 		return _current_game_name
 	set(value):
 		_current_game_name = value
-		_data_saver.save_property("current_game_name", _current_game_name)
+		_data_saver.save_property("current_game_name", _current_game_name, true)
 
 ## loudness of music
 var music_level: int:
