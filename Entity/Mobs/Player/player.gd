@@ -12,13 +12,19 @@ var _moves: int
 var _grenate_thrower: GrenateThrower
 signal moves_changed
 
+var _anim_states: Dictionary[StringName, AnimationState] = {}
 @onready var _move_unit: MoveUnit
+@onready var _anim: AnimatedSprite2D = $AnimatedSprite2D
 #endregion
 var _data_saver: DataSaver
 
 #region constructor and save
 func _ready():
-	#_inventory_robber = InventoryRobber.init(self, _inventory, 10)
+	_anim_states["idle"] = AnimationState.init(_anim, "idle", _anim, _from_idle_anim)
+	_anim_states["walk_left"] = AnimationState.init(_anim, "walk_left", _anim, _from_walk_left_anim)
+	_anim_states["walk_right"] = AnimationState.init(_anim, "walk_right", _anim, _from_walk_right_anim)
+	
+	_anim_states["idle"].activate()
 	pass
 func _init():
 	#_health = Health.new(100, death)
@@ -68,7 +74,8 @@ var health: Health:
 
 #region metods
 func move_in(d: Vector2) -> void:
-	rotation = d.angle()
+	#rotation = d.angle()
+	pass
 #func throw_granate() -> void:
 	#if not _inventory.selected_item.tag == "Grenate":
 		#return
@@ -85,4 +92,33 @@ func move_in(d: Vector2) -> void:
 	#add_move()
 #func death() -> void:
 	#_health.current_health = _health.top_health
+#endregion
+
+#region animation
+func _from_idle_anim() -> AnimationState:
+	if !move_unit.on_move:
+		return null
+	
+	var a := velocity.angle()
+	if abs(a) <= PI/2:
+		return _anim_states["walk_right"]
+	else:
+		return _anim_states["walk_left"]
+func _from_walk_right_anim() -> AnimationState:
+	if !move_unit.on_move:
+		return _anim_states["idle"]
+	
+	if abs(velocity.angle()) > PI/2:
+		_anim_states["walk_right"].switch_state_hard(_anim_states["walk_left"])
+	
+	return null
+func _from_walk_left_anim() -> AnimationState:
+	if !move_unit.on_move:
+		return _anim_states["idle"]
+	
+	if abs(velocity.angle()) < PI/2:
+		_anim_states["walk_left"].switch_state_hard(_anim_states["walk_right"])
+	
+	return null
+
 #endregion

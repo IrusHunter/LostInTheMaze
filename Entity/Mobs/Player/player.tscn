@@ -149,7 +149,9 @@ script = ExtResource("1_2q85g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_otlhv")
-animation = &"idle"
+animation = &"walk_left"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
